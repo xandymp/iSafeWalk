@@ -19,6 +19,8 @@ class CreatePeopleTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('job_title')->nullable();
+
+            $table->engine = 'InnoDB';
         });
     }
 
