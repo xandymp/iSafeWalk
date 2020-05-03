@@ -19,6 +19,8 @@ class CreatePeopleTable extends Migration
             $table->softDeletes();
             $table->string('name');
             $table->string('email');
+            $table->integer('status');
+            $table->date('birth_date');
             $table->string('job_title')->nullable();
 
             $table->unsignedBigInteger('device_id')
