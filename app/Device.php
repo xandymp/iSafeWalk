@@ -5,19 +5,17 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class People extends Model
+class Device extends Model
 {
     use SoftDeletes;
 
     protected $fillable = [
         'name',
-        'email',
-        'job_title',
-        'device_id',
+        'serial',
     ];
 
-    public function device()
+    public function people()
     {
-        return $this->belongsTo(Device::class, 'device_id');
+        return $this->hasOne(People::class, 'device_id', 'id');
     }
 }
