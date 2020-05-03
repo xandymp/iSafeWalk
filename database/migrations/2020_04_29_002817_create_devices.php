@@ -16,6 +16,9 @@ class CreateDevices extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->softDeletes();
+            $table->string('name');
+            $table->string('serial');
 
             $table->engine = 'InnoDB';
         });
