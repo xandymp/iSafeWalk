@@ -26,6 +26,16 @@
                         <i class="fa fa-tablet"></i>
                     </a>
                 </li>
+                <li>
+                    <a href="sector">
+                        <i class="fa fa-map-o"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="router">
+                        <i class="fa fa-wifi"></i>
+                    </a>
+                </li>
             </ul>
         </nav>
         <div class="col-sm-3 title">
