@@ -27,19 +27,34 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Name:</strong>
-                    <input type="text" name="name" class="form-control" placeholder="Name">
+                    <input
+                        type="text"
+                        name="name"
+                        class="form-control"
+                        placeholder="Name"
+                        required>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Horizontal Length:</strong>
-                    <input type="number" name="horizontal" class="form-control" placeholder="Horizontal Length">
+                    <input
+                        type="number"
+                        name="horizontal"
+                        class="form-control"
+                        placeholder="Horizontal Length"
+                        required>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Verical Length:</strong>
-                    <input type="number" name="vertical" class="form-control" placeholder="Vertical Length">
+                    <input
+                        type="number"
+                        name="vertical"
+                        class="form-control"
+                        placeholder="Vertical Length"
+                        required>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

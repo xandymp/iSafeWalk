@@ -28,19 +28,37 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Name:</strong>
-                    <input type="text" name="name" value="{{ $sector->name }}" class="form-control" placeholder="Name">
+                    <input
+                        type="text"
+                        name="name"
+                        value="{{ $sector->name }}"
+                        class="form-control"
+                        placeholder="Name"
+                        required>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Horizontal Length:</strong>
-                    <input type="text" name="horizontal" value="{{ $sector->horizontal }}" class="form-control" placeholder="Horizontal Length">
+                    <input
+                        type="text"
+                        name="horizontal"
+                        value="{{ $sector->horizontal }}"
+                        class="form-control"
+                        placeholder="Horizontal Length"
+                        required>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Vertical Length:</strong>
-                    <input type="text" name="vertical" value="{{ $sector->vertical }}" class="form-control" placeholder="Vertical Length">
+                    <input
+                        type="text"
+                        name="vertical"
+                        value="{{ $sector->vertical }}"
+                        class="form-control"
+                        placeholder="Vertical Length"
+                        required>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
