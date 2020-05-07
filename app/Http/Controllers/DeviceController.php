@@ -87,6 +87,7 @@ class DeviceController extends Controller
     {
         $request->validate([
             'name'=>'required',
+            'serial'=>'required',
         ]);
 
         $device = Device::find($id);

@@ -102,7 +102,7 @@
                         class="form-control"
                         name="device_id"
                         id="device_id">
-                        <option value {{ old('device_id', null) === null ? 'selected' : '' }}>Select Device</option>
+                        <option value {{ old('device_id', null) === null ? 'selected' : '' }}>Please select</option>
                         @foreach($devices as $key => $label)
                             <option value="{{ $key }}" {{ old('device_id', $person->device_id) === (string) $key ? 'selected' : '' }}>
                                 {{ $label }}

@@ -113,7 +113,6 @@ class PeopleController extends Controller
 
         $person->save();
 
-
         return redirect()->route('people.index')
             ->with('success','Person updated successfully.');
     }
