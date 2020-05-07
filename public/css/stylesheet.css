@@ -142,17 +142,13 @@ span {
 #sidebar ul li a {
     padding: 10px;
     text-align: center;
-    font-size: 1.1em;
+    font-size: 2em;
     display: block;
 }
 
 #sidebar ul li a:hover {
     color: #7386D5;
     background: #fff;
-}
-
-#sidebar ul li a i {
-    margin-right: 10px;
 }
 
 #sidebar ul li.active>a,
@@ -284,28 +280,28 @@ a.article:hover {
     padding: 0 20px;
 }
 
-.employees {
+.list {
     margin-left: -30px;
 }
 
-.employees:hover {
+.list:hover {
     background-color: #cccccc;
     cursor: pointer;
 
 }
 
-.employees {
+.list {
     padding-top: 10px;
     width: 117%;
     height: 10%;
 }
 
-.employees svg {
+.list svg {
     /*background-color: #f1f1f1 !important;*/
     border-radius: 30px;
 }
 
-.employees.active {
+.list.active {
     background-color: #262626;
     color: #fff;
 }
