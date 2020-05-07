@@ -29,7 +29,7 @@
             </ul>
         </nav>
         <div class="col-sm-3 title">
-            <h2>Devices&nbsp;<span style="font-size: 1.25rem;color: #cccccc">(243)</span></h2>
+            <h2>Employees&nbsp;<span style="font-size: 1.25rem;color: #cccccc">(243)</span></h2>
             <br/>
             <hr/>
             <div class="list">
