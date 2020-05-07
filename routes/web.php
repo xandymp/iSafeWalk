@@ -8,3 +8,4 @@ Route::get('/', function () {
 
 Route::resource('people', 'PeopleController');
 Route::resource('device', 'DeviceController');
+Route::resource('sector', 'SectorController');
