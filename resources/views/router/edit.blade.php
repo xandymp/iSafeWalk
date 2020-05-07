@@ -44,7 +44,7 @@
                     <input
                         type="text"
                         name="serial"
-                        value="{{ $router->email }}"
+                        value="{{ $router->serial }}"
                         class="form-control"
                         placeholder="Serial"
                         required>

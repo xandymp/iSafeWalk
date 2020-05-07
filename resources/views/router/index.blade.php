@@ -1,10 +1,10 @@
-@extends('people.layout')
+@extends('router.layout')
 
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('people.create') }}"> Create New Employee</a>
+                <a class="btn btn-success" href="{{ route('router.create') }}"> Create New Router</a>
             </div>
         </div>
     </div>
@@ -19,22 +19,20 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>E-mail</th>
-            <th>Job Title</th>
+            <th>Sector</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($people as $person)
+        @foreach ($routers as $router)
             <tr>
-                <td>{{ $person->id }}</td>
-                <td>{{ $person->name }}</td>
-                <td>{{ $person->email }}</td>
-                <td>{{ $person->job_title }}</td>
+                <td>{{ $router->id }}</td>
+                <td>{{ $router->name }}</td>
+                <td>{{ $router->sector->name }}</td>
                 <td>
-                    <form action="{{ route('people.destroy', $person->id) }}" method="POST">
+                    <form action="{{ route('router.destroy', $router->id) }}" method="POST">
 
-                        <a class="btn btn-info" href="{{ route('people.show', $person->id) }}">Show</a>
+                        <a class="btn btn-info" href="{{ route('router.show', $router->id) }}">Show</a>
 
-                        <a class="btn btn-primary" href="{{ route('people.edit', $person->id) }}">Edit</a>
+                        <a class="btn btn-primary" href="{{ route('router.edit', $router->id) }}">Edit</a>
 
                         @csrf
                         @method('DELETE')
@@ -46,6 +44,6 @@
         @endforeach
     </table>
 
-    {!! $people->links() !!}
+    {!! $routers->links() !!}
 
 @endsection

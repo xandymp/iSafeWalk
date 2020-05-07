@@ -15,9 +15,9 @@ class RouterController extends Controller
      */
     public function index()
     {
-        $router = Router::latest()->paginate(5);
+        $routers = Router::latest()->paginate(5);
 
-        return view('router.index',compact('router'))
+        return view('router.index',compact('routers'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -84,7 +84,7 @@ class RouterController extends Controller
     {
         $router = Router::find($id);
         $sectors = Sector::all()->pluck('name', 'id');
-        return view('people.edit',compact('router', 'sectors'));
+        return view('router.edit',compact('router', 'sectors'));
     }
 
     /**

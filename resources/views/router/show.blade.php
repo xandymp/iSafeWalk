@@ -1,9 +1,9 @@
-@extends('people.layout')
+@extends('router.layout')
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('people.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('router.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -12,47 +12,39 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
-                {{ $person->name }}
+                {{ $router->name }}
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>E-mail:</strong>
-                {{ $person->email }}
+                <strong>Serial:</strong>
+                {{ $router->serial }}
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Status:</strong>
-                {{ $status }}
+                <strong>Horizontal Length:</strong>
+                {{ $router->horizontal }}
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Birth Date:</strong>
-                {{ date('d/m/Y', strtotime($person->birth_date)) }}
+                <strong>Vertical Length:</strong>
+                {{ $router->vertical }}
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Job Title:</strong>
-                {{ $person->job_title }}
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Device:</strong>
-                {{ $person->device->name ?? null }}
+                <strong>Sector:</strong>
+                {{ $router->sector->name }}
             </div>
         </div>
     </div>
