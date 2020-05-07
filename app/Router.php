@@ -5,18 +5,20 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Sector extends Model
+class Router extends Model
 {
     use SoftDeletes;
 
     protected $fillable = [
         'name',
+        'serial',
         'horizontal',
         'vertical',
+        'sector_id',
     ];
 
-    public function router()
+    public function sector()
     {
-        return $this->hasMany(Router::class, 'sector_id', 'id');
+        return $this->belongsTo(Sector::class, 'sector_id');
     }
 }
