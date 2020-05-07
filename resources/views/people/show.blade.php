@@ -55,7 +55,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Device:</strong>
-                {{ $person->device->name }}
+                {{ $person->device->name ?? null }}
             </div>
         </div>
     </div>
