@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Employees</title>
+    <title>Routers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,7 +16,7 @@
                         <i class="fa fa-home" ></i>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="people">
                         <i class="fa fa-users" ></i>
                     </a>
@@ -31,7 +31,7 @@
                         <i class="fa fa-map-o"></i>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="router">
                         <i class="fa fa-wifi"></i>
                     </a>
@@ -39,7 +39,7 @@
             </ul>
         </nav>
         <div class="col-sm-3 title">
-            <h2>Employees&nbsp;<span style="font-size: 1.25rem;color: #cccccc">(243)</span></h2>
+            <h2>Routers&nbsp;<span style="font-size: 1.25rem;color: #cccccc">(243)</span></h2>
             <br/>
             <hr/>
             <div class="list">
