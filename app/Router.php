@@ -9,6 +9,8 @@ class Router extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'routers';
+
     protected $fillable = [
         'name',
         'serial',

@@ -9,6 +9,8 @@ class People extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'people';
+
     protected $dates = [
         'birth_date',
     ];

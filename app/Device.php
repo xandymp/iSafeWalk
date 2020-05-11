@@ -9,6 +9,8 @@ class Device extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'devices';
+
     protected $fillable = [
         'name',
         'serial',

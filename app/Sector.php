@@ -9,6 +9,8 @@ class Sector extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'sectors';
+
     protected $fillable = [
         'name',
         'horizontal',
