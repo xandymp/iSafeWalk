@@ -17,22 +17,22 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="people">
+                    <a href="{{ url('/people') }}">
                         <i class="fa fa-users" ></i>
                     </a>
                 </li>
                 <li>
-                    <a href="device">
+                    <a href="{{ url('/device') }}">
                         <i class="fa fa-tablet"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="sector">
+                    <a href="{{ url('/sector') }}">
                         <i class="fa fa-map-o"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="router">
+                    <a href="{{ url('/router') }}">
                         <i class="fa fa-wifi"></i>
                     </a>
                 </li>

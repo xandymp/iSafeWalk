@@ -17,22 +17,22 @@
                     </a>
                 </li>
                 <li>
-                    <a href="people">
+                    <a href="{{ url('/people') }}">
                         <i class="fa fa-users" ></i>
                     </a>
                 </li>
                 <li>
-                    <a href="device">
+                    <a href="{{ url('/device') }}">
                         <i class="fa fa-tablet"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="sector">
+                    <a href="{{ url('/sector') }}">
                         <i class="fa fa-map-o"></i>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="router">
+                    <a href="{{ url('/router') }}">
                         <i class="fa fa-wifi"></i>
                     </a>
                 </li>
@@ -110,6 +110,42 @@
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
                     <b>Router 08</b><br>
+                    <span style="color: #999999">Sector 02</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 09</b><br>
+                    <span style="color: #999999">Sector 02</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 09</b><br>
+                    <span style="color: #999999">Sector 02</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 09</b><br>
+                    <span style="color: #999999">Sector 02</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 09</b><br>
                     <span style="color: #999999">Sector 02</span>
                 </div>
             </div>
