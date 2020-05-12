@@ -76,7 +76,7 @@
                         id="birth_date"
                         type="date"
                         name="birth_date"
-                        value="{{ date('m/d/Y', strtotime($person->birth_date)) }}"
+                        value="{{ date('d/m/Y', strtotime($person->birth_date)) }}"
                         class="form-control"
                         placeholder="Birth Date"
                         required>
