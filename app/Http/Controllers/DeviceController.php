@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Device;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DeviceController extends Controller
 {
@@ -47,6 +48,7 @@ class DeviceController extends Controller
             'name' => $request->get('name'),
             'serial' => $request->get('serial'),
         ]);
+
         $device->save();
         return redirect()->route('device.index')
             ->with('success','Device created successfully.');
@@ -61,7 +63,8 @@ class DeviceController extends Controller
     public function show(int $id)
     {
         $device = Device::find($id);
-        return view('device.show',compact('device'));
+        $deviceLocation = $this->showLocation($id);
+        return view('device.show',compact('device', 'deviceLocation'));
     }
 
     /**
@@ -115,5 +118,120 @@ class DeviceController extends Controller
         $device->delete();
         return redirect()->route('device.index')
             ->with('success','Device deleted successfully');
+    }
+
+    public function showLocation(int $id, string $startTime = null, string $endTime = null)
+    {
+        // Get the current location when there is no period
+        if (is_null($endTime)) {
+            $endTime = date('Y-m-d H:i:s');
+        }
+
+        if (is_null($startTime)) {
+            $startTime = date('Y-m-d H:i:s', strtotime('-2 days', strtotime($endTime)));
+        }
+
+        $locationHistories = $this->getDeviceLocationHistories($id, $startTime, $endTime);
+        return $this->discoverLocation($locationHistories);
+    }
+
+    private function getDeviceLocationHistories(int $deviceId, string $startTime = null, string $endTime = null)
+    {
+        return DB::table('location_history AS lh')
+            ->join('routers AS r', 'lh.router_id', '=', 'r.id')
+            ->select(
+                'lh.id',
+                'lh.device_id',
+                'lh.router_id',
+                'r.horizontal',
+                'r.vertical',
+                'lh.distance',
+                'lh.created_at'
+            )
+            ->where('lh.device_id', '=', $deviceId)
+            ->whereBetween('lh.created_at', [$startTime, $endTime])
+            ->whereNull('lh.deleted_at')
+            ->orderBy('lh.created_at', 'desc')
+            ->get();
+    }
+
+    public function discoverLocation($locationHistories)
+    {
+        $router1 = [];
+        $router2 = [];
+        $router3 = [];
+
+        foreach ($locationHistories as $locationHistory) {
+            if (empty($router1['router_id'])) {
+                $router1 = $this->decorateRouter($locationHistory);
+                continue;
+            }
+            if (empty($router2['router_id'])
+                && $locationHistory->router_id != $router1['router_id']
+            ) {
+                $router2 = $this->decorateRouter($locationHistory);
+                continue;
+            }
+            if (empty($router3['router_id'])
+                && $locationHistory->router_id != $router1['router_id']
+                && $locationHistory->router_id != $router2['router_id']
+            ) {
+                $router3 = $this->decorateRouter($locationHistory);
+                break;
+            }
+        }
+
+        return $this->findLocation($router1, $router2, $router3);
+    }
+
+    private function decorateRouter($locationHistory)
+    {
+        $router['router_id'] = $locationHistory->router_id;
+        $router['horizontal'] = $locationHistory->horizontal;
+        $router['vertical'] = $locationHistory->vertical;
+        $router['distance'] = $locationHistory->distance;
+
+        return $router;
+    }
+
+    private function findLocation(array $router1, array $router2, array $router3)
+    {
+        $devicePosition = [
+            'horizontal' => 0,
+            'vertical' => 0,
+        ];
+
+        if (empty($router1)
+            || empty($router2)
+            || empty($router3)
+        ) {
+            return $devicePosition;
+        }
+
+        // calculate the location of the device based on the 3 routers location and distance
+        $A = 2*$router2['horizontal'] - 2*$router1['horizontal'];
+        $B = 2*$router2['vertical'] - 2*$router1['vertical'];
+        $C = pow($router1['distance'], 2)
+            - pow($router2['distance'], 2)
+            - pow($router1['horizontal'], 2)
+            + pow($router2['horizontal'], 2)
+            - pow($router1['vertical'], 2)
+            + pow($router2['vertical'], 2)
+        ;
+        $D = 2*$router3['horizontal'] - 2*$router2['horizontal'];
+        $E = 2*$router3['vertical'] - 2*$router2['vertical'];
+        $F = pow($router2['distance'], 2)
+            - pow($router3['distance'], 2)
+            - pow($router2['horizontal'], 2)
+            + pow($router3['horizontal'], 2)
+            - pow($router2['vertical'], 2)
+            + pow($router3['vertical'], 2)
+        ;
+
+        // finding the x of the device
+        $devicePosition['horizontal'] = (($C * $E) - ($F * $B)) / (($E * $A) - ($B * $D));
+        $devicePosition['vertical'] = (($C * $D) - ($A * $F)) / (($B * $D) - ($A * $E));
+
+        return $devicePosition;
     }
 }

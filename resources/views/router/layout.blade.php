@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Routers</title>
+    <title>iSafeWalk - Routers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,59 +12,150 @@
         <nav id="sidebar">
             <ul class="list-unstyled components">
                 <li>
-                    <a href="#home">
+                    <a href="/">
                         <i class="fa fa-home" ></i>
                     </a>
                 </li>
                 <li>
-                    <a href="people">
+                    <a href="{{ url('/people') }}">
                         <i class="fa fa-users" ></i>
                     </a>
                 </li>
                 <li>
-                    <a href="device">
+                    <a href="{{ url('/device') }}">
                         <i class="fa fa-tablet"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="sector">
+                    <a href="{{ url('/sector') }}">
                         <i class="fa fa-map-o"></i>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="router">
+                    <a href="{{ url('/router') }}">
                         <i class="fa fa-wifi"></i>
                     </a>
                 </li>
             </ul>
         </nav>
         <div class="col-sm-3 title">
-            <h2>Routers&nbsp;<span style="font-size: 1.25rem;color: #cccccc">(243)</span></h2>
-            <br/>
+            <h2>Routers&nbsp;<span style="font-size: 1.25rem;color: #cccccc">(14)</span></h2>
             <hr/>
             <div class="list">
                 <div class="col-sm-2">
-                    <i class="fa fa-user-circle"></i>
+                    <i class="fa fa-feed"></i>
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
-                    <b>Shadrias Pearson</b><br>
-                    <span style="color: #999999">Warehouse Team Member</span>
-                </div>
-                <div class="col-sm-4">
-                    <span style="font-size: 9pt; float: left">Person Status</span>
+                    <b>Router 01</b><br>
+                    <span style="color: #999999">Sector 01</span>
                 </div>
             </div>
-            <hr/>
             <div class="list active">
                 <div class="col-sm-2">
-                    <i class="fa fa-user-circle"></i>
+                    <i class="fa fa-feed"></i>
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
-                    <b>Beatriz Brito</b><br>
-                    <span style="color: #999999">Logistics Manager</span>
+                    <b>Router 02</b><br>
+                    <span style="color: #999999">Sector 01</span>
                 </div>
-                <div class="col-sm-4">
-                    <span style="font-size: 9pt; float: left">Person Status</span>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 03</b><br>
+                    <span style="color: #999999">Sector 01</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 04</b><br>
+                    <span style="color: #999999">Sector 01</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 05</b><br>
+                    <span style="color: #999999">Sector 01</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 06</b><br>
+                    <span style="color: #999999">Sector 01</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 07</b><br>
+                    <span style="color: #999999">Sector 02</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 08</b><br>
+                    <span style="color: #999999">Sector 02</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 09</b><br>
+                    <span style="color: #999999">Sector 02</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 09</b><br>
+                    <span style="color: #999999">Sector 02</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 09</b><br>
+                    <span style="color: #999999">Sector 02</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 09</b><br>
+                    <span style="color: #999999">Sector 02</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 09</b><br>
+                    <span style="color: #999999">Sector 02</span>
                 </div>
             </div>
         </div>
