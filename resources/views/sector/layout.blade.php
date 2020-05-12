@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sectors</title>
+    <title>iSafeWalk - Sectors</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,7 +12,7 @@
         <nav id="sidebar">
             <ul class="list-unstyled components">
                 <li>
-                    <a href="#home">
+                    <a href="/">
                         <i class="fa fa-home" ></i>
                     </a>
                 </li>
