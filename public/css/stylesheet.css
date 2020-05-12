@@ -264,6 +264,8 @@ a.article:hover {
 
 .title {
     margin: 30px 15px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .btn.btn-active {
