@@ -39,32 +39,54 @@
             </ul>
         </nav>
         <div class="col-sm-3 title">
-            <h2>Employees&nbsp;<span style="font-size: 1.25rem;color: #cccccc">(243)</span></h2>
-            <br/>
+            <h2>Employees&nbsp;<span style="font-size: 1.25rem;color: #cccccc">(4)</span></h2>
             <hr/>
             <div class="list">
                 <div class="col-sm-2">
                     <i class="fa fa-user-circle"></i>
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
-                    <b>Shadrias Pearson</b><br>
-                    <span style="color: #999999">Warehouse Team Member</span>
+                    <b>Person 01</b><br>
+                    <span style="color: #999999"></span>
                 </div>
                 <div class="col-sm-4">
-                    <span style="font-size: 9pt; float: left">Person Status</span>
+                    <span style="font-size: 8pt; float: left">Infected</span>
                 </div>
             </div>
-            <hr/>
             <div class="list active">
                 <div class="col-sm-2">
                     <i class="fa fa-user-circle"></i>
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
-                    <b>Beatriz Brito</b><br>
-                    <span style="color: #999999">Logistics Manager</span>
+                    <b>Person 02</b><br>
+                    <span style="color: #999999">Job 02</span>
                 </div>
                 <div class="col-sm-4">
-                    <span style="font-size: 9pt; float: left">Person Status</span>
+                    <span style="font-size: 8pt; float: left">Not Infected</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-user-circle"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Person 03</b><br>
+                    <span style="color: #999999">Job 03</span>
+                </div>
+                <div class="col-sm-4">
+                    <span style="font-size: 8pt; float: left">Not Defined</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-user-circle"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Person 04</b><br>
+                    <span style="color: #999999">Job 04</span>
+                </div>
+                <div class="col-sm-4">
+                    <span style="font-size: 8pt; float: left">Suspicious</span>
                 </div>
             </div>
         </div>

@@ -39,32 +39,33 @@
             </ul>
         </nav>
         <div class="col-sm-3 title">
-            <h2>Sectors&nbsp;<span style="font-size: 1.25rem;color: #cccccc">(243)</span></h2>
-            <br/>
+            <h2>Sectors&nbsp;<span style="font-size: 1.25rem;color: #cccccc">(3)</span></h2>
             <hr/>
             <div class="list">
                 <div class="col-sm-2">
-                    <i class="fa fa-user-circle"></i>
+                    <i class="fa fa-map-o"></i>
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
-                    <b>Shadrias Pearson</b><br>
-                    <span style="color: #999999">Warehouse Team Member</span>
-                </div>
-                <div class="col-sm-4">
-                    <span style="font-size: 9pt; float: left">Person Status</span>
+                    <b>Sector 01</b><br>
+                    <span style="color: #999999"></span>
                 </div>
             </div>
-            <hr/>
             <div class="list active">
                 <div class="col-sm-2">
-                    <i class="fa fa-user-circle"></i>
+                    <i class="fa fa-map-o"></i>
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
-                    <b>Beatriz Brito</b><br>
-                    <span style="color: #999999">Logistics Manager</span>
+                    <b>Sector 02</b><br>
+                    <span style="color: #999999"></span>
                 </div>
-                <div class="col-sm-4">
-                    <span style="font-size: 9pt; float: left">Person Status</span>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-map-o"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Sector 03</b><br>
+                    <span style="color: #999999"></span>
                 </div>
             </div>
         </div>

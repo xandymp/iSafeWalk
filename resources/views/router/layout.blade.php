@@ -39,32 +39,87 @@
             </ul>
         </nav>
         <div class="col-sm-3 title">
-            <h2>Routers&nbsp;<span style="font-size: 1.25rem;color: #cccccc">(243)</span></h2>
-            <br/>
+            <h2>Routers&nbsp;<span style="font-size: 1.25rem;color: #cccccc">(14)</span></h2>
             <hr/>
             <div class="list">
                 <div class="col-sm-2">
-                    <i class="fa fa-user-circle"></i>
+                    <i class="fa fa-feed"></i>
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
-                    <b>Shadrias Pearson</b><br>
-                    <span style="color: #999999">Warehouse Team Member</span>
-                </div>
-                <div class="col-sm-4">
-                    <span style="font-size: 9pt; float: left">Person Status</span>
+                    <b>Router 01</b><br>
+                    <span style="color: #999999">Sector 01</span>
                 </div>
             </div>
-            <hr/>
             <div class="list active">
                 <div class="col-sm-2">
-                    <i class="fa fa-user-circle"></i>
+                    <i class="fa fa-feed"></i>
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
-                    <b>Beatriz Brito</b><br>
-                    <span style="color: #999999">Logistics Manager</span>
+                    <b>Router 02</b><br>
+                    <span style="color: #999999">Sector 01</span>
                 </div>
-                <div class="col-sm-4">
-                    <span style="font-size: 9pt; float: left">Person Status</span>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 03</b><br>
+                    <span style="color: #999999">Sector 01</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 04</b><br>
+                    <span style="color: #999999">Sector 01</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 05</b><br>
+                    <span style="color: #999999">Sector 01</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 06</b><br>
+                    <span style="color: #999999">Sector 01</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 07</b><br>
+                    <span style="color: #999999">Sector 02</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 08</b><br>
+                    <span style="color: #999999">Sector 02</span>
+                </div>
+            </div>
+            <div class="list">
+                <div class="col-sm-2">
+                    <i class="fa fa-feed"></i>
+                </div>
+                <div class="col-sm-5" style="font-size: 8pt">
+                    <b>Router 09</b><br>
+                    <span style="color: #999999">Sector 02</span>
                 </div>
             </div>
         </div>

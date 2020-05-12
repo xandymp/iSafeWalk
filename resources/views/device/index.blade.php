@@ -32,8 +32,6 @@
 
                         <a class="btn btn-info" href="{{ route('device.show', $device->id) }}">Show</a>
 
-                        <a class="btn btn-info" href="{{ route('device.showLocation', $device->id) }}">Show location</a>
-
                         <a class="btn btn-primary" href="{{ route('device.edit', $device->id) }}">Edit</a>
 
                         @csrf
