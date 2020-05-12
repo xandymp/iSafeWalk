@@ -63,7 +63,8 @@ class DeviceController extends Controller
     public function show(int $id)
     {
         $device = Device::find($id);
-        return view('device.show',compact('device'));
+        $deviceLocation = $this->showLocation($id);
+        return view('device.show',compact('device', 'deviceLocation'));
     }
 
     /**
@@ -127,13 +128,11 @@ class DeviceController extends Controller
         }
 
         if (is_null($startTime)) {
-            $startTime = strtotime($endTime)-5;
+            $startTime = date('Y-m-d H:i:s', strtotime('-2 days', strtotime($endTime)));
         }
 
-        $device = Device::find($id);
         $locationHistories = $this->getDeviceLocationHistories($id, $startTime, $endTime);
-        $deviceLocation = $this->discoverLocation($locationHistories);
-        return view('device.showLocation',compact('device', 'deviceLocation'));
+        return $this->discoverLocation($locationHistories);
     }
 
     private function getDeviceLocationHistories(int $deviceId, string $startTime = null, string $endTime = null)
@@ -201,6 +200,13 @@ class DeviceController extends Controller
             'horizontal' => 0,
             'vertical' => 0,
         ];
+
+        if (empty($router1)
+            || empty($router2)
+            || empty($router3)
+        ) {
+            return $devicePosition;
+        }
 
         // calculate the location of the device based on the 3 routers location and distance
         $A = 2*$router2['horizontal'] - 2*$router1['horizontal'];
