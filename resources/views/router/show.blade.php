@@ -24,28 +24,5 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Horizontal Length:</strong>
-                {{ $router->horizontal }}
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Vertical Length:</strong>
-                {{ $router->vertical }}
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Sector:</strong>
-                {{ $router->sector->name }}
-            </div>
-        </div>
-    </div>
+
 @endsection

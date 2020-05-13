@@ -137,8 +137,8 @@ class DeviceController extends Controller
                 'lh.device_id',
                 'sr.sector_id',
                 'lh.router_id',
-                'router_horizontal',
-                'router_vertical',
+                'sr.router_horizontal',
+                'sr.router_vertical',
                 'lh.distance',
                 'lh.created_at'
             )

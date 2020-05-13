@@ -19,14 +19,12 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Sector</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($routers as $router)
             <tr>
                 <td>{{ $router->id }}</td>
                 <td>{{ $router->name }}</td>
-                <td>{{ $router->sector->name }}</td>
                 <td>
                     <form action="{{ route('router.destroy', $router->id) }}" method="POST">
 

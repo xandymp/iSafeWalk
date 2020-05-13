@@ -39,7 +39,7 @@
             </ul>
         </nav>
         <div class="col-sm-3 title">
-            <h2>Routers&nbsp;<span style="font-size: 1.25rem;color: #cccccc">(14)</span></h2>
+            <h2>Routers&nbsp;<span style="font-size: 1.25rem;color: #cccccc">(11)</span></h2>
             <hr/>
             <div class="list">
                 <div class="col-sm-2">
@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
                     <b>Router 01</b><br>
-                    <span style="color: #999999">Sector 01</span>
+                    <span style="color: #999999"></span>
                 </div>
             </div>
             <div class="list active">
@@ -56,7 +56,7 @@
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
                     <b>Router 02</b><br>
-                    <span style="color: #999999">Sector 01</span>
+                    <span style="color: #999999"></span>
                 </div>
             </div>
             <div class="list">
@@ -65,7 +65,7 @@
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
                     <b>Router 03</b><br>
-                    <span style="color: #999999">Sector 01</span>
+                    <span style="color: #999999"></span>
                 </div>
             </div>
             <div class="list">
@@ -74,7 +74,7 @@
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
                     <b>Router 04</b><br>
-                    <span style="color: #999999">Sector 01</span>
+                    <span style="color: #999999"></span>
                 </div>
             </div>
             <div class="list">
@@ -83,7 +83,7 @@
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
                     <b>Router 05</b><br>
-                    <span style="color: #999999">Sector 01</span>
+                    <span style="color: #999999"></span>
                 </div>
             </div>
             <div class="list">
@@ -92,7 +92,7 @@
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
                     <b>Router 06</b><br>
-                    <span style="color: #999999">Sector 01</span>
+                    <span style="color: #999999"></span>
                 </div>
             </div>
             <div class="list">
@@ -101,7 +101,7 @@
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
                     <b>Router 07</b><br>
-                    <span style="color: #999999">Sector 02</span>
+                    <span style="color: #999999"></span>
                 </div>
             </div>
             <div class="list">
@@ -110,7 +110,7 @@
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
                     <b>Router 08</b><br>
-                    <span style="color: #999999">Sector 02</span>
+                    <span style="color: #999999"></span>
                 </div>
             </div>
             <div class="list">
@@ -119,7 +119,7 @@
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
                     <b>Router 09</b><br>
-                    <span style="color: #999999">Sector 02</span>
+                    <span style="color: #999999"></span>
                 </div>
             </div>
             <div class="list">
@@ -127,8 +127,8 @@
                     <i class="fa fa-feed"></i>
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
-                    <b>Router 09</b><br>
-                    <span style="color: #999999">Sector 02</span>
+                    <b>Router 10</b><br>
+                    <span style="color: #999999"></span>
                 </div>
             </div>
             <div class="list">
@@ -136,26 +136,8 @@
                     <i class="fa fa-feed"></i>
                 </div>
                 <div class="col-sm-5" style="font-size: 8pt">
-                    <b>Router 09</b><br>
-                    <span style="color: #999999">Sector 02</span>
-                </div>
-            </div>
-            <div class="list">
-                <div class="col-sm-2">
-                    <i class="fa fa-feed"></i>
-                </div>
-                <div class="col-sm-5" style="font-size: 8pt">
-                    <b>Router 09</b><br>
-                    <span style="color: #999999">Sector 02</span>
-                </div>
-            </div>
-            <div class="list">
-                <div class="col-sm-2">
-                    <i class="fa fa-feed"></i>
-                </div>
-                <div class="col-sm-5" style="font-size: 8pt">
-                    <b>Router 09</b><br>
-                    <span style="color: #999999">Sector 02</span>
+                    <b>Router 11</b><br>
+                    <span style="color: #999999"></span>
                 </div>
             </div>
         </div>
