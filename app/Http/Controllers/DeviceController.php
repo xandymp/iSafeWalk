@@ -152,13 +152,18 @@ class DeviceController extends Controller
 
     private function getSectorId(int $deviceId)
     {
-        return DB::table('location_history AS lh')
+        $subQuery =  DB::table('location_history AS lh')
             ->join('sectors_routers AS sr', 'lh.router_id', '=', 'sr.router_id')
+            ->selectRaw('sr.sector_id, COUNT(0) as routers')
             ->where('lh.device_id', '=', $deviceId)
             ->groupBy('sr.sector_id', 'lh.created_at')
-            ->havingRaw('COUNT(0) = ?', [3])
-            ->orderBy('lh.created_at', 'desc')
-            ->value('sr.sector_id');
+            ->orderBy('lh.created_at', 'desc');
+
+        return DB::table(DB::raw("({$subQuery->toSql()}) as sub"))
+            ->mergeBindings($subQuery)
+            ->orderBy('sub.routers', 'desc')
+            ->limit(1)
+            ->value('sub.sector_id');
     }
 
     public function discoverLocation($locationsHistory)
@@ -239,7 +244,6 @@ class DeviceController extends Controller
         // finding the x and y of the device
         $devicePosition['horizontal'] = (($C * $E) - ($F * $B)) / (($E * $A) - ($B * $D));
         $devicePosition['vertical'] = (($C * $D) - ($A * $F)) / (($B * $D) - ($A * $E));
-
         $devicePosition['sector_id'] = $router1['sector_id'];
 
         return $devicePosition;

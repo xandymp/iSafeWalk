@@ -183,6 +183,14 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'created_at' => '2020-05-11 00:38:50',
             'updated_at' => '2020-05-11 00:38:50',
+            'device_id' => 1,
+            'router_id' => 5,
+            'distance' => 4.35,
+        ]);
+
+        App\LocationHistory::create([
+            'created_at' => '2020-05-11 00:38:50',
+            'updated_at' => '2020-05-11 00:38:50',
             'device_id' => 3,
             'router_id' => 7,
             'distance' => 1.8,
