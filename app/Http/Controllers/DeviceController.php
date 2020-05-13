@@ -131,20 +131,21 @@ class DeviceController extends Controller
             $startTime = date('Y-m-d H:i:s', strtotime('-2 days', strtotime($endTime)));
         }
 
-        $locationHistories = $this->getDeviceLocationHistories($id, $startTime, $endTime);
-        return $this->discoverLocation($locationHistories);
+        $locationsHistory = $this->getDeviceLocationsHistory($id, $startTime, $endTime);
+        return $this->discoverLocation($locationsHistory);
     }
 
-    private function getDeviceLocationHistories(int $deviceId, string $startTime = null, string $endTime = null)
+    private function getDeviceLocationsHistory(int $deviceId, string $startTime = null, string $endTime = null)
     {
         return DB::table('location_history AS lh')
-            ->join('routers AS r', 'lh.router_id', '=', 'r.id')
+            ->join('sectors_routers AS sr', 'lh.router_id', '=', 'sr.router_id')
             ->select(
                 'lh.id',
                 'lh.device_id',
+                'sr.sector_id',
                 'lh.router_id',
-                'r.horizontal',
-                'r.vertical',
+                'router_horizontal',
+                'router_vertical',
                 'lh.distance',
                 'lh.created_at'
             )
@@ -155,13 +156,13 @@ class DeviceController extends Controller
             ->get();
     }
 
-    public function discoverLocation($locationHistories)
+    public function discoverLocation($locationsHistory)
     {
         $router1 = [];
         $router2 = [];
         $router3 = [];
 
-        foreach ($locationHistories as $locationHistory) {
+        foreach ($locationsHistory as $locationHistory) {
             if (empty($router1['router_id'])) {
                 $router1 = $this->decorateRouter($locationHistory);
                 continue;
@@ -187,6 +188,7 @@ class DeviceController extends Controller
     private function decorateRouter($locationHistory)
     {
         $router['router_id'] = $locationHistory->router_id;
+        $router['sector_id'] = $locationHistory->sector_id;
         $router['horizontal'] = $locationHistory->horizontal;
         $router['vertical'] = $locationHistory->vertical;
         $router['distance'] = $locationHistory->distance;

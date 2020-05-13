@@ -19,15 +19,6 @@ class CreateRoutersTable extends Migration
             $table->softDeletes();
             $table->string('name');
             $table->string('serial');
-            $table->float('horizontal');
-            $table->float('vertical');
-
-            $table->unsignedBigInteger('sector_id')
-                ->nullable();
-
-            $table->foreign('sector_id')
-                ->references('id')
-                ->on('sectors');
         });
     }
 

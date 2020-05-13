@@ -14,13 +14,11 @@ class Router extends Model
     protected $fillable = [
         'name',
         'serial',
-        'horizontal',
-        'vertical',
-        'sector_id',
     ];
 
-    public function sector()
+    public function sectors()
     {
-        return $this->belongsTo(Sector::class, 'sector_id');
+        return $this->belongsToMany('App\Sector')
+            ->using('App\SectorRouter');
     }
 }
