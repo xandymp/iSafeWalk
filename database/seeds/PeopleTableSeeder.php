@@ -45,5 +45,14 @@ class PeopleTableSeeder extends Seeder
             'job_title' => 'Job 04',
             'device_id' => 4,
         ]);
+
+        App\People::create([
+            'name' => 'Person 05',
+            'email' => 'mail05@mail.com',
+            'status' => 0,
+            'birth_date' => '1980-01-01',
+            'job_title' => 'Job 05',
+            'device_id' => 5,
+        ]);
     }
 }

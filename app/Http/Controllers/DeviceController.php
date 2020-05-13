@@ -120,23 +120,16 @@ class DeviceController extends Controller
             ->with('success','Device deleted successfully');
     }
 
-    public function showLocation(int $id, string $startTime = null, string $endTime = null)
+    public function showLocation(int $id)
     {
-        // Get the current location when there is no period
-        if (is_null($endTime)) {
-            $endTime = date('Y-m-d H:i:s');
-        }
-
-        if (is_null($startTime)) {
-            $startTime = date('Y-m-d H:i:s', strtotime('-2 days', strtotime($endTime)));
-        }
-
-        $locationsHistory = $this->getDeviceLocationsHistory($id, $startTime, $endTime);
+        $locationsHistory = $this->getDeviceLocationsHistory($id);
         return $this->discoverLocation($locationsHistory);
     }
 
-    private function getDeviceLocationsHistory(int $deviceId, string $startTime = null, string $endTime = null)
+    private function getDeviceLocationsHistory(int $deviceId)
     {
+        $sectorId = $this->getSectorId($deviceId);
+
         return DB::table('location_history AS lh')
             ->join('sectors_routers AS sr', 'lh.router_id', '=', 'sr.router_id')
             ->select(
@@ -150,10 +143,22 @@ class DeviceController extends Controller
                 'lh.created_at'
             )
             ->where('lh.device_id', '=', $deviceId)
-            ->whereBetween('lh.created_at', [$startTime, $endTime])
+            ->where('sr.sector_id', '=', $sectorId)
             ->whereNull('lh.deleted_at')
             ->orderBy('lh.created_at', 'desc')
+            ->orderBy('lh.distance')
             ->get();
+    }
+
+    private function getSectorId(int $deviceId)
+    {
+        return DB::table('location_history AS lh')
+            ->join('sectors_routers AS sr', 'lh.router_id', '=', 'sr.router_id')
+            ->where('lh.device_id', '=', $deviceId)
+            ->groupBy('sr.sector_id', 'lh.created_at')
+            ->havingRaw('COUNT(0) = ?', [3])
+            ->orderBy('lh.created_at', 'desc')
+            ->value('sr.sector_id');
     }
 
     public function discoverLocation($locationsHistory)
@@ -189,8 +194,8 @@ class DeviceController extends Controller
     {
         $router['router_id'] = $locationHistory->router_id;
         $router['sector_id'] = $locationHistory->sector_id;
-        $router['horizontal'] = $locationHistory->horizontal;
-        $router['vertical'] = $locationHistory->vertical;
+        $router['horizontal'] = $locationHistory->router_horizontal;
+        $router['vertical'] = $locationHistory->router_vertical;
         $router['distance'] = $locationHistory->distance;
 
         return $router;
@@ -201,6 +206,7 @@ class DeviceController extends Controller
         $devicePosition = [
             'horizontal' => 0,
             'vertical' => 0,
+            'sector_id' => 0,
         ];
 
         if (empty($router1)
@@ -230,9 +236,11 @@ class DeviceController extends Controller
             + pow($router3['vertical'], 2)
         ;
 
-        // finding the x of the device
+        // finding the x and y of the device
         $devicePosition['horizontal'] = (($C * $E) - ($F * $B)) / (($E * $A) - ($B * $D));
         $devicePosition['vertical'] = (($C * $D) - ($A * $F)) / (($B * $D) - ($A * $E));
+
+        $devicePosition['sector_id'] = $router1['sector_id'];
 
         return $devicePosition;
     }
