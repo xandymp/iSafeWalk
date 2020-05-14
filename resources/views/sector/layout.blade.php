@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="{{ URL::to('/') }}/css/stylesheet.css" rel="stylesheet">
+    <link href="{{ asset('public/css/stylesheet.css') }}" rel="stylesheet">
 </head>
 <body>
     <div class="wrapper">
@@ -41,6 +41,9 @@
         <div class="col-sm-3 title">
             <h2>Sectors&nbsp;<span style="font-size: 1.25rem;color: #cccccc">({{ count($sectors) }})</span></h2>
             <hr/>
+            <a id="create-sector" class="btn btn-sm btn-success pull-right"><i class="fa fa-plus" style="font-size: inherit"></i></a>
+            <br/>
+            <br/>
             @foreach($sectors as $sector)
                 <div class="list" data-id="{{ $sector->id }}">
                     <div class="col-sm-2">
@@ -85,6 +88,19 @@
 
             $.ajax({
                 url: `{{ url('/sector/') }}/${id}/edit`,
+                success: function (data) {
+                    $('#content').html(data);
+                },
+                error: function (error) {
+                    alert(error);
+                }
+            });
+        });
+
+        $(document).on('click', '#create-sector', function () {
+
+            $.ajax({
+                url: `{{ url('/sector/create') }}`,
                 success: function (data) {
                     $('#content').html(data);
                 },
