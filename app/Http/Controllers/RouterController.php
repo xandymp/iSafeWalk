@@ -43,17 +43,11 @@ class RouterController extends Controller
         $request->validate([
             'name'=>'required',
             'serial'=>'required',
-            'horizontal'=>'required',
-            'vertical'=>'required',
-            'sector_id'=>'required',
         ]);
 
         $router = new Router([
             'name' => $request->get('name'),
             'serial' => $request->get('serial'),
-            'horizontal' => $request->get('horizontal'),
-            'vertical' => $request->get('vertical'),
-            'sector_id' => $request->get('sector_id'),
         ]);
 
         $router->save();
@@ -99,18 +93,12 @@ class RouterController extends Controller
         $request->validate([
             'name'=>'required',
             'serial'=>'required',
-            'horizontal'=>'required',
-            'vertical'=>'required',
-            'sector_id'=>'required',
         ]);
 
         $router = Router::find($id);
 
         $router->name = $request->get('name');
         $router->serial = $request->get('serial');
-        $router->horizontal = $request->get('horizontal');
-        $router->vertical = $request->get('vertical');
-        $router->sector_id = $request->get('sector_id');
 
         $router->save();
 

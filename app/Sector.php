@@ -17,8 +17,9 @@ class Sector extends Model
         'vertical',
     ];
 
-    public function router()
+    public function routers()
     {
-        return $this->hasMany(Router::class, 'sector_id', 'id');
+        return $this->belongsToMany('App\Router')
+            ->using('App\SectorRouter');
     }
 }

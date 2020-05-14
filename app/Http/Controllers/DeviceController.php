@@ -120,48 +120,59 @@ class DeviceController extends Controller
             ->with('success','Device deleted successfully');
     }
 
-    public function showLocation(int $id, string $startTime = null, string $endTime = null)
+    public function showLocation(int $id)
     {
-        // Get the current location when there is no period
-        if (is_null($endTime)) {
-            $endTime = date('Y-m-d H:i:s');
-        }
-
-        if (is_null($startTime)) {
-            $startTime = date('Y-m-d H:i:s', strtotime('-2 days', strtotime($endTime)));
-        }
-
-        $locationHistories = $this->getDeviceLocationHistories($id, $startTime, $endTime);
-        return $this->discoverLocation($locationHistories);
+        $locationsHistory = $this->getDeviceLocationsHistory($id);
+        return $this->discoverLocation($locationsHistory);
     }
 
-    private function getDeviceLocationHistories(int $deviceId, string $startTime = null, string $endTime = null)
+    private function getDeviceLocationsHistory(int $deviceId)
     {
+        $sectorId = $this->getSectorId($deviceId);
+
         return DB::table('location_history AS lh')
-            ->join('routers AS r', 'lh.router_id', '=', 'r.id')
+            ->join('sectors_routers AS sr', 'lh.router_id', '=', 'sr.router_id')
             ->select(
                 'lh.id',
                 'lh.device_id',
+                'sr.sector_id',
                 'lh.router_id',
-                'r.horizontal',
-                'r.vertical',
+                'sr.router_horizontal',
+                'sr.router_vertical',
                 'lh.distance',
                 'lh.created_at'
             )
             ->where('lh.device_id', '=', $deviceId)
-            ->whereBetween('lh.created_at', [$startTime, $endTime])
+            ->where('sr.sector_id', '=', $sectorId)
             ->whereNull('lh.deleted_at')
             ->orderBy('lh.created_at', 'desc')
+            ->orderBy('lh.distance')
             ->get();
     }
 
-    public function discoverLocation($locationHistories)
+    private function getSectorId(int $deviceId)
+    {
+        $subQuery =  DB::table('location_history AS lh')
+            ->join('sectors_routers AS sr', 'lh.router_id', '=', 'sr.router_id')
+            ->selectRaw('sr.sector_id, COUNT(0) as routers')
+            ->where('lh.device_id', '=', $deviceId)
+            ->groupBy('sr.sector_id', 'lh.created_at')
+            ->orderBy('lh.created_at', 'desc');
+
+        return DB::table(DB::raw("({$subQuery->toSql()}) as sub"))
+            ->mergeBindings($subQuery)
+            ->orderBy('sub.routers', 'desc')
+            ->limit(1)
+            ->value('sub.sector_id');
+    }
+
+    public function discoverLocation($locationsHistory)
     {
         $router1 = [];
         $router2 = [];
         $router3 = [];
 
-        foreach ($locationHistories as $locationHistory) {
+        foreach ($locationsHistory as $locationHistory) {
             if (empty($router1['router_id'])) {
                 $router1 = $this->decorateRouter($locationHistory);
                 continue;
@@ -187,8 +198,9 @@ class DeviceController extends Controller
     private function decorateRouter($locationHistory)
     {
         $router['router_id'] = $locationHistory->router_id;
-        $router['horizontal'] = $locationHistory->horizontal;
-        $router['vertical'] = $locationHistory->vertical;
+        $router['sector_id'] = $locationHistory->sector_id;
+        $router['horizontal'] = $locationHistory->router_horizontal;
+        $router['vertical'] = $locationHistory->router_vertical;
         $router['distance'] = $locationHistory->distance;
 
         return $router;
@@ -199,6 +211,7 @@ class DeviceController extends Controller
         $devicePosition = [
             'horizontal' => 0,
             'vertical' => 0,
+            'sector_id' => 0,
         ];
 
         if (empty($router1)
@@ -228,9 +241,10 @@ class DeviceController extends Controller
             + pow($router3['vertical'], 2)
         ;
 
-        // finding the x of the device
+        // finding the x and y of the device
         $devicePosition['horizontal'] = (($C * $E) - ($F * $B)) / (($E * $A) - ($B * $D));
         $devicePosition['vertical'] = (($C * $D) - ($A * $F)) / (($B * $D) - ($A * $E));
+        $devicePosition['sector_id'] = $router1['sector_id'];
 
         return $devicePosition;
     }
