@@ -45,7 +45,4 @@
             </tr>
         @endforeach
     </table>
-
-    {!! $people->links() !!}
-
 @endsection

@@ -14,10 +14,8 @@ class SectorController extends Controller
      */
     public function index()
     {
-        $sectors = Sector::latest()->paginate(5);
-
-        return view('sector.index',compact('sectors'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $sectors = Sector::get();
+        return view('sector.index',compact('sectors'));
     }
 
     /**
@@ -27,7 +25,8 @@ class SectorController extends Controller
      */
     public function create()
     {
-        return view('sector.create');
+        $sectors = Sector::get();
+        return view('sector.create', compact('sectors'));
     }
 
     /**
@@ -100,7 +99,6 @@ class SectorController extends Controller
         $sector->vertical = $request->get('vertical');
 
         $sector->save();
-
 
         return redirect()->route('sector.index')
             ->with('success','Sector updated successfully.');

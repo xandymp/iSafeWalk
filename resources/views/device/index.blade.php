@@ -43,7 +43,4 @@
             </tr>
         @endforeach
     </table>
-
-    {!! $devices->links() !!}
-
 @endsection

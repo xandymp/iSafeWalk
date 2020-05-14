@@ -15,10 +15,8 @@ class PeopleController extends Controller
      */
     public function index()
     {
-        $people = People::latest()->paginate(5);
-
-        return view('people.index',compact('people'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $people = People::get();
+        return view('people.index',compact('people'));
     }
 
     /**
@@ -28,8 +26,9 @@ class PeopleController extends Controller
      */
     public function create()
     {
+        $people = People::get();
         $devices = Device::all()->pluck('name', 'id');
-        return view('people.create', compact('devices'));
+        return view('people.create', compact('people', 'devices'));
     }
 
     /**

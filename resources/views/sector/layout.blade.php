@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="{{ asset("public/css/stylesheet.css") }}" rel="stylesheet">
+    <link href="{{ URL::to('/') }}/css/stylesheet.css" rel="stylesheet">
 </head>
 <body>
     <div class="wrapper">
@@ -59,14 +59,42 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" async>
         $(document).on('click', '.list', function () {
             $('.list').removeClass('active');
             $(this).addClass('active');
 
+            let id = $(this).data('id');
+
+            $.ajax({
+                url: `{{ url('/sector/') }}/${id}`,
+                success: function (data) {
+                    $('#content').html(data);
+                },
+                error: function (error) {
+                    alert(error);
+                }
+            });
+        });
+
+        $(document).on('click', '.edit', function () {
+            let id = $(this).data('id');
+
+            $.ajax({
+                url: `{{ url('/sector/') }}/${id}/edit`,
+                success: function (data) {
+                    $('#content').html(data);
+                },
+                error: function (error) {
+                    alert(error);
+                }
+            });
+        });
+
+        $(document).on('click', '.back', function () {
             let id = $(this).data('id');
 
             $.ajax({
