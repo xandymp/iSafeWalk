@@ -3,6 +3,10 @@
 <head>
     <title>iSafeWalk - Sectors</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ asset('public/css/stylesheet.css') }}" rel="stylesheet">
@@ -53,6 +57,10 @@
                         <b>{{ $sector->name }}</b><br>
                         <span style="color: #999999"></span>
                     </div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-1">
+                        <a class="btn btn-danger btn-sm delete" data-id="{{ $sector->id }}"><i class="fa fa-trash" style="font-size: inherit"></i></a>
+                    </div>
                 </div>
             @endforeach
         </div>
@@ -81,6 +89,27 @@
                     alert(error);
                 }
             });
+        });
+
+        $(document).on('click', '.delete', function () {
+
+            if (confirm("Deseja realmente excluir este registro?")) {
+                let id = $(this).data('id');
+
+                $.ajax({
+                    url: `{{ url('/sector/') }}/${id}`,
+                    type: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function () {
+                        window.location.reload();
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
         });
 
         $(document).on('click', '.edit', function () {
