@@ -39,7 +39,7 @@
             </ul>
         </nav>
         <div class="col-sm-3 title">
-            <h2>Routers&nbsp;<span style="font-size: 1.25rem;color: #cccccc">(11)</span></h2>
+            <h2>Routers&nbsp;<span style="font-size: 1.25rem;color: #cccccc">({{ count($routers) }})</span></h2>
             <hr/>
             @foreach($routers as $router)
                 <div class="list" data-id="{{ $router->id }}">

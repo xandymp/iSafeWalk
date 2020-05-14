@@ -39,7 +39,7 @@
             </ul>
         </nav>
         <div class="col-sm-3 title">
-            <h2>Devices&nbsp;<span style="font-size: 1.25rem;color: #cccccc">(4)</span></h2>
+            <h2>Devices&nbsp;<span style="font-size: 1.25rem;color: #cccccc">({{ count($devices) }})</span></h2>
             <hr/>
             @foreach($devices as $device)
                 <div class="list" data-id="{{ $device->id }}">
