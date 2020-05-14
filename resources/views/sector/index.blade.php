@@ -41,7 +41,4 @@
             </tr>
         @endforeach
     </table>
-
-    {!! $sectors->links() !!}
-
 @endsection

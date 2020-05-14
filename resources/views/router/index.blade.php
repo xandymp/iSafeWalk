@@ -41,7 +41,4 @@
             </tr>
         @endforeach
     </table>
-
-    {!! $routers->links() !!}
-
 @endsection

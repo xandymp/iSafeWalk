@@ -15,10 +15,8 @@ class DeviceController extends Controller
      */
     public function index()
     {
-        $devices = Device::latest()->paginate(5);
-
-        return view('device.index',compact('devices'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $devices = Device::get();
+        return view('device.index',compact('devices'));
     }
 
     /**
@@ -28,7 +26,8 @@ class DeviceController extends Controller
      */
     public function create()
     {
-        return view('device.create');
+        $devices = Device::get();
+        return view('device.create', compact('devices'));
     }
 
     /**
