@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-sm-5" style="font-size: 8pt">
                         <b>{{ $device->name }}</b><br>
-                        <span style="color: #999999">{{ $device->serial    }}</span>
+                        <span style="color: #999999">{{ $device->serial }}</span>
                     </div>
                 </div>
             @endforeach
