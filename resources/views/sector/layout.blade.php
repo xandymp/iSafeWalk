@@ -39,35 +39,19 @@
             </ul>
         </nav>
         <div class="col-sm-3 title">
-            <h2>Sectors&nbsp;<span style="font-size: 1.25rem;color: #cccccc">(3)</span></h2>
+            <h2>Sectors&nbsp;<span style="font-size: 1.25rem;color: #cccccc">({{ count($sectors) }})</span></h2>
             <hr/>
-            <div class="list" data-id="1">
-                <div class="col-sm-2">
-                    <i class="fa fa-map-o"></i>
+            @foreach($sectors as $sector)
+                <div class="list" data-id="{{ $sector->id }}">
+                    <div class="col-sm-2">
+                        <i class="fa fa-map-o"></i>
+                    </div>
+                    <div class="col-sm-5" style="font-size: 8pt">
+                        <b>{{ $sector->name }}</b><br>
+                        <span style="color: #999999"></span>
+                    </div>
                 </div>
-                <div class="col-sm-5" style="font-size: 8pt">
-                    <b>Sector 01</b><br>
-                    <span style="color: #999999"></span>
-                </div>
-            </div>
-            <div class="list active" data-id="2">
-                <div class="col-sm-2">
-                    <i class="fa fa-map-o"></i>
-                </div>
-                <div class="col-sm-5" style="font-size: 8pt">
-                    <b>Sector 02</b><br>
-                    <span style="color: #999999"></span>
-                </div>
-            </div>
-            <div class="list" data-id="3">
-                <div class="col-sm-2">
-                    <i class="fa fa-map-o"></i>
-                </div>
-                <div class="col-sm-5" style="font-size: 8pt">
-                    <b>Sector 03</b><br>
-                    <span style="color: #999999"></span>
-                </div>
-            </div>
+            @endforeach
         </div>
         <div id="content" class="col-sm-9 container-fluid bg-light">
             @yield('content')
