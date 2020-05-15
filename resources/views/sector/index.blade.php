@@ -1,2 +1,1 @@
 @extends('sector.layout')
-

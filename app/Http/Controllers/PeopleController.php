@@ -126,8 +126,5 @@ class PeopleController extends Controller
     {
         $person = People::find($id);
         $person->delete();
-
-        return redirect()->route('people.index')
-            ->with('success','Person deleted successfully');
     }
 }
