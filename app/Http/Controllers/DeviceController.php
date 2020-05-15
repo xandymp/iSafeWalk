@@ -116,8 +116,6 @@ class DeviceController extends Controller
         $device = Device::find($id);
 
         $device->delete();
-        return redirect()->route('device.index')
-            ->with('success','Device deleted successfully');
     }
 
     private function showCurrentLocation(int $id)

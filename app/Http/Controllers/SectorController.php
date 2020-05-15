@@ -115,7 +115,5 @@ class SectorController extends Controller
         $sector = Sector::find($id);
 
         $sector->delete();
-        return redirect()->route('sector.index')
-            ->with('success','Sector deleted successfully');
     }
 }

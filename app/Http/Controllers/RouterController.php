@@ -114,8 +114,5 @@ class RouterController extends Controller
     {
         $router = Router::find($id);
         $router->delete();
-
-        return redirect()->route('router.index')
-            ->with('success','Router deleted successfully');
     }
 }
