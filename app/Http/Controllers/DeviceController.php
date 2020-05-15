@@ -62,8 +62,9 @@ class DeviceController extends Controller
     public function show(int $id)
     {
         $device = Device::find($id);
-        $deviceLocation = $this->showLocation($id);
-        return view('device.show',compact('device', 'deviceLocation'));
+        $deviceLocation = $this->showCurrentLocation($id);
+        $previousLocations = $this->showPreviousLocations($id);
+        return view('device.show',compact('device', 'deviceLocation', 'previousLocations'));
     }
 
     /**
@@ -117,13 +118,61 @@ class DeviceController extends Controller
         $device->delete();
     }
 
-    public function showLocation(int $id)
+    private function showCurrentLocation(int $id)
     {
-        $locationsHistory = $this->getDeviceLocationsHistory($id);
-        return $this->discoverLocation($locationsHistory);
+        $locations = $this->getDeviceCurrentLocations($id);
+        return $this->discoverLocation($locations);
     }
 
-    private function getDeviceLocationsHistory(int $deviceId)
+    private function showPreviousLocations(int $id)
+    {
+        $locations = [];
+        $previousLocations = $this->getDevicePreviousLocations($id);
+
+        if ($previousLocations->count() == 0) {
+            return $locations;
+        }
+
+        foreach ($previousLocations as $previousLocation) {
+            $location = $this->getDeviceLocation($id, $previousLocation->sector_id, $previousLocation->created_at);
+
+            $samePosition = $this->checkPosition($location, end($locations));
+
+            if (!$samePosition) {
+                if (!empty($locations)) {
+                    $timeDifference = strtotime(end($locations)['time']) - strtotime($location['time']);
+                    $locations[array_key_last($locations)]['duration'] = date('H:i:s', $timeDifference);
+                }
+
+                $locations[] = $location;
+            }
+        }
+
+        $timeDifference = strtotime(end($locations)['time']) - strtotime($location['time']);
+        $locations[array_key_last($locations)]['duration'] = date('H:i:s', $timeDifference);
+
+        return $locations;
+    }
+
+    private function checkPosition($location, $previousLocation)
+    {
+        if (empty($previousLocation)) {
+            return false;
+        }
+
+        if (abs($location['horizontal'] - $previousLocation['horizontal']) > 1) {
+            return false;
+        }
+
+        if (abs($location['vertical'] - $previousLocation['vertical']) > 1) {
+            return false;
+        }
+
+        return true;
+
+    }
+
+    private function getDeviceCurrentLocations(int $deviceId)
     {
         $sectorId = $this->getSectorId($deviceId);
 
@@ -151,19 +200,63 @@ class DeviceController extends Controller
     {
         $subQuery =  DB::table('location_history AS lh')
             ->join('sectors_routers AS sr', 'lh.router_id', '=', 'sr.router_id')
-            ->selectRaw('sr.sector_id, COUNT(0) as routers')
+            ->selectRaw('sr.sector_id, COUNT(0) as routers, lh.created_at')
             ->where('lh.device_id', '=', $deviceId)
             ->groupBy('sr.sector_id', 'lh.created_at')
+            ->havingRaw('COUNT(0) >= ?', [3])
             ->orderBy('lh.created_at', 'desc');
 
         return DB::table(DB::raw("({$subQuery->toSql()}) as sub"))
             ->mergeBindings($subQuery)
             ->orderBy('sub.routers', 'desc')
+            ->orderBy('sub.created_at', 'desc')
             ->limit(1)
             ->value('sub.sector_id');
     }
 
-    public function discoverLocation($locationsHistory)
+    private function getDevicePreviousLocations(int $deviceId)
+    {
+        $subQuery =  DB::table('location_history AS lh')
+            ->join('sectors_routers AS sr', 'lh.router_id', '=', 'sr.router_id')
+            ->selectRaw('sr.sector_id, COUNT(0) as routers, lh.created_at')
+            ->where('lh.device_id', '=', $deviceId)
+            ->groupBy('sr.sector_id', 'lh.created_at')
+            ->havingRaw('COUNT(0) >= ?', [3])
+            ->orderBy('lh.created_at', 'desc');
+
+        return DB::table(DB::raw("({$subQuery->toSql()}) as sub"))
+            ->mergeBindings($subQuery)
+            ->orderBy('sub.created_at', 'desc')
+            ->limit(100)
+            ->get();
+    }
+
+    private function getDeviceLocation(int $deviceId, int $sector_id, $time)
+    {
+        $locations =  DB::table('location_history AS lh')
+            ->join('sectors_routers AS sr', 'lh.router_id', '=', 'sr.router_id')
+            ->select(
+                'lh.id',
+                'lh.device_id',
+                'sr.sector_id',
+                'lh.router_id',
+                'sr.router_horizontal',
+                'sr.router_vertical',
+                'lh.distance',
+                'lh.created_at'
+            )
+            ->where('lh.device_id', '=', $deviceId)
+            ->where('sr.sector_id', '=', $sector_id)
+            ->where('lh.created_at', '=', $time)
+            ->whereNull('lh.deleted_at')
+            ->orderBy('lh.created_at', 'desc')
+            ->orderBy('lh.distance')
+            ->get();
+
+        return $this->discoverLocation($locations);
+    }
+
+    private function discoverLocation($locationsHistory)
     {
         $router1 = [];
         $router2 = [];
@@ -199,6 +292,7 @@ class DeviceController extends Controller
         $router['horizontal'] = $locationHistory->router_horizontal;
         $router['vertical'] = $locationHistory->router_vertical;
         $router['distance'] = $locationHistory->distance;
+        $router['time'] = $locationHistory->created_at;
 
         return $router;
     }
@@ -209,6 +303,8 @@ class DeviceController extends Controller
             'horizontal' => 0,
             'vertical' => 0,
             'sector_id' => 0,
+            'time' => '',
+            'duration' => '',
         ];
 
         if (empty($router1)
@@ -242,6 +338,8 @@ class DeviceController extends Controller
         $devicePosition['horizontal'] = (($C * $E) - ($F * $B)) / (($E * $A) - ($B * $D));
         $devicePosition['vertical'] = (($C * $D) - ($A * $F)) / (($B * $D) - ($A * $E));
         $devicePosition['sector_id'] = $router1['sector_id'];
+        $devicePosition['time'] = $router1['time'];
+        $devicePosition['duration'] = '';
 
         return $devicePosition;
     }
