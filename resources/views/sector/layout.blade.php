@@ -51,7 +51,7 @@
             <hr/>
             @foreach($sectors as $sector)
                 <div class="row list" data-id="{{ $sector->id }}">
-                    <div class="col-sm-2 d-none d-sm-block">
+                    <div class="col d-none d-sm-block">
                         <i class="fa fa-map-o"></i>
                     </div>
                     <div class="col-sm-5 text-truncate" style="font-size: 8pt">
@@ -60,7 +60,7 @@
                     </div>
                     <div class="col text-truncate"></div>
                     <div class="col">
-                        <a href="#" class="btn btn-danger delete" data-id="{{ $sector->id }}">
+                        <a href="#" class="btn btn-danger btn-sm delete" data-id="{{ $sector->id }}">
                             <i class="fa fa-trash" style="font-size: inherit"></i>
                         </a>
                     </div>

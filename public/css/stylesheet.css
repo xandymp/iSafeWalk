@@ -309,3 +309,7 @@ a.article:hover {
     background-color: #262626;
     color: #fff;
 }
+
+.list i.fa {
+    padding: inherit;
+}
