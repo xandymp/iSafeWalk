@@ -70,7 +70,7 @@
                 </div>
             @endforeach
         </div>
-        <div id="content" class="col-sm-9 container-fluid bg-light">
+        <div id="content" class="col-sm-8 container-fluid bg-light">
             @yield('content')
         </div>
     </div>
