@@ -6,7 +6,7 @@ use App\Device;
 use App\People;
 use Illuminate\Http\Request;
 
-class PeopleController extends Controller
+class PeopleController extends LocationController
 {
     /**
      * Display a listing of the resource.
@@ -126,5 +126,25 @@ class PeopleController extends Controller
     {
         $person = People::find($id);
         $person->delete();
+    }
+
+    public function locationMap(int $id)
+    {
+        $person = People::find($id);
+        $status = People::STATUS_SELECT[$person->status];
+        if (is_null($person->device)) {
+            return view('people.show',compact('person', 'status'));
+        }
+
+        // pegar os locations da controller device
+        $deviceLocation = $this->showCurrentLocation($person->device->id);
+        $previousLocations = $this->showPreviousLocations($person->device->id);
+
+        // Colocar coordenadas separadas por sectors
+
+        // Colocar a quantidade de vezes em uma determinada coordenada
+
+
+        return view('people.locationMap',compact('person', 'deviceLocation'));
     }
 }
