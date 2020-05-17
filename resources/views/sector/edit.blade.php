@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-right">
-            <span class="btn btn-primary back" data-id="{{ $sector->id }}"> Back</span>
+            <span class="btn btn-primary btn-sm back" data-id="{{ $sector->id }}"><i class="fa fa-undo"></i></span>
         </div>
     </div>
 </div>
