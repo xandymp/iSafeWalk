@@ -148,6 +148,21 @@
             });
         });
 
+        $(document).on('click', '.locationMap', function () {
+            let id = $(this).data('id');
+
+            $.ajax({
+                url: `{{ url('/people/') }}/${id}/location-map`,
+                success: function (data) {
+                    $('#content').html(data);
+                },
+                error: function (error) {
+                    alert('Ocorreu um erro');
+                    console.log(error);
+                }
+            });
+        });
+
         $(document).on('click', '.back', function () {
             let id = $(this).data('id');
 

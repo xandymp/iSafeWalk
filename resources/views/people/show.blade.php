@@ -3,6 +3,11 @@
         <div class="pull-right">
             <span class="btn btn-primary btn-sm edit" data-id="{{ $person->id }}"><i class="fa fa-pencil"></i></span>
         </div>
+        @if (!is_null($person->device))
+            <div class="pull-right" style="padding: inherit">
+                <span class="btn btn-primary btn-sm locationMap" data-id="{{ $person->id }}"> <i class="fa fa-street-view"></i></span>
+            </div>
+        @endif
     </div>
 </div>
 
