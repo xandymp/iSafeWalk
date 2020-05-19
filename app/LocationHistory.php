@@ -13,7 +13,7 @@ class LocationHistory extends Model
 
     protected $fillable = [
         'device_id',
-        'router_id',
+        'sector_id',
     ];
 
     public function device()
@@ -21,8 +21,8 @@ class LocationHistory extends Model
         return $this->belongsTo(Device::class, 'device_id');
     }
 
-    public function router()
+    public function sector()
     {
-        return $this->belongsTo(Router::class, 'router_id');
+        return $this->belongsTo(Sector::class, 'sector_id');
     }
 }

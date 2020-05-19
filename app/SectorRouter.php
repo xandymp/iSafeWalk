@@ -11,7 +11,8 @@ class SectorRouter extends Pivot
     protected $fillable = [
         'sector_id',
         'device_id',
-        'router_horizontal',
-        'router_vertical',
+        'router_x',
+        'router_y',
+        'router_z',
     ];
 }

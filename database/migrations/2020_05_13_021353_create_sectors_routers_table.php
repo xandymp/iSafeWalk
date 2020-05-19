@@ -30,8 +30,9 @@ class CreateSectorsRoutersTable extends Migration
                 ->on('routers');
 
 
-            $table->float('router_horizontal');
-            $table->float('router_vertical');
+            $table->float('router_x');
+            $table->float('router_y');
+            $table->float('router_z');
 
             $table->unique(['sector_id', 'router_id'], 'sector_router_index');
         });
