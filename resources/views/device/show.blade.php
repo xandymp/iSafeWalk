@@ -23,33 +23,6 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Sector:</strong>
-            {{ $deviceLocation['sector_id'] }}
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Horizontal:</strong>
-            {{ round($deviceLocation['horizontal'], 2) }}
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Vertical:</strong>
-            {{ round($deviceLocation['vertical'], 2) }}
-        </div>
-    </div>
-</div>
-
 @if (!empty($previousLocations))
     <hr/>
     <div class="row">
@@ -60,19 +33,16 @@
     </div>
     @foreach($previousLocations as $previousLocation)
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-4 col-sm-4 col-md-4">
                 <div class="form-group">
                     <strong>Date:</strong>
-                    {{ date('d/m/Y - H:i:s', strtotime($previousLocation['time']))}}
+                    {{ date('d/m/Y - H:i:s', strtotime($previousLocation->location_time)) }}
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-3 col-sm-3 col-md-3">
                 <div class="form-group">
                     <strong>Duration:</strong>
-                    {{ $previousLocation['duration']}}
+                    {{ $previousLocation->duration }}
                 </div>
             </div>
         </div>
@@ -81,25 +51,22 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Sector:</strong>
-                    {{ $previousLocation['sector_id'] }}
+                    {{ $previousLocation->sector_name }}
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-1 col-sm-1 col-md-1">
                 <div class="form-group">
-                    <strong>Horizontal:</strong>
-                    {{ round($previousLocation['horizontal'], 2) }}
+                    <strong>X:</strong>
+                    {{ round($previousLocation->location_x, 2) }}
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-1 col-sm-1 col-md-1">
                 <div class="form-group">
-                    <strong>Vertical:</strong>
-                    {{ round($previousLocation['vertical'], 2) }}
+                    <strong>Y:</strong>
+                    {{ round($previousLocation->location_y, 2) }}
                 </div>
             </div>
         </div>

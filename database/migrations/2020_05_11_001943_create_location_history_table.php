@@ -35,6 +35,7 @@ class CreateLocationHistoryTable extends Migration
             $table->float('location_x');
             $table->float('location_y');
             $table->float('location_z');
+            $table->dateTime('location_time');
         });
     }
 
