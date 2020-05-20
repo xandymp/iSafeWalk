@@ -92,7 +92,7 @@
                     $('#content').html(data);
                 },
                 error: function (error) {
-                    alert('Ocorreu um erro');
+                    alert('An error has occurred');
                     console.log(error);
                 }
             });
@@ -113,7 +113,7 @@
                         window.location.reload();
                     },
                     error: function (error) {
-                        alert('Ocorreu um erro');
+                        alert('An error has occurred');
                         console.log(error);
                     }
                 });
@@ -127,7 +127,7 @@
                     $('#content').html(data);
                 },
                 error: function (error) {
-                    alert('Ocorreu um erro');
+                    alert('An error has occurred');
                     console.log(error);
                 }
             });
@@ -142,7 +142,7 @@
                     $('#content').html(data);
                 },
                 error: function (error) {
-                    alert('Ocorreu um erro');
+                    alert('An error has occurred');
                     console.log(error);
                 }
             });
@@ -157,7 +157,7 @@
                     $('#content').html(data);
                 },
                 error: function (error) {
-                    alert('Ocorreu um erro');
+                    alert('An error has occurred');
                     console.log(error);
                 }
             });
@@ -172,7 +172,7 @@
                     $('#content').html(data);
                 },
                 error: function (error) {
-                    alert('Ocorreu um erro');
+                    alert('An error has occurred');
                     console.log(error);
                 }
             });

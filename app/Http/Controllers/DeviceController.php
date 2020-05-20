@@ -61,9 +61,9 @@ class DeviceController extends LocationController
     public function show(int $id)
     {
         $device = Device::find($id);
-        $deviceLocation = $this->showCurrentLocation($id);
         $previousLocations = $this->showPreviousLocations($id);
-        return view('device.show',compact('device', 'deviceLocation', 'previousLocations'));
+
+        return view('device.show',compact('device', 'previousLocations'));
     }
 
     /**

@@ -13,275 +13,302 @@ class LocationHistoryTableSeeder extends Seeder
     {
          // Device 01 location history
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:37:50',
-            'updated_at' => '2020-05-11 00:37:50',
             'device_id' => 1,
-            'router_id' => 6,
-            'distance' => 1.7,
+            'sector_id' => 1,
+            'location_x' => 1,
+            'location_y' => 1,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:50',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:37:50',
-            'updated_at' => '2020-05-11 00:37:50',
             'device_id' => 1,
-            'router_id' => 1,
-            'distance' => 1.8,
+            'sector_id' => 1,
+            'location_x' => 1,
+            'location_y' => 1,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:51',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:37:50',
-            'updated_at' => '2020-05-11 00:37:50',
             'device_id' => 1,
-            'router_id' => 2,
-            'distance' => 3.3,
+            'sector_id' => 1,
+            'location_x' => 1.1,
+            'location_y' => 1,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:52',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:00',
-            'updated_at' => '2020-05-11 00:38:00',
             'device_id' => 1,
-            'router_id' => 6,
-            'distance' => 1.7,
+            'sector_id' => 1,
+            'location_x' => 1.1,
+            'location_y' => 1,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:53',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:00',
-            'updated_at' => '2020-05-11 00:38:00',
             'device_id' => 1,
-            'router_id' => 1,
-            'distance' => 1.8,
+            'sector_id' => 1,
+            'location_x' => 1.1,
+            'location_y' => 1,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:54',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:00',
-            'updated_at' => '2020-05-11 00:38:00',
             'device_id' => 1,
-            'router_id' => 2,
-            'distance' => 3.3,
+            'sector_id' => 1,
+            'location_x' => 1.1,
+            'location_y' => 1,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:55',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:10',
-            'updated_at' => '2020-05-11 00:38:10',
             'device_id' => 1,
-            'router_id' => 6,
-            'distance' => 1.7,
+            'sector_id' => 1,
+            'location_x' => 2,
+            'location_y' => 1,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:56',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:10',
-            'updated_at' => '2020-05-11 00:38:10',
             'device_id' => 1,
-            'router_id' => 1,
-            'distance' => 1.8,
+            'sector_id' => 1,
+            'location_x' => 2,
+            'location_y' => 1,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:57',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:10',
-            'updated_at' => '2020-05-11 00:38:10',
             'device_id' => 1,
-            'router_id' => 2,
-            'distance' => 3.3,
+            'sector_id' => 1,
+            'location_x' => 2,
+            'location_y' => 1,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:58',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:20',
-            'updated_at' => '2020-05-11 00:38:20',
             'device_id' => 1,
-            'router_id' => 6,
-            'distance' => 1.7,
+            'sector_id' => 1,
+            'location_x' => 2,
+            'location_y' => 1,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:59',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:20',
-            'updated_at' => '2020-05-11 00:38:20',
             'device_id' => 1,
-            'router_id' => 1,
-            'distance' => 1.8,
+            'sector_id' => 1,
+            'location_x' => 2,
+            'location_y' => 1,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:38:00',
+        ]);
+
+        // Device 02 location history
+        App\LocationHistory::create([
+            'device_id' => 2,
+            'sector_id' => 2,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:50',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:20',
-            'updated_at' => '2020-05-11 00:38:20',
-            'device_id' => 1,
-            'router_id' => 2,
-            'distance' => 3.3,
+            'device_id' => 2,
+            'sector_id' => 2,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:51',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:30',
-            'updated_at' => '2020-05-11 00:38:30',
-            'device_id' => 1,
-            'router_id' => 6,
-            'distance' => 1.7,
+            'device_id' => 2,
+            'sector_id' => 2,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:52',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:30',
-            'updated_at' => '2020-05-11 00:38:30',
-            'device_id' => 1,
-            'router_id' => 1,
-            'distance' => 1.8,
+            'device_id' => 2,
+            'sector_id' => 2,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:53',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:30',
-            'updated_at' => '2020-05-11 00:38:30',
-            'device_id' => 1,
-            'router_id' => 2,
-            'distance' => 3.3,
+            'device_id' => 2,
+            'sector_id' => 2,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:54',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:40',
-            'updated_at' => '2020-05-11 00:38:40',
-            'device_id' => 1,
-            'router_id' => 6,
-            'distance' => 1.7,
+            'device_id' => 2,
+            'sector_id' => 2,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:55',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:40',
-            'updated_at' => '2020-05-11 00:38:40',
-            'device_id' => 1,
-            'router_id' => 1,
-            'distance' => 1.8,
+            'device_id' => 2,
+            'sector_id' => 2,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:56',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:40',
-            'updated_at' => '2020-05-11 00:38:40',
-            'device_id' => 1,
-            'router_id' => 2,
-            'distance' => 3.3,
+            'device_id' => 2,
+            'sector_id' => 2,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:57',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:50',
-            'updated_at' => '2020-05-11 00:38:50',
-            'device_id' => 1,
-            'router_id' => 6,
-            'distance' => 1.7,
+            'device_id' => 2,
+            'sector_id' => 2,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:58',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:50',
-            'updated_at' => '2020-05-11 00:38:50',
-            'device_id' => 1,
-            'router_id' => 1,
-            'distance' => 1.8,
+            'device_id' => 2,
+            'sector_id' => 2,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:59',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:50',
-            'updated_at' => '2020-05-11 00:38:50',
-            'device_id' => 1,
-            'router_id' => 2,
-            'distance' => 3.3,
+            'device_id' => 2,
+            'sector_id' => 2,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:38:00',
         ]);
 
+        // Device 03 location history
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:50',
-            'updated_at' => '2020-05-11 00:38:50',
-            'device_id' => 1,
-            'router_id' => 5,
-            'distance' => 4.35,
-        ]);
-
-        App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:39:00',
-            'updated_at' => '2020-05-11 00:39:00',
-            'device_id' => 1,
-            'router_id' => 2,
-            'distance' => 3.35,
-        ]);
-
-        App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:39:00',
-            'updated_at' => '2020-05-11 00:39:00',
-            'device_id' => 1,
-            'router_id' => 3,
-            'distance' => 1.5,
-        ]);
-
-        App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:39:00',
-            'updated_at' => '2020-05-11 00:39:00',
-            'device_id' => 1,
-            'router_id' => 4,
-            'distance' => 3.16,
-        ]);
-
-        App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:50',
-            'updated_at' => '2020-05-11 00:38:50',
             'device_id' => 3,
-            'router_id' => 7,
-            'distance' => 1.8,
+            'sector_id' => 3,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:50',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:50',
-            'updated_at' => '2020-05-11 00:38:50',
             'device_id' => 3,
-            'router_id' => 2,
-            'distance' => 2.23,
+            'sector_id' => 3,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:51',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:50',
-            'updated_at' => '2020-05-11 00:38:50',
             'device_id' => 3,
-            'router_id' => 8,
-            'distance' => 4.12,
+            'sector_id' => 3,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:52',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:50',
-            'updated_at' => '2020-05-11 00:38:50',
-            'device_id' => 5,
-            'router_id' => 2,
-            'distance' => 3.35,
+            'device_id' => 3,
+            'sector_id' => 3,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:53',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:50',
-            'updated_at' => '2020-05-11 00:38:50',
-            'device_id' => 5,
-            'router_id' => 3,
-            'distance' => 1.5,
+            'device_id' => 3,
+            'sector_id' => 3,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:54',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:38:50',
-            'updated_at' => '2020-05-11 00:38:50',
-            'device_id' => 5,
-            'router_id' => 4,
-            'distance' => 3.16,
+            'device_id' => 3,
+            'sector_id' => 3,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:55',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:39:00',
-            'updated_at' => '2020-05-11 00:39:00',
-            'device_id' => 5,
-            'router_id' => 1,
-            'distance' => 1.8,
+            'device_id' => 3,
+            'sector_id' => 3,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:56',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:39:00',
-            'updated_at' => '2020-05-11 00:39:00',
-            'device_id' => 5,
-            'router_id' => 2,
-            'distance' => 3.3,
+            'device_id' => 3,
+            'sector_id' => 3,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:57',
         ]);
 
         App\LocationHistory::create([
-            'created_at' => '2020-05-11 00:39:00',
-            'updated_at' => '2020-05-11 00:39:00',
-            'device_id' => 5,
-            'router_id' => 5,
-            'distance' => 4.35,
+            'device_id' => 3,
+            'sector_id' => 3,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:58',
+        ]);
+
+        App\LocationHistory::create([
+            'device_id' => 3,
+            'sector_id' => 3,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:37:59',
+        ]);
+
+        App\LocationHistory::create([
+            'device_id' => 3,
+            'sector_id' => 3,
+            'location_x' => 2,
+            'location_y' => 3,
+            'location_z' => 1,
+            'location_time' => '2020-05-11 00:38:00',
         ]);
     }
 }

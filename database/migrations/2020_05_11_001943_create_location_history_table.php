@@ -25,14 +25,17 @@ class CreateLocationHistoryTable extends Migration
                 ->references('id')
                 ->on('devices');
 
-            $table->unsignedBigInteger('router_id')
+            $table->unsignedBigInteger('sector_id')
                 ->nullable();
 
-            $table->foreign('router_id')
+            $table->foreign('sector_id')
                 ->references('id')
-                ->on('routers');
+                ->on('sectors');
 
-            $table->float('distance');
+            $table->float('location_x');
+            $table->float('location_y');
+            $table->float('location_z');
+            $table->dateTime('location_time');
         });
     }
 

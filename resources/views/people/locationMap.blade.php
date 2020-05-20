@@ -62,6 +62,7 @@
 </div>
 
 <script type="text/javascript" async>
+    // Current Location
     $(function() {
         const canvas = $('#canvas')[0];
         const ctx = canvas.getContext('2d');
@@ -70,9 +71,8 @@
         ctx.strokeStyle = '#000000';
         ctx.lineWidth = 1;
 
-        // Current Location
-        let x = {{ $deviceLocation['horizontal'] }} * 16;
-        let y = {{ $deviceLocation['vertical'] }} * 16;
+        let x = {{ $deviceLocations[0]->location_x ?? 0 }} * 16;
+        let y = {{ $deviceLocations[0]->location_y ?? 0 }} * 16;
 
         ctx.beginPath();
         ctx.rect(0, 0, 720, 480);

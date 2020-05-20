@@ -59,3 +59,9 @@
         </div>
     </div>
 </div>
+
+@if(!empty($warning))
+    <script type="text/javascript" async>
+        alert('{{ $warning }}');
+    </script>
+@endif
