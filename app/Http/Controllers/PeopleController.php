@@ -137,14 +137,18 @@ class PeopleController extends LocationController
         }
 
         // pegar os locations da controller device
-        $deviceLocation = $this->showCurrentLocation($person->device->id);
-        $previousLocations = $this->showPreviousLocations($person->device->id);
+        $deviceLocations = $this->showPreviousLocations($person->device->id);
+
+        if (empty($deviceLocations)) {
+            return view('people.show',compact('person', 'status'))
+                ->with('warning','No location detected.');
+        }
 
         // Colocar coordenadas separadas por sectors
 
         // Colocar a quantidade de vezes em uma determinada coordenada
 
 
-        return view('people.locationMap',compact('person', 'deviceLocation'));
+        return view('people.locationMap',compact('person', 'deviceLocations'));
     }
 }
