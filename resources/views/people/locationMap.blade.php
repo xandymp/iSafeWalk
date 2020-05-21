@@ -15,54 +15,53 @@
 <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="nav-item nav-link active"
-           id="nav-sector01-tab"
+           id="nav-zone01-tab"
            data-toggle="tab"
-           href="#nav-sector01"
+           href="#nav-zone01"
            role="tab"
            aria-controls="nav-home"
-           aria-selected="true">Sector 01
+           aria-selected="true">Zone 01
         </a>
         <a class="nav-item nav-link"
-           id="nav-sector02-tab"
+           id="nav-zone02-tab"
            data-toggle="tab"
-           href="#nav-sector02"
+           href="#nav-zone02"
            role="tab"
            aria-controls="nav-profile"
-           aria-selected="false">Sector 02
+           aria-selected="false">Zone 02
         </a>
         <a class="nav-item nav-link"
-           id="nav-sector03-tab"
+           id="nav-zone03-tab"
            data-toggle="tab"
-           href="#nav-sector03"
+           href="#nav-zone03"
            role="tab"
            aria-controls="nav-contact"
-           aria-selected="false">Sector 03
+           aria-selected="false">Zone 03
         </a>
     </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active"
-         id="nav-sector01"
+         id="nav-zone01"
          role="tabpanel"
-         aria-labelledby="nav-sector01-tab">
+         aria-labelledby="nav-zone01-tab">
         <canvas id="canvas" width="720" height="480"></canvas>
     </div>
     <div class="tab-pane fade"
-         id="nav-sector02"
+         id="nav-zone02"
          role="tabpanel"
-         aria-labelledby="nav-sector02-tab">
+         aria-labelledby="nav-zone02-tab">
         <canvas id="canvas" width="720" height="480"></canvas>
     </div>
     <div class="tab-pane fade"
-         id="nav-sector03"
+         id="nav-zone03"
          role="tabpanel"
-         aria-labelledby="nav-sector03-tab">
+         aria-labelledby="nav-zone03-tab">
         <canvas id="canvas" width="720" height="480"></canvas>
     </div>
 </div>
 
 <script type="text/javascript" async>
-    // Current Location
     $(function() {
         const canvas = $('#canvas')[0];
         const ctx = canvas.getContext('2d');
@@ -71,19 +70,52 @@
         ctx.strokeStyle = '#000000';
         ctx.lineWidth = 1;
 
-        let x = {{ $deviceLocations[0]->location_x ?? 0 }} * 16;
-        let y = {{ $deviceLocations[0]->location_y ?? 0 }} * 16;
-
+        // Draw zone with sectors
+        let x = 0;
+        let y = 0;
+        let w = {{ $zones['zone_x_length'] }} * 5;
+        let h = {{ $zones['zone_y_width'] }} * 5;
         ctx.beginPath();
-        ctx.rect(0, 0, 720, 480);
+        ctx.rect(0, 0, w, h);
         ctx.stroke();
         ctx.closePath();
 
-        ctx.strokeStyle = '#3399FF';
-        x = x + 8;
-        y = y + 8;
+        x = {{ $zones['sectors'][0]['initial_x'] }} * 5
+        y = {{ $zones['sectors'][0]['initial_y'] }} * 5
+        w = {{ $zones['sectors'][0]['x_length'] }} * 5;
+        h = {{ $zones['sectors'][0]['y_width'] }} * 5;
         ctx.beginPath();
-        ctx.arc(x, y, 8, 0, Math.PI*2);
+        ctx.rect(x, y, w, h);
+        ctx.stroke();
+        ctx.closePath();
+
+        x = {{ $zones['sectors'][1]['initial_x'] }} * 5
+        y = {{ $zones['sectors'][1]['initial_y'] }} * 5
+        w = {{ $zones['sectors'][1]['x_length'] }} * 5;
+        h = {{ $zones['sectors'][1]['y_width'] }} * 5;
+        ctx.beginPath();
+        ctx.rect(x, y, w, h);
+        ctx.stroke();
+        ctx.closePath();
+
+        x = {{ $zones['sectors'][2]['initial_x'] }} * 5
+        y = {{ $zones['sectors'][2]['initial_y'] }} * 5
+        w = {{ $zones['sectors'][2]['x_length'] }} * 5;
+        h = {{ $zones['sectors'][2]['y_width'] }} * 5;
+        ctx.beginPath();
+        ctx.rect(x, y, w, h);
+        ctx.stroke();
+        ctx.closePath();
+
+        // Current Location
+        x = {{ $deviceLocations[0]->location_x ?? 0 }} * 5;
+        y = {{ $deviceLocations[0]->location_y ?? 0 }} * 5;
+
+        ctx.strokeStyle = '#3399FF';
+        x = x + 5;
+        y = y + 5;
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, Math.PI*2);
         ctx.fill();
         ctx.stroke();
         ctx.closePath();

@@ -27,7 +27,7 @@ class SectorTableSeeder extends Seeder
             'y_width' => 4,
             'z_height' => 3,
             'zone_id' => 1,
-            'initial_x' => 5,
+            'initial_x' => 0,
             'initial_y' => 0,
         ]);
 

@@ -13,12 +13,12 @@ class Sector extends Model
 
     protected $fillable = [
         'name',
-        'length',
-        'width',
-        'height',
+        'x_length',
+        'y_width',
+        'z_height',
         'zone_id',
-        'zone_initial_length',
-        'zone_initial_width',
+        'initial_x',
+        'initial_y',
     ];
 
     public function zone()
