@@ -18,7 +18,7 @@
                         <i class="fa fa-home" ></i>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="{{ url('/people') }}">
                         <i class="fa fa-users" ></i>
                     </a>
@@ -28,7 +28,7 @@
                         <i class="fa fa-tablet"></i>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="{{ url('/zone') }}">
                         <i class="fa fa-map-o"></i>
                     </a>
@@ -45,30 +45,31 @@
                 </li>
             </ul>
         </nav>
+
         <div class="col-sm-3 title">
             <div class="row">
                 <div class="col-10">
-                    <h2>Employees&nbsp;<span style="font-size: 1.25rem;color: #cccccc">({{ count($people) }})</span></h2>
+                    <h2>Zones&nbsp;<span style="font-size: 1.25rem;color: #cccccc">({{ count($zones) }})</span></h2>
                 </div>
                 <div class="col">
-                    <a href="#" id="create-person" class="btn btn-success"><i class="fa fa-plus" style="font-size: inherit"></i></a>
+                    <a href="#" id="create-zone" class="btn btn-success"><i class="fa fa-plus" style="font-size: inherit"></i></a>
                 </div>
             </div>
             <hr/>
-            @foreach($people as $person)
-                <div class="row list" data-id="{{ $person->id }}">
+            @foreach($zones as $zone)
+                <div class="row list" data-id="{{ $zone->id }}">
                     <div class="col d-none d-sm-block">
-                        <i class="fa fa-user-circle"></i>
+                        <i class="fa fa-map-o"></i>
                     </div>
                     <div class="col-5 text-truncate" style="font-size: 8pt;">
-                        <b>{{ $person->name }}</b><br>
-                        <span style="color: #999999">{{ $person->job_title }}</span>
+                        <b>{{ $zone->name }}</b><br>
+                        <span style="color: #999999"></span>
                     </div>
                     <div class="col text-truncate">
-                        <span style="font-size: 8pt; float: left"><?= \App\People::STATUS_SELECT[$person->status]; ?></span>
+                        <span style="font-size: 8pt; float: left"></span>
                     </div>
                     <div class="col">
-                        <a  href="#" class="btn btn-danger btn-sm delete" data-id="{{ $person->id }}">
+                        <a  href="#" class="btn btn-danger btn-sm delete" data-id="{{ $zone->id }}">
                             <i class="fa fa-trash" style="font-size: inherit"></i>
                         </a>
                     </div>
@@ -92,7 +93,7 @@
             let id = $(this).data('id');
 
             $.ajax({
-                url: `{{ url('/people/') }}/${id}`,
+                url: `{{ url('/zone/') }}/${id}`,
                 success: function (data) {
                     $('#content').html(data);
                 },
@@ -109,7 +110,7 @@
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: `{{ url('/people/') }}/${id}`,
+                    url: `{{ url('/zone/') }}/${id}`,
                     type: 'DELETE',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -125,9 +126,9 @@
             }
         });
 
-        $(document).on('click', '#create-person', function () {
+        $(document).on('click', '#create-zone', function () {
             $.ajax({
-                url: `{{ url('/people/create') }}`,
+                url: `{{ url('/zone/create') }}`,
                 success: function (data) {
                     $('#content').html(data);
                 },
@@ -142,7 +143,7 @@
             let id = $(this).data('id');
 
             $.ajax({
-                url: `{{ url('/people/') }}/${id}/edit`,
+                url: `{{ url('/zone/') }}/${id}/edit`,
                 success: function (data) {
                     $('#content').html(data);
                 },
@@ -157,7 +158,7 @@
             let id = $(this).data('id');
 
             $.ajax({
-                url: `{{ url('/people/') }}/${id}/location-map`,
+                url: `{{ url('/zone/') }}/${id}/location-map`,
                 success: function (data) {
                     $('#content').html(data);
                 },
@@ -172,7 +173,7 @@
             let id = $(this).data('id');
 
             $.ajax({
-                url: `{{ url('/people/') }}/${id}`,
+                url: `{{ url('/zone/') }}/${id}`,
                 success: function (data) {
                     $('#content').html(data);
                 },

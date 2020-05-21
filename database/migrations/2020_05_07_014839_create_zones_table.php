@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSectorsTable extends Migration
+class CreateZonesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSectorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sectors', function (Blueprint $table) {
+        Schema::create('zones', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->softDeletes();
@@ -21,15 +21,6 @@ class CreateSectorsTable extends Migration
             $table->float('x_length');
             $table->float('y_width');
             $table->float('z_height');
-            $table->unsignedBigInteger('zone_id')
-                ->nullable();
-
-            $table->foreign('zone_id')
-                ->references('id')
-                ->on('zones');
-
-            $table->float('initial_x');
-            $table->float('initial_y');
         });
     }
 
@@ -40,6 +31,6 @@ class CreateSectorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sectors');
+        Schema::dropIfExists('zones');
     }
 }

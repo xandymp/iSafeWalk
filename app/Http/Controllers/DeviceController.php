@@ -48,6 +48,7 @@ class DeviceController extends LocationController
         ]);
 
         $device->save();
+
         return redirect()->route('device.index')
             ->with('success','Device created successfully.');
     }
@@ -99,7 +100,6 @@ class DeviceController extends LocationController
 
         $device->save();
 
-
         return redirect()->route('device.index')
             ->with('success','Device updated successfully.');
     }
@@ -108,7 +108,6 @@ class DeviceController extends LocationController
      * Remove the specified resource from storage.
      *
      * @param  int $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy(int $id)
     {
