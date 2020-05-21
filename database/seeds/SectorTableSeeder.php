@@ -13,20 +13,32 @@ class SectorTableSeeder extends Seeder
     {
         App\Sector::create([
             'name' => 'Sector 01',
-            'horizontal' => 5,
-            'vertical' => 9,
+            'x_length' => 5,
+            'y_width' => 9,
+            'z_height' => 3,
+            'zone_id' => 1,
+            'initial_x' => 5,
+            'initial_y' => 0,
         ]);
 
         App\Sector::create([
             'name' => 'Sector 02',
-            'horizontal' => 5,
-            'vertical' => 4,
+            'x_length' => 5,
+            'y_width' => 4,
+            'z_height' => 3,
+            'zone_id' => 1,
+            'initial_x' => 5,
+            'initial_y' => 0,
         ]);
 
         App\Sector::create([
             'name' => 'Sector 03',
-            'horizontal' => 5,
-            'vertical' => 5,
+            'x_length' => 5,
+            'y_width' => 5,
+            'z_height' => 3,
+            'zone_id' => 1,
+            'initial_x' => 0,
+            'initial_y' => 4,
         ]);
     }
 }

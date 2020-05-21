@@ -27,9 +27,14 @@
                         <i class="fa fa-tablet"></i>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ url('/zone') }}">
+                        <i class="fa fa-map-o"></i>
+                    </a>
+                </li>
                 <li class="active">
                     <a href="{{ url('/sector') }}">
-                        <i class="fa fa-map-o"></i>
+                        <i class="fa fa-puzzle-piece"></i>
                     </a>
                 </li>
                 <li>
@@ -52,7 +57,7 @@
             @foreach($sectors as $sector)
                 <div class="row list" data-id="{{ $sector->id }}">
                     <div class="col d-none d-sm-block">
-                        <i class="fa fa-map-o"></i>
+                        <i class="fa fa-puzzle-piece"></i>
                     </div>
                     <div class="col-sm-5 text-truncate" style="font-size: 8pt">
                         <b>{{ $sector->name }}</b><br>
@@ -97,7 +102,7 @@
 
         $(document).on('click', '.delete', function (e) {
             e.stopPropagation();
-            if (confirm("Deseja realmente excluir este registro?")) {
+            if (confirm("Do you really want to delete this record?")) {
                 let id = $(this).data('id');
 
                 $.ajax({

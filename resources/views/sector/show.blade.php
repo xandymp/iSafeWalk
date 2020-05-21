@@ -14,19 +14,48 @@
         </div>
     </div>
 </div>
+
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="col-xs-4 col-sm-4 col-md-4">
         <div class="form-group">
-            <strong>Horizontal Length:</strong>
-            {{ $sector->horizontal }}
+            <strong>Length (X):</strong>
+            {{ $sector->x_length }}
+        </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4">
+        <div class="form-group">
+            <strong>Width (Y):</strong>
+            {{ $sector->y_width }}
+        </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4">
+        <div class="form-group">
+            <strong>Height (Z):</strong>
+            {{ $sector->z_height }}
         </div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Vertical Length:</strong>
-            {{ $sector->vertical }}
+            <strong>Zone:</strong>
+            {{ $sector->zone->name }}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6">
+        <div class="form-group">
+            <strong>Zone Initial X:</strong>
+            {{ $sector->initial_x }}
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6">
+        <div class="form-group">
+            <strong>Zone Initial Y:</strong>
+            {{ $sector->initial_y }}
         </div>
     </div>
 </div>

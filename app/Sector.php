@@ -13,9 +13,18 @@ class Sector extends Model
 
     protected $fillable = [
         'name',
-        'horizontal',
-        'vertical',
+        'length',
+        'width',
+        'height',
+        'zone_id',
+        'zone_initial_length',
+        'zone_initial_width',
     ];
+
+    public function zone()
+    {
+        return $this->belongsTo('App\Zone');
+    }
 
     public function routers()
     {

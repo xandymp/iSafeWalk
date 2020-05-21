@@ -9,7 +9,7 @@
     </div>
 @endif
 
-<form action="{{ route('sector.store') }}" method="POST">
+<form action="{{ route('zone.store') }}" method="POST">
     @csrf
 
     <div class="row">
@@ -57,48 +57,6 @@
                     name="z_height"
                     class="form-control"
                     placeholder="Height (Z)"
-                    required>
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Zone:</strong>
-                <select
-                    class="form-control"
-                    name="zone_id"
-                    id="zone_id"
-                    required>
-                    <option value {{ old('zone_id', null) === null ? 'selected' : '' }}>Please select</option>
-                    @foreach($zones as $key => $label)
-                        <option value="{{ $key }}" {{ old('zone_id', null) === (string) $key ? 'selected' : '' }}>
-                            {{ $label }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-
-        <div class="col-xs-6 col-sm-6 col-md-6">
-            <div class="form-group">
-                <strong>Zone Initial X:</strong>
-                <input
-                    type="number"
-                    name="initial_x"
-                    class="form-control"
-                    placeholder="Zone Initial X"
-                    required>
-            </div>
-        </div>
-
-        <div class="col-xs-6 col-sm-6 col-md-6  ">
-            <div class="form-group">
-                <strong>Zone Initial Y:</strong>
-                <input
-                    type="number"
-                    name="initial_y"
-                    class="form-control"
-                    placeholder="Zone Initial Y"
                     required>
             </div>
         </div>

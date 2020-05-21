@@ -28,8 +28,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/sector') }}">
+                    <a href="{{ url('/zone') }}">
                         <i class="fa fa-map-o"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/sector') }}">
+                        <i class="fa fa-puzzle-piece"></i>
                     </a>
                 </li>
                 <li>
@@ -98,7 +103,7 @@
 
         $(document).on('click', '.delete', function (e) {
             e.stopPropagation();
-            if (confirm("Deseja realmente excluir este registro?")) {
+            if (confirm("Do you really want to delete this record?")) {
                 let id = $(this).data('id');
 
                 $.ajax({
