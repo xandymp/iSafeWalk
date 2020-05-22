@@ -13,8 +13,8 @@ class ZoneTableSeeder extends Seeder
     {
         App\Zone::create([
             'name' => 'Zone 01',
-            'x_length' => 10,
-            'y_width' => 9,
+            'x_length' => 100,
+            'y_width' => 90,
             'z_height' => 3,
         ]);
     }
