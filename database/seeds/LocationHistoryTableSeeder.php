@@ -15,8 +15,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 1,
             'sector_id' => 1,
-            'location_x' => 1,
-            'location_y' => 1,
+            'location_x' => 10,
+            'location_y' => 10,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:50',
         ]);
@@ -24,8 +24,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 1,
             'sector_id' => 1,
-            'location_x' => 1,
-            'location_y' => 1,
+            'location_x' => 10,
+            'location_y' => 10,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:51',
         ]);
@@ -33,8 +33,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 1,
             'sector_id' => 1,
-            'location_x' => 1.1,
-            'location_y' => 1,
+            'location_x' => 11,
+            'location_y' => 10,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:52',
         ]);
@@ -42,8 +42,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 1,
             'sector_id' => 1,
-            'location_x' => 1.1,
-            'location_y' => 1,
+            'location_x' => 11,
+            'location_y' => 10,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:53',
         ]);
@@ -51,8 +51,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 1,
             'sector_id' => 1,
-            'location_x' => 1.1,
-            'location_y' => 1,
+            'location_x' => 11,
+            'location_y' => 10,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:54',
         ]);
@@ -60,8 +60,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 1,
             'sector_id' => 1,
-            'location_x' => 1.1,
-            'location_y' => 1,
+            'location_x' => 11,
+            'location_y' => 10,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:55',
         ]);
@@ -69,8 +69,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 1,
             'sector_id' => 1,
-            'location_x' => 2,
-            'location_y' => 1,
+            'location_x' => 20,
+            'location_y' => 10,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:56',
         ]);
@@ -78,8 +78,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 1,
             'sector_id' => 1,
-            'location_x' => 2,
-            'location_y' => 1,
+            'location_x' => 20,
+            'location_y' => 10,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:57',
         ]);
@@ -87,8 +87,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 1,
             'sector_id' => 1,
-            'location_x' => 2,
-            'location_y' => 1,
+            'location_x' => 20,
+            'location_y' => 10,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:58',
         ]);
@@ -96,8 +96,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 1,
             'sector_id' => 1,
-            'location_x' => 2,
-            'location_y' => 1,
+            'location_x' => 20,
+            'location_y' => 10,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:59',
         ]);
@@ -105,8 +105,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 1,
             'sector_id' => 1,
-            'location_x' => 2,
-            'location_y' => 1,
+            'location_x' => 20,
+            'location_y' => 10,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:38:00',
         ]);
@@ -115,8 +115,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 2,
             'sector_id' => 2,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:50',
         ]);
@@ -124,8 +124,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 2,
             'sector_id' => 2,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:51',
         ]);
@@ -133,8 +133,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 2,
             'sector_id' => 2,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:52',
         ]);
@@ -142,8 +142,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 2,
             'sector_id' => 2,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:53',
         ]);
@@ -151,8 +151,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 2,
             'sector_id' => 2,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:54',
         ]);
@@ -160,8 +160,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 2,
             'sector_id' => 2,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:55',
         ]);
@@ -169,8 +169,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 2,
             'sector_id' => 2,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:56',
         ]);
@@ -178,8 +178,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 2,
             'sector_id' => 2,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:57',
         ]);
@@ -187,8 +187,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 2,
             'sector_id' => 2,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:58',
         ]);
@@ -196,8 +196,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 2,
             'sector_id' => 2,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:59',
         ]);
@@ -205,8 +205,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 2,
             'sector_id' => 2,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:38:00',
         ]);
@@ -215,8 +215,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 3,
             'sector_id' => 3,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:50',
         ]);
@@ -224,8 +224,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 3,
             'sector_id' => 3,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:51',
         ]);
@@ -233,8 +233,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 3,
             'sector_id' => 3,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:52',
         ]);
@@ -242,8 +242,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 3,
             'sector_id' => 3,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:53',
         ]);
@@ -251,8 +251,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 3,
             'sector_id' => 3,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:54',
         ]);
@@ -260,8 +260,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 3,
             'sector_id' => 3,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:55',
         ]);
@@ -269,8 +269,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 3,
             'sector_id' => 3,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:56',
         ]);
@@ -278,8 +278,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 3,
             'sector_id' => 3,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:57',
         ]);
@@ -287,8 +287,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 3,
             'sector_id' => 3,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:58',
         ]);
@@ -296,8 +296,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 3,
             'sector_id' => 3,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:37:59',
         ]);
@@ -305,8 +305,8 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'device_id' => 3,
             'sector_id' => 3,
-            'location_x' => 2,
-            'location_y' => 3,
+            'location_x' => 20,
+            'location_y' => 30,
             'location_z' => 1,
             'location_time' => '2020-05-11 00:38:00',
         ]);
