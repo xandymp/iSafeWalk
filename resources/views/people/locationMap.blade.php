@@ -65,12 +65,13 @@
     $(function() {
         const canvas = $('#canvas')[0];
         const ctx = canvas.getContext('2d');
+        let currentLocation = true;
 
         ctx.fillStyle = '#3399FF';
         ctx.strokeStyle = '#000000';
         ctx.lineWidth = 1;
 
-        // Draw zone with sectors
+        // Draw zone
         let x = 0;
         let y = 0;
         let w = {{ $zones['zone_x_length'] }} * 5;
@@ -80,44 +81,44 @@
         ctx.stroke();
         ctx.closePath();
 
-        x = {{ $zones['sectors'][0]['initial_x'] }} * 5
-        y = {{ $zones['sectors'][0]['initial_y'] }} * 5
-        w = {{ $zones['sectors'][0]['x_length'] }} * 5;
-        h = {{ $zones['sectors'][0]['y_width'] }} * 5;
-        ctx.beginPath();
-        ctx.rect(x, y, w, h);
-        ctx.stroke();
-        ctx.closePath();
+        // Draw sectors
+        @foreach($zones['sectors'] as $sector)
+            x = {{ $sector['initial_x'] }} * 5
+            y = {{ $sector['initial_y'] }} * 5
+            w = {{ $sector['x_length'] }} * 5;
+            h = {{ $sector['y_width'] }} * 5;
+            ctx.beginPath();
+            ctx.rect(x, y, w, h);
+            ctx.stroke();
+            ctx.closePath();
+        @endforeach
 
-        x = {{ $zones['sectors'][1]['initial_x'] }} * 5
-        y = {{ $zones['sectors'][1]['initial_y'] }} * 5
-        w = {{ $zones['sectors'][1]['x_length'] }} * 5;
-        h = {{ $zones['sectors'][1]['y_width'] }} * 5;
-        ctx.beginPath();
-        ctx.rect(x, y, w, h);
-        ctx.stroke();
-        ctx.closePath();
+        // Draw locations
+        @foreach($deviceLocations as $deviceLocation)
+            if (currentLocation) {
+                // Current Location
+                x = {{ $deviceLocation->location_x }} * 5;
+                y = {{ $deviceLocation->location_y }} * 5;
 
-        x = {{ $zones['sectors'][2]['initial_x'] }} * 5
-        y = {{ $zones['sectors'][2]['initial_y'] }} * 5
-        w = {{ $zones['sectors'][2]['x_length'] }} * 5;
-        h = {{ $zones['sectors'][2]['y_width'] }} * 5;
-        ctx.beginPath();
-        ctx.rect(x, y, w, h);
-        ctx.stroke();
-        ctx.closePath();
+                ctx.strokeStyle = '#3399FF';
+                x = x + 2.5;
+                y = y + 2.5;
+                ctx.beginPath();
+                ctx.arc(x, y, 2.5, 0, Math.PI*2);
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
+            }
 
-        // Current Location
-        x = {{ $deviceLocations[0]->location_x ?? 0 }} * 5;
-        y = {{ $deviceLocations[0]->location_y ?? 0 }} * 5;
+            if (!currentLocation) {
+                x = {{ $deviceLocation->location_x }} * 5;
+                y = {{ $deviceLocation->location_y }} * 5;
 
-        ctx.strokeStyle = '#3399FF';
-        x = x + 5;
-        y = y + 5;
-        ctx.beginPath();
-        ctx.arc(x, y, 5, 0, Math.PI*2);
-        ctx.fill();
-        ctx.stroke();
-        ctx.closePath();
+                ctx.fillStyle = '#ffff00';
+                ctx.fillRect(x, y, 5, 5);
+            }
+
+            currentLocation = false;
+        @endforeach
     });
 </script>
