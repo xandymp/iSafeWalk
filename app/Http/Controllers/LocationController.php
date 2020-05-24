@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Sector;
+use App\Zone;
 use Illuminate\Support\Facades\DB;
 
 class LocationController extends Controller
 {
-    public function showPreviousLocations(int $id, $startTime = null, $endTime = null)
+    public function showPreviousLocations(int $id, $heatMap = false, $startTime = null, $endTime = null)
     {
         $locations = [];
         $previousLocations = DB::table('location_history AS lh')
@@ -31,6 +32,11 @@ class LocationController extends Controller
             ->when($endTime, function ($query, $endTime) {
                 return $query->where('location_time', '<=', $endTime);
             })
+            ->when($heatMap, function ($query) {
+                $query->orderBy('location_x');
+                $query->orderBy('location_y');
+                return $query;
+            })
             ->orderBy('lh.location_time', 'desc')
             ->get();
 
@@ -38,6 +44,21 @@ class LocationController extends Controller
             return $locations;
         }
 
+        foreach ($previousLocations as $previousLocation) {
+            $locations[] = $previousLocation;
+        }
+
+        if (!$heatMap) {
+            $locations = $this->groupPreviousLocations($previousLocations);
+        }
+        $locations = $this->adjustPositionWithSector($locations);
+
+        return $locations;
+    }
+
+    private function groupPreviousLocations($previousLocations)
+    {
+        $locations = [];
         foreach ($previousLocations as $previousLocation) {
             $samePosition = $this->checkPosition($previousLocation, end($locations));
 
@@ -53,8 +74,6 @@ class LocationController extends Controller
 
         $timeDifference = strtotime(end($locations)->location_time) - strtotime($previousLocation->location_time);
         $locations[array_key_last($locations)]->duration = date('H:i:s', $timeDifference);
-
-        $locations = $this->adjustPositionWithSector($locations);
 
         return $locations;
     }
@@ -92,5 +111,47 @@ class LocationController extends Controller
         }
 
         return $locations;
+    }
+
+    protected function getZones()
+    {
+        $zonesAndSectors = [];
+        $sectorDetails = [];
+        $zones = Zone::get();
+
+        foreach ($zones as $zone) {
+            $zonesAndSectors[] = $this->decorateZone($zone);
+
+            $sectors = $zone->sectors;
+            foreach ($sectors as $sector) {
+                $zonesAndSectors['sectors'][] = $this->decorateSector($sector);
+            }
+        }
+
+        return $zonesAndSectors;
+    }
+
+    private function decorateZone($zone)
+    {
+        return [
+            'zone_id' => $zone->id,
+            'zone_name' => $zone->name,
+            'zone_x_length' => $zone->x_length,
+            'zone_y_width' => $zone->y_width,
+            'zone_z_height' => $zone->z_height,
+        ];
+    }
+
+    private function decorateSector($sector)
+    {
+        return [
+            'name' => $sector->name,
+            'x_length' => $sector->x_length,
+            'y_width' => $sector->y_width,
+            'z_height' => $sector->z_height,
+            'zone_id' => $sector->zone_id,
+            'initial_x' => $sector->initial_x,
+            'initial_y' => $sector->initial_y,
+        ];
     }
 }
