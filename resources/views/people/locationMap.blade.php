@@ -65,6 +65,7 @@
     $(function() {
         const canvas = $('#canvas')[0];
         const ctx = canvas.getContext('2d');
+        let counter = 0;
 
         ctx.fillStyle = '#3399FF';
         ctx.strokeStyle = '#000000';
@@ -99,17 +100,54 @@
             ) {
                 switch (ctx.fillStyle) {
                     case '#ffff00':
+                        ctx.fillStyle = '#ffef00';
+                        break;
+                    case '#ffef00':
+                        ctx.fillStyle = '#ffdf00';
+                        break;
+                    case '#ffdf00':
+                        ctx.fillStyle = '#ffcf00';
+                        break;
+                    case '#ffcf00':
+                        ctx.fillStyle = '#ffbf00';
+                        break;
+                    case '#ffbf00':
                         ctx.fillStyle = '#ffaf00';
                         break;
                     case '#ffaf00':
+                        ctx.fillStyle = '#ff9f00';
+                        break;
+                    case '#ff9f00':
+                        ctx.fillStyle = '#ff8f00';
+                        break;
+                    case '#ff8f00':
+                        ctx.fillStyle = '#ff7f00';
+                        break;
+                    case '#ff7f00':
+                        ctx.fillStyle = '#ff6f00';
+                        break;
+                    case '#ff6f00':
                         ctx.fillStyle = '#ff5f00';
                         break;
                     case '#ff5f00':
+                        ctx.fillStyle = '#ff4f00';
+                        break;
+                    case '#ff4f00':
+                        ctx.fillStyle = '#ff3f00';
+                        break;
+                    case '#ff3f00':
+                        ctx.fillStyle = '#ff2f00';
+                        break;
+                    case '#ff2f00':
+                        ctx.fillStyle = '#ff1f00';
+                        break;
+                    case '#ff1f00':
                         ctx.fillStyle = '#ff0f00';
                         break;
                 }
             } else {
                 ctx.fillStyle = '#ffff00';
+                counter = 0;
             }
 
             x = {{ $deviceLocation->location_x * 5 }};
