@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Device;
 use App\People;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PeopleController extends LocationController
 {
@@ -150,5 +151,76 @@ class PeopleController extends LocationController
         $heatMap = $this->showPreviousLocations($person->device->id, true);
 
         return view('people.locationMap',compact('person', 'deviceLocations', 'zones', 'heatMap'));
+    }
+
+    public function interactions(int $id)
+    {
+        $person = People::find($id);
+        $status = People::STATUS_SELECT[$person->status];
+        if (is_null($person->device)) {
+            return view('people.show',compact('person', 'status'));
+        }
+
+        $interactions = $this->getInteractions($person->device->id);
+
+        if (empty($interactions)) {
+            return view('people.show',compact('person', 'status'))
+                ->with('warning','No interactions.');
+        }
+
+        return view('people.interactions',compact('person', 'interactions'));
+    }
+
+    private function getInteractions(int $deviceId, array $previousDevices = [])
+    {
+        $interactions = [];
+
+        $previousInteractions = DB::table('device_interactions AS di')
+            ->leftJoin('people AS p', 'di.secondary_device_id', '=', 'p.device_id')
+            ->join('devices AS d', 'di.secondary_device_id', '=', 'd.id')
+            ->select(
+                'di.id',
+                'di.primary_device_id',
+                'di.secondary_device_id',
+                'di.interactions',
+                'p.id AS person_id',
+                'p.name AS person_name',
+                'd.name AS device_name'
+            )
+            ->where('di.primary_device_id', '=', $deviceId)
+            ->where('di.primary_device_id', '=', $deviceId)
+            ->when($previousDevices, function ($query, $previousDevices) {
+                return $query->whereNotIn('di.secondary_device_id', $previousDevices);
+            })
+            ->whereNull('di.deleted_at')
+            ->orderBy('di.secondary_device_id')
+            ->orderBy('di.created_at', 'desc')
+            ->get();
+
+        if ($previousInteractions->count() == 0) {
+            return $interactions;
+        }
+
+        foreach ($previousInteractions as $previousInteraction) {
+            $interactions[$previousInteraction->id] = $this->decorateInteraction($previousInteraction);
+            $previousDevices[] = $deviceId;
+            $previousDevices[] = $previousInteraction->secondary_device_id;
+            // get secondary interactions
+            $interactions[$previousInteraction->id]['secondary_interactions'] = $this->getInteractions($previousInteraction->secondary_device_id, array_unique($previousDevices));
+        }
+
+        return $interactions;
+    }
+
+    private function decorateInteraction($interaction)
+    {
+        return [
+            'primary_device_id' => $interaction->primary_device_id,
+            'secondary_device_id' => $interaction->secondary_device_id,
+            'interactions' => $interaction->interactions,
+            'person_id' => $interaction->person_id,
+            'person_name' => $interaction->person_name,
+            'device_name' => $interaction->device_name,
+        ];
     }
 }

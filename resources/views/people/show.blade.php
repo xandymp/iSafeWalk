@@ -4,8 +4,11 @@
             <span class="btn btn-primary btn-sm edit" data-id="{{ $person->id }}"><i class="fa fa-pencil"></i></span>
         </div>
         @if (!is_null($person->device))
-            <div class="pull-right" style="padding: inherit">
+            <div class="pull-right" style="padding: 0px 20px 0px 0px">
                 <span class="btn btn-primary btn-sm locationMap" data-id="{{ $person->id }}"> <i class="fa fa-street-view"></i></span>
+            </div>
+            <div class="pull-right" style="padding: 0px 20px 0px 0px">
+                <span class="btn btn-primary btn-sm interactions" data-id="{{ $person->id }}"> <i class="fa fa-share-alt"></i></span>
             </div>
         @endif
     </div>
@@ -43,22 +46,27 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Job Title:</strong>
-            {{ $person->job_title }}
+@if (!is_null($person->job_title))
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Job Title:</strong>
+                {{ $person->job_title }}
+            </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>Device:</strong>
-            {{ $person->device->name ?? null }}
+@endif
+
+@if (!is_null($person->device))
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Device:</strong>
+                {{ $person->device->name ?? null }}
+            </div>
         </div>
     </div>
-</div>
+@endif
 
 @if(!empty($warning))
     <script type="text/javascript" async>

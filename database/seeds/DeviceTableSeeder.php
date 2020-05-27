@@ -35,5 +35,10 @@ class DeviceTableSeeder extends Seeder
             'name' => 'Device 05',
             'serial' => '7623654263',
         ]);
+
+        App\Device::create([
+            'name' => 'Device 06',
+            'serial' => '7623653163',
+        ]);
     }
 }

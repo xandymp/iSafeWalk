@@ -13,3 +13,5 @@ Route::resource('sector', 'SectorController');
 Route::resource('router', 'RouterController');
 Route::get('/people/{id}/location-map', 'PeopleController@locationMap')
     ->name('people.locationMap');
+Route::get('/people/{id}/interactions', 'PeopleController@interactions')
+    ->name('people.interactions');
