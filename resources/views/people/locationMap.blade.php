@@ -65,7 +65,7 @@
     $(function() {
         const canvas = $('#canvas')[0];
         const ctx = canvas.getContext('2d');
-        let currentLocation = true;
+        let counter = 0;
 
         ctx.fillStyle = '#3399FF';
         ctx.strokeStyle = '#000000';
@@ -74,8 +74,8 @@
         // Draw zone
         let x = 0;
         let y = 0;
-        let w = {{ $zones['zone_x_length'] }} * 5;
-        let h = {{ $zones['zone_y_width'] }} * 5;
+        let w = {{ $zones[0]['zone_x_length'] }} * 5;
+        let h = {{ $zones[0]['zone_y_width'] }} * 5;
         ctx.beginPath();
         ctx.rect(0, 0, w, h);
         ctx.stroke();
@@ -94,31 +94,80 @@
         @endforeach
 
         // Draw locations
-        @foreach($deviceLocations as $deviceLocation)
-            if (currentLocation) {
-                // Current Location
-                x = {{ $deviceLocation->location_x }} * 5;
-                y = {{ $deviceLocation->location_y }} * 5;
-
-                ctx.strokeStyle = '#3399FF';
-                x = x + 2.5;
-                y = y + 2.5;
-                ctx.beginPath();
-                ctx.arc(x, y, 2.5, 0, Math.PI*2);
-                ctx.fill();
-                ctx.stroke();
-                ctx.closePath();
-            }
-
-            if (!currentLocation) {
-                x = {{ $deviceLocation->location_x }} * 5;
-                y = {{ $deviceLocation->location_y }} * 5;
-
+        @foreach($heatMap as $deviceLocation)
+            if (x === {{ ($deviceLocation->location_x * 5) }} &&
+                y === {{ ($deviceLocation->location_y * 5) }}
+            ) {
+                switch (ctx.fillStyle) {
+                    case '#ffff00':
+                        ctx.fillStyle = '#ffef00';
+                        break;
+                    case '#ffef00':
+                        ctx.fillStyle = '#ffdf00';
+                        break;
+                    case '#ffdf00':
+                        ctx.fillStyle = '#ffcf00';
+                        break;
+                    case '#ffcf00':
+                        ctx.fillStyle = '#ffbf00';
+                        break;
+                    case '#ffbf00':
+                        ctx.fillStyle = '#ffaf00';
+                        break;
+                    case '#ffaf00':
+                        ctx.fillStyle = '#ff9f00';
+                        break;
+                    case '#ff9f00':
+                        ctx.fillStyle = '#ff8f00';
+                        break;
+                    case '#ff8f00':
+                        ctx.fillStyle = '#ff7f00';
+                        break;
+                    case '#ff7f00':
+                        ctx.fillStyle = '#ff6f00';
+                        break;
+                    case '#ff6f00':
+                        ctx.fillStyle = '#ff5f00';
+                        break;
+                    case '#ff5f00':
+                        ctx.fillStyle = '#ff4f00';
+                        break;
+                    case '#ff4f00':
+                        ctx.fillStyle = '#ff3f00';
+                        break;
+                    case '#ff3f00':
+                        ctx.fillStyle = '#ff2f00';
+                        break;
+                    case '#ff2f00':
+                        ctx.fillStyle = '#ff1f00';
+                        break;
+                    case '#ff1f00':
+                        ctx.fillStyle = '#ff0f00';
+                        break;
+                }
+            } else {
                 ctx.fillStyle = '#ffff00';
-                ctx.fillRect(x, y, 5, 5);
+                counter = 0;
             }
 
-            currentLocation = false;
+            x = {{ $deviceLocation->location_x * 5 }};
+            y = {{ $deviceLocation->location_y * 5 }};
+
+            ctx.fillRect(x, y, 5, 5);
         @endforeach
+
+        // Last know location
+        x = {{ $deviceLocations[0]->location_x }} * 5;
+        y = {{ $deviceLocations[0]->location_y }} * 5;
+
+        ctx.strokeStyle = '#3399FF';
+        ctx.fillStyle = '#3399FF';
+        x = x + 2.5;
+        y = y + 2.5;
+        ctx.beginPath();
+        ctx.arc(x, y, 2.5, 0, Math.PI*2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.closePath();
     });
 </script>

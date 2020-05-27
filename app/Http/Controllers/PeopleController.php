@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Device;
 use App\People;
-use App\Zone;
 use Illuminate\Http\Request;
 
 class PeopleController extends LocationController
@@ -137,7 +136,7 @@ class PeopleController extends LocationController
             return view('people.show',compact('person', 'status'));
         }
 
-        $deviceLocations = $this->showPreviousLocations($person->device->id);
+        $deviceLocations = $this->showPreviousLocations($person->device->id, false);
 
         if (empty($deviceLocations)) {
             return view('people.show',compact('person', 'status'))
@@ -148,38 +147,8 @@ class PeopleController extends LocationController
         $zones = $this->getZones();
 
         // Colocar a quantidade de vezes em uma determinada coordenada
+        $heatMap = $this->showPreviousLocations($person->device->id, true);
 
-
-        return view('people.locationMap',compact('person', 'deviceLocations', 'zones'));
-    }
-
-    private function getZones()
-    {
-        $zonesAndSectors = [];
-        $sectorDetails = [];
-        $zones = Zone::get();
-
-        foreach ($zones as $zone) {
-            $zonesAndSectors['zone_id'] = $zone->id;
-            $zonesAndSectors['zone_name'] = $zone->name;
-            $zonesAndSectors['zone_x_length'] = $zone->x_length;
-            $zonesAndSectors['zone_y_width'] = $zone->y_width;
-            $zonesAndSectors['zone_z_height'] = $zone->z_height;
-
-            $sectors = $zone->sectors;
-            foreach ($sectors as $sector) {
-                $sectorDetails['name'] = $sector->name;
-                $sectorDetails['x_length'] = $sector->x_length;
-                $sectorDetails['y_width'] = $sector->y_width;
-                $sectorDetails['z_height'] = $sector->z_height;
-                $sectorDetails['zone_id'] = $sector->zone_id;
-                $sectorDetails['initial_x'] = $sector->initial_x;
-                $sectorDetails['initial_y'] = $sector->initial_y;
-
-                $zonesAndSectors['sectors'][] = $sectorDetails;
-            }
-        }
-
-        return $zonesAndSectors;
+        return view('people.locationMap',compact('person', 'deviceLocations', 'zones', 'heatMap'));
     }
 }
