@@ -157,11 +157,11 @@ class PeopleController extends LocationController
     {
         $person = People::find($id);
         $status = People::STATUS_SELECT[$person->status];
-        if (is_null($person->device)) {
+        if (is_null($person->beacon)) {
             return view('people.show',compact('person', 'status'));
         }
 
-        $interactions = $this->getInteractions($person->device->id);
+        $interactions = $this->getInteractions($person->beacon->id);
 
         if (empty($interactions)) {
             return view('people.show',compact('person', 'status'))
@@ -171,30 +171,31 @@ class PeopleController extends LocationController
         return view('people.interactions',compact('person', 'interactions'));
     }
 
-    private function getInteractions(int $deviceId, array $previousDevices = [])
+    private function getInteractions(int $beaconId, array $previousBeacons = [])
     {
         $interactions = [];
 
-        $previousInteractions = DB::table('device_interactions AS di')
-            ->leftJoin('people AS p', 'di.secondary_device_id', '=', 'p.device_id')
-            ->join('devices AS d', 'di.secondary_device_id', '=', 'd.id')
+        $previousInteractions = DB::table('beacons_interactions AS bi')
+            ->leftJoin('people AS p', 'bi.secondary_beacon_id', '=', 'p.beacon_id')
+            ->join('beacons AS b', 'bi.secondary_beacon_id', '=', 'b.id')
             ->select(
-                'di.id',
-                'di.primary_device_id',
-                'di.secondary_device_id',
-                'di.interactions',
+                'bi.id',
+                'bi.primary_beacon_id',
+                'bi.secondary_beacon_id',
+                'bi.duration',
+                'bi.interaction_time',
                 'p.id AS person_id',
                 'p.name AS person_name',
-                'd.name AS device_name'
+                'b.name AS beacon_name'
             )
-            ->where('di.primary_device_id', '=', $deviceId)
-            ->where('di.primary_device_id', '=', $deviceId)
-            ->when($previousDevices, function ($query, $previousDevices) {
-                return $query->whereNotIn('di.secondary_device_id', $previousDevices);
+            ->where('bi.primary_beacon_id', '=', $beaconId)
+            ->where('bi.primary_beacon_id', '=', $beaconId)
+            ->when($previousBeacons, function ($query, $previousBeacons) {
+                return $query->whereNotIn('bi.secondary_beacon_id', $previousBeacons);
             })
-            ->whereNull('di.deleted_at')
-            ->orderBy('di.secondary_device_id')
-            ->orderBy('di.created_at', 'desc')
+            ->whereNull('bi.deleted_at')
+            ->orderBy('bi.secondary_beacon_id')
+            ->orderBy('bi.created_at', 'desc')
             ->get();
 
         if ($previousInteractions->count() == 0) {
@@ -203,10 +204,10 @@ class PeopleController extends LocationController
 
         foreach ($previousInteractions as $previousInteraction) {
             $interactions[$previousInteraction->id] = $this->decorateInteraction($previousInteraction);
-            $previousDevices[] = $deviceId;
-            $previousDevices[] = $previousInteraction->secondary_device_id;
+            $previousBeacons[] = $beaconId;
+            $previousBeacons[] = $previousInteraction->secondary_beacon_id;
             // get secondary interactions
-            $interactions[$previousInteraction->id]['secondary_interactions'] = $this->getInteractions($previousInteraction->secondary_device_id, array_unique($previousDevices));
+            $interactions[$previousInteraction->id]['secondary_interactions'] = $this->getInteractions($previousInteraction->secondary_beacon_id, array_unique($previousBeacons));
         }
 
         return $interactions;
@@ -215,12 +216,13 @@ class PeopleController extends LocationController
     private function decorateInteraction($interaction)
     {
         return [
-            'primary_device_id' => $interaction->primary_device_id,
-            'secondary_device_id' => $interaction->secondary_device_id,
-            'interactions' => $interaction->interactions,
+            'primary_beacon_id' => $interaction->primary_beacon_id,
+            'secondary_beacon_id' => $interaction->secondary_beacon_id,
+            'duration' => $interaction->duration,
+            'interaction_time' => $interaction->interaction_time,
             'person_id' => $interaction->person_id,
             'person_name' => $interaction->person_name,
-            'device_name' => $interaction->device_name,
+            'beacon_name' => $interaction->beacon_name,
         ];
     }
 }

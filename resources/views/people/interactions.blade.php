@@ -23,15 +23,15 @@
 
                 <div class="row">
                     <div class="form-group">
-                        <strong>Device:</strong>
-                        {{ $interaction['device_name'] }}
+                        <strong>Beacon:</strong>
+                        {{ $interaction['beacon_name'] }}
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group">
                         <strong>Interaction:</strong>
-                        {{ date('H:i:s', $interaction['interactions'] * 4) }}
+                        {{ date('H:i:s', $interaction['duration']) }}
                     </div>
                 </div>
             </div>
@@ -48,15 +48,15 @@
 
                             <div class="row">
                                 <div class="form-group">
-                                    <strong>Device:</strong>
-                                    {{ $interaction['device_name'] }}
+                                    <strong>Beacon:</strong>
+                                    {{ $interaction['beacon_name'] }}
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="form-group">
                                     <strong>Interaction:</strong>
-                                    {{ date('H:i:s', $interaction['interactions'] * 4) }}
+                                    {{ date('H:i:s', $interaction['duration']) }}
                                 </div>
                             </div>
                         </div>
