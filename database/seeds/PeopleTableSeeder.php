@@ -17,7 +17,7 @@ class PeopleTableSeeder extends Seeder
             'status' => 0,
             'birth_date' => '1990-01-01',
             'job_title' => 'Job 01',
-            'device_id' => 1,
+            'beacon_id' => 1,
         ]);
 
         App\People::create([
@@ -25,7 +25,7 @@ class PeopleTableSeeder extends Seeder
             'email' => 'mail02@mail.com',
             'status' => 1,
             'birth_date' => '1991-01-01',
-            'device_id' => 2,
+            'beacon_id' => 2,
         ]);
 
         App\People::create([
@@ -34,7 +34,7 @@ class PeopleTableSeeder extends Seeder
             'status' => 2,
             'birth_date' => '1992-01-01',
             'job_title' => 'Job 03',
-            'device_id' => 3,
+            'beacon_id' => 3,
         ]);
 
         App\People::create([
@@ -43,7 +43,7 @@ class PeopleTableSeeder extends Seeder
             'status' => 3,
             'birth_date' => '1980-01-01',
             'job_title' => 'Job 04',
-            'device_id' => 4,
+            'beacon_id' => 4,
         ]);
 
         App\People::create([
@@ -52,7 +52,7 @@ class PeopleTableSeeder extends Seeder
             'status' => 0,
             'birth_date' => '1980-01-01',
             'job_title' => 'Job 05',
-            'device_id' => 5,
+            'beacon_id' => 5,
         ]);
     }
 }

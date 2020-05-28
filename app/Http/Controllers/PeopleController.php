@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Device;
+use App\Beacon;
 use App\People;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,8 +28,8 @@ class PeopleController extends LocationController
     public function create()
     {
         $people = People::get();
-        $devices = Device::all()->pluck('name', 'id');
-        return view('people.create', compact('people', 'devices'));
+        $beacons = Beacon::all()->pluck('name', 'id');
+        return view('people.create', compact('people', 'beacons'));
     }
 
     /**
@@ -53,7 +53,7 @@ class PeopleController extends LocationController
             'status' => $request->get('status'),
             'birth_date' => $request->get('birth_date'),
             'job_title' => $request->get('job_title'),
-            'device_id' => $request->get('device_id'),
+            'beacon_id' => $request->get('beacon_id'),
         ]);
 
         $person->save();
@@ -82,8 +82,8 @@ class PeopleController extends LocationController
     public function edit(int $id)
     {
         $person = People::find($id);
-        $devices = Device::all()->pluck('name', 'id');
-        return view('people.edit',compact('person', 'devices'));
+        $beacons = Beacon::all()->pluck('name', 'id');
+        return view('people.edit',compact('person', 'beacons'));
     }
 
     /**
@@ -109,7 +109,7 @@ class PeopleController extends LocationController
         $person->status = $request->get('status');
         $person->birth_date = $request->get('birth_date');
         $person->job_title = $request->get('job_title');
-        $person->device_id = $request->get('device_id');
+        $person->beacon_id = $request->get('beacon_id');
 
         $person->save();
 
@@ -133,13 +133,13 @@ class PeopleController extends LocationController
     {
         $person = People::find($id);
         $status = People::STATUS_SELECT[$person->status];
-        if (is_null($person->device)) {
+        if (is_null($person->beacon)) {
             return view('people.show',compact('person', 'status'));
         }
 
-        $deviceLocations = $this->showPreviousLocations($person->device->id, false);
+        $beaconLocations = $this->showPreviousLocations($person->beacon->id, false);
 
-        if (empty($deviceLocations)) {
+        if (empty($beaconLocations)) {
             return view('people.show',compact('person', 'status'))
                 ->with('warning','No location detected.');
         }
@@ -148,9 +148,9 @@ class PeopleController extends LocationController
         $zones = $this->getZones();
 
         // Colocar a quantidade de vezes em uma determinada coordenada
-        $heatMap = $this->showPreviousLocations($person->device->id, true);
+        $heatMap = $this->showPreviousLocations($person->beacon->id, true);
 
-        return view('people.locationMap',compact('person', 'deviceLocations', 'zones', 'heatMap'));
+        return view('people.locationMap',compact('person', 'beaconLocations', 'zones', 'heatMap'));
     }
 
     public function interactions(int $id)

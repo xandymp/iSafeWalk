@@ -18,23 +18,21 @@ class CreateLocationHistoryTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unsignedBigInteger('device_id')
+            $table->unsignedBigInteger('beacon_id')
                 ->nullable();
 
-            $table->foreign('device_id')
+            $table->foreign('beacon_id')
                 ->references('id')
-                ->on('devices');
+                ->on('beacons');
 
-            $table->unsignedBigInteger('sector_id')
+            $table->unsignedBigInteger('gateway_id')
                 ->nullable();
 
-            $table->foreign('sector_id')
+            $table->foreign('gateway_id')
                 ->references('id')
-                ->on('sectors');
+                ->on('gateways');
 
-            $table->float('location_x');
-            $table->float('location_y');
-            $table->float('location_z');
+            $table->float('duration');
             $table->dateTime('location_time');
         });
     }

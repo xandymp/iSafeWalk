@@ -49,7 +49,7 @@ class SectorController extends Controller
             'initial_y'=>'required',
         ]);
 
-        $device = new Sector([
+        $sector = new Sector([
             'name' => $request->get('name'),
             'x_length' => $request->get('x_length'),
             'y_width' => $request->get('y_width'),
@@ -58,7 +58,7 @@ class SectorController extends Controller
             'initial_x' => $request->get('initial_x'),
             'initial_y' => $request->get('initial_y'),
         ]);
-        $device->save();
+        $sector->save();
         return redirect()->route('sector.index')
             ->with('success','Sector created successfully.');
     }

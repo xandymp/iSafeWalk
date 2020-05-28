@@ -25,10 +25,4 @@ class Sector extends Model
     {
         return $this->belongsTo('App\Zone');
     }
-
-    public function routers()
-    {
-        return $this->belongsToMany('App\Router')
-            ->using('App\SectorRouter');
-    }
 }

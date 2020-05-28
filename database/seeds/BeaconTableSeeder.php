@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DeviceTableSeeder extends Seeder
+class BeaconTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,28 +11,28 @@ class DeviceTableSeeder extends Seeder
      */
     public function run()
     {
-        App\Device::create([
-            'name' => 'Device 01',
+        App\Beacon::create([
+            'name' => 'Beacon 01',
             'serial' => '0123456789',
         ]);
 
-        App\Device::create([
-            'name' => 'Device 02',
+        App\Beacon::create([
+            'name' => 'Beacon 02',
             'serial' => '9876543210',
         ]);
 
-        App\Device::create([
-            'name' => 'Device 03',
+        App\Beacon::create([
+            'name' => 'Beacon 03',
             'serial' => '4561237890',
         ]);
 
-        App\Device::create([
-            'name' => 'Device 04',
+        App\Beacon::create([
+            'name' => 'Beacon 04',
             'serial' => '7890123456',
         ]);
 
-        App\Device::create([
-            'name' => 'Device 05',
+        App\Beacon::create([
+            'name' => 'Beacon 05',
             'serial' => '7623654263',
         ]);
 

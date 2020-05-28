@@ -5,19 +5,22 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Device extends Model
+class Gateway extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'devices';
+    protected $table = 'gateways';
 
     protected $fillable = [
         'name',
         'serial',
+        'zone_id',
+        'zone_x',
+        'zone_y',
     ];
 
-    public function people()
+    public function zone()
     {
-        return $this->hasOne(People::class, 'device_id', 'id');
+        return $this->belongsTo('App\Zone');
     }
 }

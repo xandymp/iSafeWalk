@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDevices extends Migration
+class CreateGatewaysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,21 @@ class CreateDevices extends Migration
      */
     public function up()
     {
-        Schema::create('devices', function (Blueprint $table) {
+        Schema::create('gateways', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->softDeletes();
             $table->string('name');
             $table->string('serial');
 
-            $table->engine = 'InnoDB';
+            $table->unsignedBigInteger('zone_id');
+
+            $table->foreign('zone_id')
+                ->references('id')
+                ->on('zones');
+
+            $table->float('zone_x');
+            $table->float('zone_y');
         });
     }
 
@@ -31,6 +38,6 @@ class CreateDevices extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('devices');
+        Schema::dropIfExists('gateways');
     }
 }

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>iSafeWalk - Routers</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>iSafeWalk - Beacons</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ URL::to('/') }}/css/stylesheet.css" rel="stylesheet">
@@ -22,8 +22,8 @@
                         <i class="fa fa-users" ></i>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ url('/device') }}">
+                <li class="active">
+                    <a href="{{ url('/beacon') }}">
                         <i class="fa fa-tablet"></i>
                     </a>
                 </li>
@@ -37,8 +37,8 @@
                         <i class="fa fa-puzzle-piece"></i>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="{{ url('/router') }}">
+                <li>
+                    <a href="{{ url('/gateway') }}">
                         <i class="fa fa-wifi"></i>
                     </a>
                 </li>
@@ -47,31 +47,32 @@
         <div class="col-sm-3 title">
             <div class="row">
                 <div class="col-10">
-                    <h2>Routers&nbsp;<span style="font-size: 1.25rem;color: #cccccc">({{ count($routers) }})</span></h2>
+                    <h2>Beacons&nbsp;<span style="font-size: 1.25rem;color: #cccccc">({{ count($beacons) }})</span></h2>
                 </div>
                 <div class="col">
-                    <a href="#" id="create-router" class="btn btn-success pull-right"><i class="fa fa-plus" style="font-size: inherit"></i></a>
+                    <a href="#" id="create-beacon" class="btn btn-success pull-right"><i class="fa fa-plus" style="font-size: inherit"></i></a>
                 </div>
             </div>
             <hr/>
-            @foreach($routers as $router)
-                <div class="row list" data-id="{{ $router->id }}">
+            @foreach($beacons as $beacon)
+                <div class="row list" data-id="{{ $beacon->id }}">
                     <div class="col-sm-2 d-none d-sm-block">
-                        <i class="fa fa-feed"></i>
+                        <i class="fa fa-mobile"></i>
                     </div>
                     <div class="col-sm-5 text-truncate" style="font-size: 8pt">
-                        <b>{{ $router->name }}</b><br>
-                        <span style="color: #999999"></span>
+                        <b>{{ $beacon->name }}</b><br>
+                        <span style="color: #999999">{{ $beacon->serial }}</span>
                     </div>
                     <div class="col text-truncate"></div>
                     <div class="col">
-                        <a href="#" class="btn btn-danger btn-sm delete" data-id="{{ $router->id }}">
+                        <a href="#" class="btn btn-danger btn-sm delete" data-id="{{ $beacon->id }}">
                             <i class="fa fa-trash" style="font-size: inherit"></i>
                         </a>
                     </div>
                 </div>
             @endforeach
         </div>
+
         <div id="content" class="col-sm-8 container-fluid bg-light">
             @yield('content')
         </div>
@@ -89,7 +90,7 @@
             let id = $(this).data('id');
 
             $.ajax({
-                url: `{{ url('/router/') }}/${id}`,
+                url: `{{ url('/beacon/') }}/${id}`,
                 success: function (data) {
                     $('#content').html(data);
                 },
@@ -106,7 +107,7 @@
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: `{{ url('/router/') }}/${id}`,
+                    url: `{{ url('/beacon/') }}/${id}`,
                     type: 'DELETE',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -122,9 +123,9 @@
             }
         });
 
-        $(document).on('click', '#create-router', function () {
+        $(document).on('click', '#create-beacon', function () {
             $.ajax({
-                url: `{{ url('/router/create') }}`,
+                url: `{{ url('/beacon/create') }}`,
                 success: function (data) {
                     $('#content').html(data);
                 },
@@ -139,7 +140,7 @@
             let id = $(this).data('id');
 
             $.ajax({
-                url: `{{ url('/router/') }}/${id}/edit`,
+                url: `{{ url('/beacon/') }}/${id}/edit`,
                 success: function (data) {
                     $('#content').html(data);
                 },
@@ -154,7 +155,7 @@
             let id = $(this).data('id');
 
             $.ajax({
-                url: `{{ url('/router/') }}/${id}`,
+                url: `{{ url('/beacon/') }}/${id}`,
                 success: function (data) {
                     $('#content').html(data);
                 },
@@ -165,5 +166,5 @@
             });
         });
     </script>
-</body>
+    </body>
 </html>

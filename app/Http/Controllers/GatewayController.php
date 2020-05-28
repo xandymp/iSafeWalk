@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Router;
-use App\Sector;
+use App\Gateway;
+use App\Zone;
 use Illuminate\Http\Request;
 
-class RouterController extends Controller
+class GatewayController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class RouterController extends Controller
      */
     public function index()
     {
-        $routers = Router::get();
-        return view('router.index',compact('routers'));
+        $gateways = Gateway::get();
+        return view('gateway.index',compact('gateways'));
     }
 
     /**
@@ -26,9 +26,9 @@ class RouterController extends Controller
      */
     public function create()
     {
-        $routers = Router::get();
-        $sectors = Sector::all()->pluck('name', 'id');
-        return view('router.create', compact('routers', 'sectors'));
+        $gateways = Gateway::get();
+        $zones = Zone::all()->pluck('name', 'id');
+        return view('gateway.create', compact('gateways', 'zones'));
     }
 
     /**
@@ -42,16 +42,22 @@ class RouterController extends Controller
         $request->validate([
             'name'=>'required',
             'serial'=>'required',
+            'zone_id'=>'required',
+            'zone_x'=>'required',
+            'zone_y'=>'required',
         ]);
 
-        $router = new Router([
+        $gateway = new Gateway([
             'name' => $request->get('name'),
             'serial' => $request->get('serial'),
+            'zone_id' => $request->get('zone_id'),
+            'zone_x' => $request->get('zone_x'),
+            'zone_y' => $request->get('zone_y'),
         ]);
 
-        $router->save();
-        return redirect()->route('router.index')
-            ->with('success','Router created successfully.');
+        $gateway->save();
+        return redirect()->route('gateway.index')
+            ->with('success','Gateway created successfully.');
     }
 
     /**
@@ -62,8 +68,8 @@ class RouterController extends Controller
      */
     public function show($id)
     {
-        $router = Router::find($id);
-        return view('router.show',compact('router'));
+        $gateway = Gateway::find($id);
+        return view('gateway.show',compact('gateway'));
     }
 
     /**
@@ -74,9 +80,9 @@ class RouterController extends Controller
      */
     public function edit($id)
     {
-        $router = Router::find($id);
-        $sectors = Sector::all()->pluck('name', 'id');
-        return view('router.edit',compact('router', 'sectors'));
+        $gateway = Gateway::find($id);
+        $zones = Zone::all()->pluck('name', 'id');
+        return view('gateway.edit',compact('gateway', 'zones'));
     }
 
     /**
@@ -91,17 +97,23 @@ class RouterController extends Controller
         $request->validate([
             'name'=>'required',
             'serial'=>'required',
+            'zone_id'=>'required',
+            'zone_x'=>'required',
+            'zone_y'=>'required',
         ]);
 
-        $router = Router::find($id);
+        $gateway = Gateway::find($id);
 
-        $router->name = $request->get('name');
-        $router->serial = $request->get('serial');
+        $gateway->name = $request->get('name');
+        $gateway->serial = $request->get('serial');
+        $gateway->zone_id = $request->get('zone_id');
+        $gateway->zone_x = $request->get('zone_x');
+        $gateway->zone_y = $request->get('zone_y');
 
-        $router->save();
+        $gateway->save();
 
-        return redirect()->route('router.index')
-            ->with('success','Router updated successfully.');
+        return redirect()->route('gateway.index')
+            ->with('success','Gateway updated successfully.');
     }
 
     /**
@@ -112,7 +124,7 @@ class RouterController extends Controller
      */
     public function destroy($id)
     {
-        $router = Router::find($id);
-        $router->delete();
+        $gateway = Gateway::find($id);
+        $gateway->delete();
     }
 }

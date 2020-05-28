@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>iSafeWalk - Devices</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>iSafeWalk - Gateways</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ URL::to('/') }}/css/stylesheet.css" rel="stylesheet">
@@ -22,8 +22,8 @@
                         <i class="fa fa-users" ></i>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="{{ url('/device') }}">
+                <li>
+                    <a href="{{ url('/beacon') }}">
                         <i class="fa fa-tablet"></i>
                     </a>
                 </li>
@@ -37,8 +37,8 @@
                         <i class="fa fa-puzzle-piece"></i>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ url('/router') }}">
+                <li class="active">
+                    <a href="{{ url('/gateway') }}">
                         <i class="fa fa-wifi"></i>
                     </a>
                 </li>
@@ -47,32 +47,31 @@
         <div class="col-sm-3 title">
             <div class="row">
                 <div class="col-10">
-                    <h2>Devices&nbsp;<span style="font-size: 1.25rem;color: #cccccc">({{ count($devices) }})</span></h2>
+                    <h2>Gateways&nbsp;<span style="font-size: 1.25rem;color: #cccccc">({{ count($gateways) }})</span></h2>
                 </div>
                 <div class="col">
-                    <a href="#" id="create-device" class="btn btn-success pull-right"><i class="fa fa-plus" style="font-size: inherit"></i></a>
+                    <a href="#" id="create-gateway" class="btn btn-success pull-right"><i class="fa fa-plus" style="font-size: inherit"></i></a>
                 </div>
             </div>
             <hr/>
-            @foreach($devices as $device)
-                <div class="row list" data-id="{{ $device->id }}">
+            @foreach($gateways as $gateway)
+                <div class="row list" data-id="{{ $gateway->id }}">
                     <div class="col-sm-2 d-none d-sm-block">
-                        <i class="fa fa-mobile"></i>
+                        <i class="fa fa-feed"></i>
                     </div>
                     <div class="col-sm-5 text-truncate" style="font-size: 8pt">
-                        <b>{{ $device->name }}</b><br>
-                        <span style="color: #999999">{{ $device->serial }}</span>
+                        <b>{{ $gateway->name }}</b><br>
+                        <span style="color: #999999"></span>
                     </div>
                     <div class="col text-truncate"></div>
                     <div class="col">
-                        <a href="#" class="btn btn-danger btn-sm delete" data-id="{{ $device->id }}">
+                        <a href="#" class="btn btn-danger btn-sm delete" data-id="{{ $gateway->id }}">
                             <i class="fa fa-trash" style="font-size: inherit"></i>
                         </a>
                     </div>
                 </div>
             @endforeach
         </div>
-
         <div id="content" class="col-sm-8 container-fluid bg-light">
             @yield('content')
         </div>
@@ -90,7 +89,7 @@
             let id = $(this).data('id');
 
             $.ajax({
-                url: `{{ url('/device/') }}/${id}`,
+                url: `{{ url('/gateway/') }}/${id}`,
                 success: function (data) {
                     $('#content').html(data);
                 },
@@ -107,7 +106,7 @@
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: `{{ url('/device/') }}/${id}`,
+                    url: `{{ url('/gateway/') }}/${id}`,
                     type: 'DELETE',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -123,9 +122,9 @@
             }
         });
 
-        $(document).on('click', '#create-device', function () {
+        $(document).on('click', '#create-gateway', function () {
             $.ajax({
-                url: `{{ url('/device/create') }}`,
+                url: `{{ url('/gateway/create') }}`,
                 success: function (data) {
                     $('#content').html(data);
                 },
@@ -140,7 +139,7 @@
             let id = $(this).data('id');
 
             $.ajax({
-                url: `{{ url('/device/') }}/${id}/edit`,
+                url: `{{ url('/gateway/') }}/${id}/edit`,
                 success: function (data) {
                     $('#content').html(data);
                 },
@@ -155,7 +154,7 @@
             let id = $(this).data('id');
 
             $.ajax({
-                url: `{{ url('/device/') }}/${id}`,
+                url: `{{ url('/gateway/') }}/${id}`,
                 success: function (data) {
                     $('#content').html(data);
                 },
@@ -166,5 +165,5 @@
             });
         });
     </script>
-    </body>
+</body>
 </html>
