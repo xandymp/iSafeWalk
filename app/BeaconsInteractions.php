@@ -5,15 +5,15 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class DeviceInteraction extends Model
+class BeaconsInteractions extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'device_interactions';
+    protected $table = 'beacons_interactions';
 
     protected $fillable = [
-        'primary_device_id',
-        'secondary_device_id',
+        'primary_beacon_id',
+        'secondary_beacon_id',
         'interactions',
     ];
 }

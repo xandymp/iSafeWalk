@@ -3,7 +3,7 @@
         <div class="pull-right">
             <span class="btn btn-primary btn-sm edit" data-id="{{ $person->id }}"><i class="fa fa-pencil"></i></span>
         </div>
-        @if (!is_null($person->device))
+        @if (!is_null($person->beacon))
             <div class="pull-right" style="padding: 0px 20px 0px 0px">
                 <span class="btn btn-primary btn-sm locationMap" data-id="{{ $person->id }}"> <i class="fa fa-street-view"></i></span>
             </div>
@@ -57,12 +57,12 @@
     </div>
 @endif
 
-@if (!is_null($person->device))
+@if (!is_null($person->beacon))
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Device:</strong>
-                {{ $person->device->name ?? null }}
+                <strong>Beacon:</strong>
+                {{ $person->beacon->name ?? null }}
             </div>
         </div>
     </div>
