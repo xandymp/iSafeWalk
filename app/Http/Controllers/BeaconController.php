@@ -63,7 +63,7 @@ class BeaconController extends LocationController
     {
         $beacon = Beacon::find($id);
 
-        return view('beacon.show',compact('beacon', 'previousLocations'));
+        return view('beacon.show',compact('beacon'));
     }
 
     /**

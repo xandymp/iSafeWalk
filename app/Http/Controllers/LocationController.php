@@ -116,7 +116,6 @@ class LocationController extends Controller
     protected function getZones()
     {
         $zonesAndSectors = [];
-        $sectorDetails = [];
         $zones = Zone::get();
 
         foreach ($zones as $zone) {

@@ -12,28 +12,64 @@ class BeaconTableSeeder extends Seeder
     public function run()
     {
         App\Beacon::create([
-            'name' => 'Beacon 01',
-            'serial' => '0123456789',
+            'name' => '16A',
+            'serial' => '01:00',
         ]);
-
         App\Beacon::create([
-            'name' => 'Beacon 02',
-            'serial' => '9876543210',
+            'name' => '17A',
+            'serial' => '01:01',
         ]);
-
         App\Beacon::create([
-            'name' => 'Beacon 03',
-            'serial' => '4561237890',
+            'name' => '12A',
+            'serial' => '01:02',
         ]);
-
         App\Beacon::create([
-            'name' => 'Beacon 04',
-            'serial' => '7890123456',
+            'name' => '5A',
+            'serial' => '01:03',
         ]);
-
         App\Beacon::create([
-            'name' => 'Beacon 05',
-            'serial' => '7623654263',
+            'name' => '2A',
+            'serial' => '01:04',
+        ]);
+        App\Beacon::create([
+            'name' => '11A',
+            'serial' => '01:05',
+        ]);
+        App\Beacon::create([
+            'name' => '14A',
+            'serial' => '01:06',
+        ]);
+        App\Beacon::create([
+            'name' => '9A',
+            'serial' => '01:07',
+        ]);
+        App\Beacon::create([
+            'name' => '3A',
+            'serial' => '01:08',
+        ]);
+        App\Beacon::create([
+            'name' => '8A',
+            'serial' => '01:09',
+        ]);
+        App\Beacon::create([
+            'name' => '4A',
+            'serial' => '01:0A',
+        ]);
+        App\Beacon::create([
+            'name' => '7A',
+            'serial' => '01:0B',
+        ]);
+        App\Beacon::create([
+            'name' => '10A',
+            'serial' => '01:0C',
+        ]);
+        App\Beacon::create([
+            'name' => '1A',
+            'serial' => '01:0D',
+        ]);
+        App\Beacon::create([
+            'name' => '6A',
+            'serial' => '01:0E',
         ]);
     }
 }

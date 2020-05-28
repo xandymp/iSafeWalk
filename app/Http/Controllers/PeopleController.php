@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Beacon;
 use App\People;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PeopleController extends LocationController
 {
@@ -150,5 +151,78 @@ class PeopleController extends LocationController
         $heatMap = $this->showPreviousLocations($person->beacon->id, true);
 
         return view('people.locationMap',compact('person', 'beaconLocations', 'zones', 'heatMap'));
+    }
+
+    public function interactions(int $id)
+    {
+        $person = People::find($id);
+        $status = People::STATUS_SELECT[$person->status];
+        if (is_null($person->beacon)) {
+            return view('people.show',compact('person', 'status'));
+        }
+
+        $interactions = $this->getInteractions($person->beacon->id);
+
+        if (empty($interactions)) {
+            return view('people.show',compact('person', 'status'))
+                ->with('warning','No interactions.');
+        }
+
+        return view('people.interactions',compact('person', 'interactions'));
+    }
+
+    private function getInteractions(int $beaconId, array $previousBeacons = [])
+    {
+        $interactions = [];
+
+        $previousInteractions = DB::table('beacons_interactions AS bi')
+            ->leftJoin('people AS p', 'bi.secondary_beacon_id', '=', 'p.beacon_id')
+            ->join('beacons AS b', 'bi.secondary_beacon_id', '=', 'b.id')
+            ->select(
+                'bi.id',
+                'bi.primary_beacon_id',
+                'bi.secondary_beacon_id',
+                'bi.duration',
+                'bi.interaction_time',
+                'p.id AS person_id',
+                'p.name AS person_name',
+                'b.name AS beacon_name'
+            )
+            ->where('bi.primary_beacon_id', '=', $beaconId)
+            ->where('bi.primary_beacon_id', '=', $beaconId)
+            ->when($previousBeacons, function ($query, $previousBeacons) {
+                return $query->whereNotIn('bi.secondary_beacon_id', $previousBeacons);
+            })
+            ->whereNull('bi.deleted_at')
+            ->orderBy('bi.secondary_beacon_id')
+            ->orderBy('bi.created_at', 'desc')
+            ->get();
+
+        if ($previousInteractions->count() == 0) {
+            return $interactions;
+        }
+
+        foreach ($previousInteractions as $previousInteraction) {
+            $interactions[$previousInteraction->id] = $this->decorateInteraction($previousInteraction);
+            $previousBeacons[] = $beaconId;
+            $previousBeacons[] = $previousInteraction->secondary_beacon_id;
+            // get secondary interactions
+            $interactions[$previousInteraction->id]['secondary_interactions'] = $this->getInteractions($previousInteraction->secondary_beacon_id, array_unique($previousBeacons));
+        }
+
+        return $interactions;
+    }
+
+    private function decorateInteraction($interaction)
+    {
+        return [
+            'primary_beacon_id' => $interaction->primary_beacon_id,
+            'secondary_beacon_id' => $interaction->secondary_beacon_id,
+            'duration' => $interaction->duration,
+            'interaction_time' => $interaction->interaction_time,
+            'person_id' => $interaction->person_id,
+            'person_name' => $interaction->person_name,
+            'beacon_name' => $interaction->beacon_name,
+        ];
     }
 }

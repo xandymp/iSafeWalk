@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SectorTableSeeder::class);
         $this->call(GatewayTableSeeder::class);
         $this->call(LocationHistoryTableSeeder::class);
+        $this->call(BeaconsInteractionsTableSeeder::class);
     }
 }

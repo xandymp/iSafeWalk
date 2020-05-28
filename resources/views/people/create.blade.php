@@ -80,14 +80,14 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Device:</strong>
+                <strong>Beacon:</strong>
                 <select
                     class="form-control"
                     name="device_id"
                     id="device_id">
-                    <option value {{ old('device_id', null) === null ? 'selected' : '' }}>Please select</option>
-                    @foreach($devices as $key => $label)
-                        <option value="{{ $key }}" {{ old('device_id', null) === (string) $key ? 'selected' : '' }}>
+                    <option value {{ old('beacon_id', null) === null ? 'selected' : '' }}>Please select</option>
+                    @foreach($beacons as $key => $label)
+                        <option value="{{ $key }}" {{ old('beacon_id', null) === (string) $key ? 'selected' : '' }}>
                             {{ $label }}
                         </option>
                     @endforeach

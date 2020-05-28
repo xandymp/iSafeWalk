@@ -168,6 +168,21 @@
             });
         });
 
+        $(document).on('click', '.interactions', function () {
+            let id = $(this).data('id');
+
+            $.ajax({
+                url: `{{ url('/people/') }}/${id}/interactions`,
+                success: function (data) {
+                    $('#content').html(data);
+                },
+                error: function (error) {
+                    alert('An error has occurred');
+                    console.log(error);
+                }
+            });
+        });
+
         $(document).on('click', '.back', function () {
             let id = $(this).data('id');
 
