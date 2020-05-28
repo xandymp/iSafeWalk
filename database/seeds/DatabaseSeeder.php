@@ -15,8 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PeopleTableSeeder::class);
         $this->call(ZoneTableSeeder::class);
         $this->call(SectorTableSeeder::class);
-        $this->call(RouterTableSeeder::class);
-        $this->call(SectorRouterTableSeeder::class);
+        $this->call(GatewayTableSeeder::class);
         $this->call(LocationHistoryTableSeeder::class);
     }
 }

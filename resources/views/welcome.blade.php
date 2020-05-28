@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/router') }}">
+                    <a href="{{ url('/gateway') }}">
                         <i class="fa fa-wifi"></i>
                     </a>
                 </li>
