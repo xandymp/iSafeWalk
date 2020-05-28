@@ -14,6 +14,6 @@ class BeaconsInteractions extends Model
     protected $fillable = [
         'primary_beacon_id',
         'secondary_beacon_id',
-        'interactions',
+        'duration',
     ];
 }

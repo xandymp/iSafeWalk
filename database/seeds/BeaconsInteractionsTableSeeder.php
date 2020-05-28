@@ -11,95 +11,614 @@ class BeaconsInteractionsTableSeeder extends Seeder
      */
     public function run()
     {
-        // beacon 1 interactions
-        App\BeaconsInteractions::create([
-            'primary_beacon_id' => 1,
-            'secondary_beacon_id' => 2,
-            'interactions' => 10,
-        ]);
-        App\BeaconsInteractions::create([
-            'primary_beacon_id' => 1,
-            'secondary_beacon_id' => 3,
-            'interactions' => 10,
-        ]);
-        App\BeaconsInteractions::create([
-            'primary_beacon_id' => 1,
-            'secondary_beacon_id' => 6,
-            'interactions' => 10,
-        ]);
+        // beacon 1 has no interactions
 
         // beacon 2 interactions
         App\BeaconsInteractions::create([
             'primary_beacon_id' => 2,
-            'secondary_beacon_id' => 1,
-            'interactions' => 10,
+            'secondary_beacon_id' => 3,
+            'duration' => 8,
         ]);
         App\BeaconsInteractions::create([
             'primary_beacon_id' => 2,
             'secondary_beacon_id' => 3,
-            'interactions' => 10,
+            'duration' => 8,
         ]);
         App\BeaconsInteractions::create([
             'primary_beacon_id' => 2,
             'secondary_beacon_id' => 4,
-            'interactions' => 10,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 2,
+            'secondary_beacon_id' => 5,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 2,
+            'secondary_beacon_id' => 6,
+            'duration' => 24,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 2,
+            'secondary_beacon_id' => 8,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 2,
+            'secondary_beacon_id' => 9,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 2,
+            'secondary_beacon_id' => 11,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 2,
+            'secondary_beacon_id' => 13,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 2,
+            'secondary_beacon_id' => 14,
+            'duration' => 20,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 2,
+            'secondary_beacon_id' => 15,
+            'duration' => 12,
         ]);
 
         // beacon 3 interactions
         App\BeaconsInteractions::create([
             'primary_beacon_id' => 3,
-            'secondary_beacon_id' => 1,
-            'interactions' => 10,
-        ]);
-        App\BeaconsInteractions::create([
-            'primary_beacon_id' => 3,
             'secondary_beacon_id' => 2,
-            'interactions' => 10,
+            'duration' => 8,
         ]);
         App\BeaconsInteractions::create([
             'primary_beacon_id' => 3,
-            'secondary_beacon_id' => 5,
-            'interactions' => 10,
+            'secondary_beacon_id' => 4,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 3,
+            'secondary_beacon_id' => 6,
+            'duration' => 20,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 3,
+            'secondary_beacon_id' => 8,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 3,
+            'secondary_beacon_id' => 9,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 3,
+            'secondary_beacon_id' => 10,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 3,
+            'secondary_beacon_id' => 11,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 3,
+            'secondary_beacon_id' => 13,
+            'duration' => 84,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 3,
+            'secondary_beacon_id' => 14,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 3,
+            'secondary_beacon_id' => 15,
+            'duration' => 8,
         ]);
 
         // beacon 4 interactions
         App\BeaconsInteractions::create([
             'primary_beacon_id' => 4,
-            'secondary_beacon_id' => 2,
-            'interactions' => 10,
+            'secondary_beacon_id' => 1,
+            'duration' => 4,
         ]);
         App\BeaconsInteractions::create([
             'primary_beacon_id' => 4,
-            'secondary_beacon_id' => 5,
-            'interactions' => 10,
+            'secondary_beacon_id' => 2,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 4,
+            'secondary_beacon_id' => 3,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 4,
+            'secondary_beacon_id' => 6,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 4,
+            'secondary_beacon_id' => 8,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 4,
+            'secondary_beacon_id' => 10,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 4,
+            'secondary_beacon_id' => 11,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 4,
+            'secondary_beacon_id' => 13,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 4,
+            'secondary_beacon_id' => 14,
+            'duration' => 16,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 4,
+            'secondary_beacon_id' => 15,
+            'duration' => 4,
         ]);
 
         // beacon 5 interactions
         App\BeaconsInteractions::create([
             'primary_beacon_id' => 5,
-            'secondary_beacon_id' => 3,
-            'interactions' => 10,
+            'secondary_beacon_id' => 10,
+            'duration' => 4,
         ]);
         App\BeaconsInteractions::create([
             'primary_beacon_id' => 5,
-            'secondary_beacon_id' => 4,
-            'interactions' => 10,
-        ]);
-        App\BeaconsInteractions::create([
-            'primary_beacon_id' => 5,
-            'secondary_beacon_id' => 6,
-            'interactions' => 10,
+            'secondary_beacon_id' => 13,
+            'duration' => 4,
         ]);
 
+        // beacon 6 interactions
         App\BeaconsInteractions::create([
             'primary_beacon_id' => 6,
             'secondary_beacon_id' => 1,
-            'interactions' => 10,
+            'duration' => 4,
         ]);
         App\BeaconsInteractions::create([
             'primary_beacon_id' => 6,
+            'secondary_beacon_id' => 2,
+            'duration' => 24,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 6,
+            'secondary_beacon_id' => 3,
+            'duration' => 20,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 6,
+            'secondary_beacon_id' => 4,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 6,
+            'secondary_beacon_id' => 9,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 6,
+            'secondary_beacon_id' => 10,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 6,
+            'secondary_beacon_id' => 11,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 6,
+            'secondary_beacon_id' => 12,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 6,
+            'secondary_beacon_id' => 13,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 6,
+            'secondary_beacon_id' => 14,
+            'duration' => 28,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 6,
+            'secondary_beacon_id' => 15,
+            'duration' => 8,
+        ]);
+        // beacon 7 has no interactions
+
+        // beacon 8 interactions
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 8,
+            'secondary_beacon_id' => 1,
+            'duration' => 16,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 8,
+            'secondary_beacon_id' => 2,
+            'duration' => 8,
+        ]);
+
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 8,
+            'secondary_beacon_id' => 3,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 8,
+            'secondary_beacon_id' => 4,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 8,
+            'secondary_beacon_id' => 9,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 8,
+            'secondary_beacon_id' => 10,
+            'duration' => 24,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 8,
+            'secondary_beacon_id' => 11,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 8,
+            'secondary_beacon_id' => 13,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 8,
+            'secondary_beacon_id' => 14,
+            'duration' => 32,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 8,
+            'secondary_beacon_id' => 15,
+            'duration' => 4,
+        ]);
+
+        // beacon 9 interactions
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 9,
+            'secondary_beacon_id' => 1,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 9,
+            'secondary_beacon_id' => 2,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 9,
+            'secondary_beacon_id' => 3,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 9,
+            'secondary_beacon_id' => 6,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 9,
+            'secondary_beacon_id' => 8,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 9,
+            'secondary_beacon_id' => 10,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 9,
+            'secondary_beacon_id' => 11,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 9,
+            'secondary_beacon_id' => 13,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 9,
+            'secondary_beacon_id' => 14,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 9,
+            'secondary_beacon_id' => 15,
+            'duration' => 4,
+        ]);
+
+        // beacon 10 interactions
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 10,
+            'secondary_beacon_id' => 1,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 10,
+            'secondary_beacon_id' => 3,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 10,
+            'secondary_beacon_id' => 4,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 10,
             'secondary_beacon_id' => 5,
-            'interactions' => 10,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 10,
+            'secondary_beacon_id' => 6,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 10,
+            'secondary_beacon_id' => 8,
+            'duration' => 24,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 10,
+            'secondary_beacon_id' => 9,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 10,
+            'secondary_beacon_id' => 11,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 10,
+            'secondary_beacon_id' => 13,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 10,
+            'secondary_beacon_id' => 14,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 10,
+            'secondary_beacon_id' => 15,
+            'duration' => 8,
+        ]);
+
+        // beacon 11 interactions
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 11,
+            'secondary_beacon_id' => 1,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 11,
+            'secondary_beacon_id' => 2,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 11,
+            'secondary_beacon_id' => 3,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 11,
+            'secondary_beacon_id' => 4,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 11,
+            'secondary_beacon_id' => 6,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 11,
+            'secondary_beacon_id' => 8,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 11,
+            'secondary_beacon_id' => 9,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 11,
+            'secondary_beacon_id' => 10,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 11,
+            'secondary_beacon_id' => 13,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 11,
+            'secondary_beacon_id' => 14,
+            'duration' => 180,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 11,
+            'secondary_beacon_id' => 15,
+            'duration' => 8,
+        ]);
+
+        // beacon 12 has no interactions
+
+        // beacon 13 interactions
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 13,
+            'secondary_beacon_id' => 2,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 13,
+            'secondary_beacon_id' => 3,
+            'duration' => 84,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 13,
+            'secondary_beacon_id' => 4,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 13,
+            'secondary_beacon_id' => 6,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 13,
+            'secondary_beacon_id' => 8,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 13,
+            'secondary_beacon_id' => 9,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 13,
+            'secondary_beacon_id' => 10,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 13,
+            'secondary_beacon_id' => 11,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 13,
+            'secondary_beacon_id' => 14,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 13,
+            'secondary_beacon_id' => 15,
+            'duration' => 4,
+        ]);
+
+        // beacon 14 interactions
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 14,
+            'secondary_beacon_id' => 2,
+            'duration' => 20,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 14,
+            'secondary_beacon_id' => 3,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 14,
+            'secondary_beacon_id' => 4,
+            'duration' => 16,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 14,
+            'secondary_beacon_id' => 6,
+            'duration' => 28,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 14,
+            'secondary_beacon_id' => 8,
+            'duration' => 32,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 14,
+            'secondary_beacon_id' => 9,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 14,
+            'secondary_beacon_id' => 10,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 14,
+            'secondary_beacon_id' => 11,
+            'duration' => 180,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 14,
+            'secondary_beacon_id' => 13,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 14,
+            'secondary_beacon_id' => 15,
+            'duration' => 8,
+        ]);
+
+        // beacon 15 interactions
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 15,
+            'secondary_beacon_id' => 2,
+            'duration' => 12,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 15,
+            'secondary_beacon_id' => 3,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 15,
+            'secondary_beacon_id' => 4,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 15,
+            'secondary_beacon_id' => 6,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 15,
+            'secondary_beacon_id' => 8,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 15,
+            'secondary_beacon_id' => 9,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 15,
+            'secondary_beacon_id' => 10,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 15,
+            'secondary_beacon_id' => 11,
+            'duration' => 8,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 15,
+            'secondary_beacon_id' => 13,
+            'duration' => 4,
+        ]);
+        App\BeaconsInteractions::create([
+            'primary_beacon_id' => 15,
+            'secondary_beacon_id' => 14,
+            'duration' => 8,
         ]);
     }
 }
