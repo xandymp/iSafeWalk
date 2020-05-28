@@ -24,7 +24,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/device') }}">
+                    <a href="{{ url('/beacon') }}">
                         <i class="fa fa-tablet"></i>
                     </a>
                 </li>

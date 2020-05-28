@@ -1,11 +1,3 @@
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-right">
-            <span class="btn btn-primary btn-sm back" data-id="{{ $device->id }}"><i class="fa fa-undo"></i></span>
-        </div>
-    </div>
-</div>
-
 @if ($errors->any())
     <div class="alert alert-danger">
         <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -17,21 +9,20 @@
     </div>
 @endif
 
-<form action="{{ route('device.update',$device->id) }}" method="POST">
+<form action="{{ route('beacon.store') }}" method="POST">
     @csrf
-    @method('PUT')
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
-                <input type="text" name="name" value="{{ $device->name }}" class="form-control" placeholder="Name">
+                <input type="text" name="name" class="form-control" placeholder="Name">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Serial Nº:</strong>
-                <input type="text" name="serial" value="{{ $device->serial }}" class="form-control" placeholder="Serial Nº">
+                <input type="text" name="serial" class="form-control" placeholder="Serial Nº">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

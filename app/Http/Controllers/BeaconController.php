@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Device;
+use App\Beacon;
 use Illuminate\Http\Request;
 
-class DeviceController extends LocationController
+class BeaconController extends LocationController
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class DeviceController extends LocationController
      */
     public function index()
     {
-        $devices = Device::get();
-        return view('device.index',compact('devices'));
+        $beacons = Beacon::get();
+        return view('beacon.index',compact('beacons'));
     }
 
     /**
@@ -25,8 +25,8 @@ class DeviceController extends LocationController
      */
     public function create()
     {
-        $devices = Device::get();
-        return view('device.create', compact('devices'));
+        $beacons = Beacon::get();
+        return view('beacon.create', compact('beacons'));
     }
 
     /**
@@ -42,15 +42,15 @@ class DeviceController extends LocationController
             'serial'=>'required',
         ]);
 
-        $device = new Device([
+        $beacon = new Beacon([
             'name' => $request->get('name'),
             'serial' => $request->get('serial'),
         ]);
 
-        $device->save();
+        $beacon->save();
 
-        return redirect()->route('device.index')
-            ->with('success','Device created successfully.');
+        return redirect()->route('beacon.index')
+            ->with('success','Beacon created successfully.');
     }
 
     /**
@@ -61,10 +61,9 @@ class DeviceController extends LocationController
      */
     public function show(int $id)
     {
-        $device = Device::find($id);
-        $previousLocations = $this->showPreviousLocations($id);
+        $beacon = Beacon::find($id);
 
-        return view('device.show',compact('device', 'previousLocations'));
+        return view('beacon.show',compact('beacon', 'previousLocations'));
     }
 
     /**
@@ -75,8 +74,8 @@ class DeviceController extends LocationController
      */
     public function edit(int $id)
     {
-        $device = Device::find($id);
-        return view('device.edit',compact('device'));
+        $beacon = Beacon::find($id);
+        return view('beacon.edit',compact('beacon'));
     }
 
     /**
@@ -93,15 +92,15 @@ class DeviceController extends LocationController
             'serial'=>'required',
         ]);
 
-        $device = Device::find($id);
+        $beacon = Beacon::find($id);
 
-        $device->name = $request->get('name');
-        $device->serial = $request->get('serial');
+        $beacon->name = $request->get('name');
+        $beacon->serial = $request->get('serial');
 
-        $device->save();
+        $beacon->save();
 
-        return redirect()->route('device.index')
-            ->with('success','Device updated successfully.');
+        return redirect()->route('beacon.index')
+            ->with('success','Beacon updated successfully.');
     }
 
     /**
@@ -111,8 +110,8 @@ class DeviceController extends LocationController
      */
     public function destroy(int $id)
     {
-        $device = Device::find($id);
+        $beacon = Beacon::find($id);
 
-        $device->delete();
+        $beacon->delete();
     }
 }

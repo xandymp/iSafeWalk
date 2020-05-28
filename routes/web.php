@@ -7,7 +7,7 @@ Route::get('/', function () {
 });
 
 Route::resource('people', 'PeopleController');
-Route::resource('device', 'DeviceController');
+Route::resource('beacon', 'BeaconController');
 Route::resource('zone', 'ZoneController');
 Route::resource('sector', 'SectorController');
 Route::resource('gateway', 'GatewayController');
