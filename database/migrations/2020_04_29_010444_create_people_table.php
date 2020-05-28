@@ -23,12 +23,12 @@ class CreatePeopleTable extends Migration
             $table->date('birth_date');
             $table->string('job_title')->nullable();
 
-            $table->unsignedBigInteger('device_id')
+            $table->unsignedBigInteger('beacon_id')
                 ->nullable();
 
-            $table->foreign('device_id')
+            $table->foreign('beacon_id')
                 ->references('id')
-                ->on('devices');
+                ->on('beacons');
 
 
             $table->engine = 'InnoDB';

@@ -12,13 +12,13 @@ class LocationHistory extends Model
     protected $table = 'location_history';
 
     protected $fillable = [
-        'device_id',
+        'beacon_id',
         'sector_id',
     ];
 
-    public function device()
+    public function beacon()
     {
-        return $this->belongsTo(Device::class, 'device_id');
+        return $this->belongsTo(Beacon::class, 'beacon_id');
     }
 
     public function sector()

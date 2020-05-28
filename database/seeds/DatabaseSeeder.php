@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(DeviceTableSeeder::class);
+        $this->call(BeaconTableSeeder::class);
         $this->call(PeopleTableSeeder::class);
         $this->call(ZoneTableSeeder::class);
         $this->call(SectorTableSeeder::class);

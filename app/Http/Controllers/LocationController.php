@@ -15,7 +15,7 @@ class LocationController extends Controller
             ->join('sectors AS s', 'lh.sector_id', '=', 's.id')
             ->select(
                 'lh.id',
-                'lh.device_id',
+                'lh.beacon_id',
                 'lh.sector_id',
                 's.name AS sector_name',
                 'lh.location_x',
@@ -24,7 +24,7 @@ class LocationController extends Controller
                 'lh.location_time'
             )
             ->selectRaw("'00:00:00' AS duration")
-            ->where('lh.device_id', '=', $id)
+            ->where('lh.beacon_id', '=', $id)
             ->whereNull('lh.deleted_at')
             ->when($startTime, function ($query, $startTime) {
                 return $query->where('location_time', '>=', $startTime);

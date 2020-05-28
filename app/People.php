@@ -21,7 +21,7 @@ class People extends Model
         'status',
         'birth_date',
         'job_title',
-        'device_id',
+        'beacon_id',
     ];
 
     const STATUS_SELECT = [
@@ -31,8 +31,8 @@ class People extends Model
         '3' => 'Suspicious',
     ];
 
-    public function device()
+    public function beacon()
     {
-        return $this->belongsTo(Device::class, 'device_id');
+        return $this->belongsTo(Beacon::class, 'beacon_id');
     }
 }
