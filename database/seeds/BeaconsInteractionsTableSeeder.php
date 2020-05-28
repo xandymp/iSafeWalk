@@ -60,6 +60,7 @@ class BeaconsInteractionsTableSeeder extends Seeder
             'primary_beacon_id' => 2,
             'secondary_beacon_id' => 11,
             'duration' => 12,
+            'interaction_time' => '2020-05-26 10:00:00',
         ]);
         App\BeaconsInteractions::create([
             'primary_beacon_id' => 2,
