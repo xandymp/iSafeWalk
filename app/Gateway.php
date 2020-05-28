@@ -5,20 +5,22 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Router extends Model
+class Gateway extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'routers';
+    protected $table = 'gateways';
 
     protected $fillable = [
         'name',
         'serial',
+        'zone_id',
+        'zone_x',
+        'zone_y',
     ];
 
-    public function sectors()
+    public function zone()
     {
-        return $this->belongsToMany('App\Sector')
-            ->using('App\SectorRouter');
+        return $this->belongsTo('App\Zone');
     }
 }
