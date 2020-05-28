@@ -83,8 +83,8 @@
                 <strong>Beacon:</strong>
                 <select
                     class="form-control"
-                    name="device_id"
-                    id="device_id">
+                    name="beacon_id"
+                    id="beacon_id">
                     <option value {{ old('beacon_id', null) === null ? 'selected' : '' }}>Please select</option>
                     @foreach($beacons as $key => $label)
                         <option value="{{ $key }}" {{ old('beacon_id', null) === (string) $key ? 'selected' : '' }}>
