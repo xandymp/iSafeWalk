@@ -38,7 +38,7 @@
             @if(!empty($interaction['secondary_interactions']))
                 <div class="col-xs-3 col-sm-3 col-md-3 secondary-interaction">
                     @foreach($interaction['secondary_interactions'] as $interaction)
-                        <div class="row col-xs-12 col-sm-12 col-md-12" style="border-style: outset;">
+                        <div class="col-xs-12 col-sm-12 col-md-12" style="border-style: outset;">
                             <div class="row">
                                 <div class="form-group">
                                     <strong>Name:</strong>
