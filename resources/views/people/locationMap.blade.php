@@ -65,9 +65,10 @@
     $(function() {
         const canvas = $('#canvas')[0];
         const ctx = canvas.getContext('2d');
-        let counter = 0;
+        let gradient = '';
+        let radius1 = 0;
+        let radius2 = 0;
 
-        ctx.fillStyle = '#3399FF';
         ctx.strokeStyle = '#000000';
         ctx.lineWidth = 1;
 
@@ -81,6 +82,31 @@
         ctx.stroke();
         ctx.closePath();
 
+        // Draw gateway locations
+        @foreach($gateways as $gateway)
+            x = {{ $gateway->zone_x * 5 }};
+            y = {{ $gateway->zone_y * 5 }};
+
+            radius1 = {{ $gateway->total_duration / 6 }};
+            radius2 = {{ $gateway->total_duration / 2 }};
+
+            gradient = ctx.createRadialGradient(x, y, radius1, x, y, radius2);
+            gradient.addColorStop(0, '#FF0F00');
+            gradient.addColorStop(1, '#FFFF00');
+            ctx.fillStyle = gradient;
+            ctx.strokeStyle = '#FFFF00';
+            x = x + 2.5;
+            y = y + 2.5;
+            ctx.beginPath();
+            ctx.arc(x, y, {{ $gateway->total_duration / 2 }}, 0, Math.PI*2);
+            ctx.fill();
+            ctx.stroke();
+            ctx.closePath();
+        @endforeach
+
+
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 1;
         // Draw sectors
         @foreach($zones['sectors'] as $sector)
             x = {{ $sector['initial_x'] }} * 5
@@ -92,82 +118,5 @@
             ctx.stroke();
             ctx.closePath();
         @endforeach
-
-        // Draw locations
-        @foreach($heatMap as $deviceLocation)
-            if (x === {{ ($deviceLocation->location_x * 5) }} &&
-                y === {{ ($deviceLocation->location_y * 5) }}
-            ) {
-                switch (ctx.fillStyle) {
-                    case '#ffff00':
-                        ctx.fillStyle = '#ffef00';
-                        break;
-                    case '#ffef00':
-                        ctx.fillStyle = '#ffdf00';
-                        break;
-                    case '#ffdf00':
-                        ctx.fillStyle = '#ffcf00';
-                        break;
-                    case '#ffcf00':
-                        ctx.fillStyle = '#ffbf00';
-                        break;
-                    case '#ffbf00':
-                        ctx.fillStyle = '#ffaf00';
-                        break;
-                    case '#ffaf00':
-                        ctx.fillStyle = '#ff9f00';
-                        break;
-                    case '#ff9f00':
-                        ctx.fillStyle = '#ff8f00';
-                        break;
-                    case '#ff8f00':
-                        ctx.fillStyle = '#ff7f00';
-                        break;
-                    case '#ff7f00':
-                        ctx.fillStyle = '#ff6f00';
-                        break;
-                    case '#ff6f00':
-                        ctx.fillStyle = '#ff5f00';
-                        break;
-                    case '#ff5f00':
-                        ctx.fillStyle = '#ff4f00';
-                        break;
-                    case '#ff4f00':
-                        ctx.fillStyle = '#ff3f00';
-                        break;
-                    case '#ff3f00':
-                        ctx.fillStyle = '#ff2f00';
-                        break;
-                    case '#ff2f00':
-                        ctx.fillStyle = '#ff1f00';
-                        break;
-                    case '#ff1f00':
-                        ctx.fillStyle = '#ff0f00';
-                        break;
-                }
-            } else {
-                ctx.fillStyle = '#ffff00';
-                counter = 0;
-            }
-
-            x = {{ $deviceLocation->location_x * 5 }};
-            y = {{ $deviceLocation->location_y * 5 }};
-
-            ctx.fillRect(x, y, 5, 5);
-        @endforeach
-
-        // Last know location
-        x = {{ $deviceLocations[0]->location_x }} * 5;
-        y = {{ $deviceLocations[0]->location_y }} * 5;
-
-        ctx.strokeStyle = '#3399FF';
-        ctx.fillStyle = '#3399FF';
-        x = x + 2.5;
-        y = y + 2.5;
-        ctx.beginPath();
-        ctx.arc(x, y, 2.5, 0, Math.PI*2);
-        ctx.fill();
-        ctx.stroke();
-        ctx.closePath();
     });
 </script>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Beacon;
 use Illuminate\Http\Request;
 
-class BeaconController extends LocationController
+class BeaconController extends Controller
 {
     /**
      * Display a listing of the resource.

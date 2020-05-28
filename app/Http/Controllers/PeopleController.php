@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Beacon;
 use App\People;
+use App\Zone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PeopleController extends LocationController
+class PeopleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -137,20 +138,94 @@ class PeopleController extends LocationController
             return view('people.show',compact('person', 'status'));
         }
 
-        $beaconLocations = $this->showPreviousLocations($person->beacon->id, false);
-
-        if (empty($beaconLocations)) {
-            return view('people.show',compact('person', 'status'))
-                ->with('warning','No location detected.');
-        }
-
         // Get sectors and their positions to draw the map
         $zones = $this->getZones();
 
         // Colocar a quantidade de vezes em uma determinada coordenada
-        $heatMap = $this->showPreviousLocations($person->beacon->id, true);
+        $gateways = $this->showGatewayLocations($person->beacon->id);
 
-        return view('people.locationMap',compact('person', 'beaconLocations', 'zones', 'heatMap'));
+        if (empty($gateways)) {
+            return view('people.show',compact('person', 'status'))
+                ->with('warning','No location detected.');
+        }
+
+        return view('people.locationMap',compact('person', 'zones', 'gateways'));
+    }
+
+    private function showGatewayLocations(int $id, $startTime = null, $endTime = null)
+    {
+        $locations = [];
+        $beaconLocations = DB::table('location_history AS lh')
+            ->join('gateways AS g', 'lh.gateway_id', '=', 'g.id')
+            ->select(
+                'lh.beacon_id',
+                'lh.gateway_id',
+                'g.zone_id',
+                'g.zone_x',
+                'g.zone_y',
+                DB::raw('SUM(lh.duration) AS total_duration')
+            )
+            ->where('lh.beacon_id', '=', $id)
+            ->whereNull('lh.deleted_at')
+            ->when($startTime, function ($query, $startTime) {
+                return $query->where('location_time', '>=', $startTime);
+            })
+            ->when($endTime, function ($query, $endTime) {
+                return $query->where('location_time', '<=', $endTime);
+            })
+            ->groupByRaw('lh.beacon_id, lh.gateway_id, g.zone_id, g.zone_x, g.zone_y')
+            ->orderBy('lh.beacon_id')
+            ->orderBy('lh.gateway_id')
+            ->get();
+
+        if ($beaconLocations->count() > 0) {
+            foreach ($beaconLocations as $beaconLocation) {
+                $locations[] = $beaconLocation;
+            }
+        }
+
+        return $locations;
+    }
+
+    private function getZones()
+    {
+        $zonesAndSectors = [];
+        $zones = Zone::get();
+
+        foreach ($zones as $zone) {
+            $zonesAndSectors[] = $this->decorateZone($zone);
+
+            $sectors = $zone->sectors;
+            foreach ($sectors as $sector) {
+                $zonesAndSectors['sectors'][] = $this->decorateSector($sector);
+            }
+        }
+
+        return $zonesAndSectors;
+    }
+
+    private function decorateZone($zone)
+    {
+        return [
+            'zone_id' => $zone->id,
+            'zone_name' => $zone->name,
+            'zone_x_length' => $zone->x_length,
+            'zone_y_width' => $zone->y_width,
+            'zone_z_height' => $zone->z_height,
+        ];
+    }
+
+    private function decorateSector($sector)
+    {
+        return [
+            'name' => $sector->name,
+            'x_length' => $sector->x_length,
+            'y_width' => $sector->y_width,
+            'z_height' => $sector->z_height,
+            'zone_id' => $sector->zone_id,
+            'initial_x' => $sector->initial_x,
+            'initial_y' => $sector->initial_y,
+        ];
     }
 
     public function interactions(int $id)

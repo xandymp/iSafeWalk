@@ -15,8 +15,14 @@ class LocationHistoryTableSeeder extends Seeder
         App\LocationHistory::create([
             'beacon_id' => 1,
             'gateway_id' => 1,
-            'duration' => 120,
+            'duration' => 60,
             'location_time' => '2020-05-11 00:37:50',
+        ]);
+        App\LocationHistory::create([
+            'beacon_id' => 1,
+            'gateway_id' => 1,
+            'duration' => 60,
+            'location_time' => '2020-05-11 00:38:50',
         ]);
         App\LocationHistory::create([
             'beacon_id' => 1,

@@ -13,7 +13,9 @@ class LocationHistory extends Model
 
     protected $fillable = [
         'beacon_id',
-        'sector_id',
+        'gateway_id',
+        'duration',
+        'location_time',
     ];
 
     public function beacon()
@@ -21,8 +23,8 @@ class LocationHistory extends Model
         return $this->belongsTo(Beacon::class, 'beacon_id');
     }
 
-    public function sector()
+    public function gateway()
     {
-        return $this->belongsTo(Sector::class, 'sector_id');
+        return $this->belongsTo(Gateway::class, 'gateway_id');
     }
 }
