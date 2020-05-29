@@ -22,22 +22,6 @@
            aria-controls="nav-home"
            aria-selected="true">Zone 01
         </a>
-        <a class="nav-item nav-link"
-           id="nav-zone02-tab"
-           data-toggle="tab"
-           href="#nav-zone02"
-           role="tab"
-           aria-controls="nav-profile"
-           aria-selected="false">Zone 02
-        </a>
-        <a class="nav-item nav-link"
-           id="nav-zone03-tab"
-           data-toggle="tab"
-           href="#nav-zone03"
-           role="tab"
-           aria-controls="nav-contact"
-           aria-selected="false">Zone 03
-        </a>
     </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
@@ -45,18 +29,6 @@
          id="nav-zone01"
          role="tabpanel"
          aria-labelledby="nav-zone01-tab">
-        <canvas id="canvas" width="720" height="480"></canvas>
-    </div>
-    <div class="tab-pane fade"
-         id="nav-zone02"
-         role="tabpanel"
-         aria-labelledby="nav-zone02-tab">
-        <canvas id="canvas" width="720" height="480"></canvas>
-    </div>
-    <div class="tab-pane fade"
-         id="nav-zone03"
-         role="tabpanel"
-         aria-labelledby="nav-zone03-tab">
         <canvas id="canvas" width="720" height="480"></canvas>
     </div>
 </div>
