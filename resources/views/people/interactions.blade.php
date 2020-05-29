@@ -13,50 +13,54 @@
 @if (!is_null($interactions))
     @foreach($interactions as $interaction)
         <div class="row">
-            <div class="col-xs-4 col-sm-4 col-md-4 primary-interaction" style="border-style: outset;">
-                <div class="row" >
-                    <div class="form-group">
-                        <strong>Name:</strong>
-                        {{ $interaction['person_name'] ?? null }}
+            <div class="col-xs-4 col-sm-4 col-md-4 primary-interaction card">
+                <div class="card-body">
+                    <div class="row" >
+                        <div class="form-group">
+                            <strong>Name:</strong>
+                            {{ $interaction['person_name'] ?? null }}
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="form-group">
-                        <strong>Beacon:</strong>
-                        {{ $interaction['beacon_name'] }}
+                    <div class="row">
+                        <div class="form-group">
+                            <strong>Beacon:</strong>
+                            {{ $interaction['beacon_name'] }}
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="form-group">
-                        <strong>Interaction:</strong>
-                        {{ date('H:i:s', $interaction['duration']) }}
+                    <div class="row">
+                        <div class="form-group">
+                            <strong>Interaction:</strong>
+                            {{ date('H:i:s', $interaction['duration']) }}
+                        </div>
                     </div>
                 </div>
             </div>
             @if(!empty($interaction['secondary_interactions']))
                 <div class="col-xs-4 col-sm-4 col-md-4 secondary-interaction">
                     @foreach($interaction['secondary_interactions'] as $interaction)
-                        <div class="col-xs-12 col-sm-12 col-md-12" style="border-style: outset;">
-                            <div class="row">
-                                <div class="form-group">
-                                    <strong>Name:</strong>
-                                    {{ $interaction['person_name'] ?? null }}
+                        <div class="card col-xs-12 col-sm-12 col-md-12" style="border-style: outset;">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <strong>Name:</strong>
+                                        {{ $interaction['person_name'] ?? null }}
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="form-group">
-                                    <strong>Beacon:</strong>
-                                    {{ $interaction['beacon_name'] }}
+                                <div class="row">
+                                    <div class="form-group">
+                                        <strong>Beacon:</strong>
+                                        {{ $interaction['beacon_name'] }}
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="form-group">
-                                    <strong>Interaction:</strong>
-                                    {{ date('H:i:s', $interaction['duration']) }}
+                                <div class="row">
+                                    <div class="form-group">
+                                        <strong>Interaction:</strong>
+                                        {{ date('H:i:s', $interaction['duration']) }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
