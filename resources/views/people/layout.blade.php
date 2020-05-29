@@ -7,7 +7,6 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ URL::to('/') }}/css/stylesheet.css" rel="stylesheet">
-    {{--<link href="{{ asset('public/css/stylesheet.css') }}" rel="stylesheet">--}}
 
 </head>
 <body>
@@ -85,7 +84,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="{{ URL::to('/') }}/js/common.js"></script>
-    {{--<script src="{{ asset('public/js/common.js') }}"></script>--}}
 
     <script type="text/javascript" async>
         $(document).on('click', '.list', function () {
@@ -96,10 +94,15 @@
 
             $.ajax({
                 url: `{{ url('/people/') }}/${id}`,
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#content').html(data);
                 },
                 error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
                 }
@@ -117,10 +120,15 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
+                    beforeSend: function() {
+                        openLoad();
+                    },
                     success: function () {
+                        closeLoad();
                         window.location.reload();
                     },
                     error: function (error) {
+                        closeLoad();
                         alert('An error has occurred');
                         console.log(error);
                     }
@@ -131,10 +139,15 @@
         $(document).on('click', '#create-person', function () {
             $.ajax({
                 url: `{{ url('/people/create') }}`,
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#content').html(data);
                 },
                 error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
                 }
@@ -146,10 +159,15 @@
 
             $.ajax({
                 url: `{{ url('/people/') }}/${id}/edit`,
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#content').html(data);
                 },
                 error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
                 }
@@ -161,10 +179,15 @@
 
             $.ajax({
                 url: `{{ url('/people/') }}/${id}/location-map`,
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#content').html(data);
                 },
                 error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
                 }
@@ -180,13 +203,13 @@
                     openLoad();
                 },
                 success: function (data) {
-                    $('#content').html(data);
                     closeLoad();
+                    $('#content').html(data);
                 },
                 error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
-                    closeLoad();
                 }
             });
         });
@@ -196,10 +219,15 @@
 
             $.ajax({
                 url: `{{ url('/people/') }}/${id}`,
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#content').html(data);
                 },
                 error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
                 }

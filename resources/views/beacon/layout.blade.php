@@ -91,10 +91,15 @@
 
             $.ajax({
                 url: `{{ url('/beacon/') }}/${id}`,
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#content').html(data);
                 },
                 error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
                 }
@@ -112,10 +117,15 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
+                    beforeSend: function() {
+                        openLoad();
+                    },
                     success: function () {
+                        closeLoad();
                         window.location.reload();
                     },
                     error: function (error) {
+                        closeLoad();
                         alert('An error has occurred');
                         console.log(error);
                     }
@@ -126,10 +136,15 @@
         $(document).on('click', '#create-beacon', function () {
             $.ajax({
                 url: `{{ url('/beacon/create') }}`,
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#content').html(data);
                 },
                 error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
                 }
@@ -141,10 +156,15 @@
 
             $.ajax({
                 url: `{{ url('/beacon/') }}/${id}/edit`,
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#content').html(data);
                 },
                 error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
                 }
@@ -156,10 +176,15 @@
 
             $.ajax({
                 url: `{{ url('/beacon/') }}/${id}`,
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#content').html(data);
                 },
                 error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
                 }
