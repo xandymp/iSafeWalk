@@ -90,10 +90,15 @@
 
             $.ajax({
                 url: `{{ url('/gateway/') }}/${id}`,
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#content').html(data);
                 },
                 error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
                 }
@@ -111,10 +116,15 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
+                    beforeSend: function() {
+                        openLoad();
+                    },
                     success: function () {
+                        closeLoad();
                         window.location.reload();
                     },
                     error: function (error) {
+                        closeLoad();
                         alert('An error has occurred');
                         console.log(error);
                     }
@@ -125,10 +135,15 @@
         $(document).on('click', '#create-gateway', function () {
             $.ajax({
                 url: `{{ url('/gateway/create') }}`,
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#content').html(data);
                 },
                 error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
                 }
@@ -140,10 +155,15 @@
 
             $.ajax({
                 url: `{{ url('/gateway/') }}/${id}/edit`,
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#content').html(data);
                 },
                 error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
                 }
@@ -155,10 +175,15 @@
 
             $.ajax({
                 url: `{{ url('/gateway/') }}/${id}`,
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#content').html(data);
                 },
                 error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
                 }

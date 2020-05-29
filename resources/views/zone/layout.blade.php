@@ -94,10 +94,15 @@
 
             $.ajax({
                 url: `{{ url('/zone/') }}/${id}`,
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#content').html(data);
                 },
                 error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
                 }
@@ -111,14 +116,19 @@
 
                 $.ajax({
                     url: `{{ url('/zone/') }}/${id}`,
+                    beforeSend: function() {
+                        openLoad();
+                    },
                     type: 'DELETE',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function () {
+                        closeLoad();
                         window.location.reload();
                     },
                     error: function (error) {
+                        closeLoad();
                         alert('An error has occurred');
                         console.log(error);
                     }
@@ -129,10 +139,15 @@
         $(document).on('click', '#create-zone', function () {
             $.ajax({
                 url: `{{ url('/zone/create') }}`,
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#content').html(data);
                 },
                 error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
                 }
@@ -144,25 +159,15 @@
 
             $.ajax({
                 url: `{{ url('/zone/') }}/${id}/edit`,
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#content').html(data);
                 },
                 error: function (error) {
-                    alert('An error has occurred');
-                    console.log(error);
-                }
-            });
-        });
-
-        $(document).on('click', '.locationMap', function () {
-            let id = $(this).data('id');
-
-            $.ajax({
-                url: `{{ url('/zone/') }}/${id}/location-map`,
-                success: function (data) {
-                    $('#content').html(data);
-                },
-                error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
                 }
@@ -174,10 +179,15 @@
 
             $.ajax({
                 url: `{{ url('/zone/') }}/${id}`,
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#content').html(data);
                 },
                 error: function (error) {
+                    closeLoad();
                     alert('An error has occurred');
                     console.log(error);
                 }
