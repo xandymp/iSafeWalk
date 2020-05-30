@@ -174,7 +174,7 @@
             });
         });
 
-        $(document).on('click', '.locationMap', function () {
+        $(document).on('click', '.location-map', function () {
             let id = $(this).data('id');
 
             $.ajax({
@@ -194,11 +194,42 @@
             });
         });
 
-        $(document).on('click', '.interactions', function () {
+        $(document).on('click', '.interactions-filter', function () {
             let id = $(this).data('id');
 
             $.ajax({
                 url: `{{ url('/people/') }}/${id}/interactions`,
+                beforeSend: function() {
+                    openLoad();
+                },
+                success: function (data) {
+                    closeLoad();
+                    $('#content').html(data);
+                },
+                error: function (error) {
+                    closeLoad();
+                    alert('An error has occurred');
+                    console.log(error);
+                }
+            });
+        });
+
+        $(document).on('click', '.interactions', function () {
+            let id = $('#person-id').val();
+            let startDate = $('#start-date').val();
+            let endDate = $('#end-date').val();
+
+            $.ajax({
+                url: `{{ url('/people/') }}/${id}/interactions`,
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    id,
+                    startDate,
+                    endDate
+                },
                 beforeSend: function() {
                     openLoad();
                 },
