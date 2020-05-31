@@ -4,7 +4,7 @@
             <h1>Interactions</h1>
         </div>
         <div class="pull-right">
-            <span class="btn btn-primary btn-sm back" data-id="{{ $person->id }}"><i class="fa fa-undo"></i></span>
+            <span class="btn btn-primary btn-sm back-filter" data-id="{{ $person->id }}"><i class="fa fa-undo"></i></span>
         </div>
     </div>
 </div>
@@ -67,7 +67,6 @@
                     @endforeach
                 </div>
             @endif
-
         </div>
         <hr />
     @endforeach

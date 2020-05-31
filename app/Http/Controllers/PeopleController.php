@@ -228,26 +228,60 @@ class PeopleController extends Controller
         ];
     }
 
-    public function interactions(int $id)
+    public function interactionsFilter(int $id)
     {
         $person = People::find($id);
         $status = People::STATUS_SELECT[$person->status];
         if (is_null($person->beacon)) {
-            return view('people.show',compact('person', 'status'));
+            return view('people.show',compact('person', 'status'))
+                ->with('warning','No beacon.');
         }
 
-        $interactions = $this->getInteractions($person->beacon->id);
+        return view('people.interactionsFilter',compact('person'));
+    }
+
+    public function interactions()
+    {
+        $input = request();
+
+        $person = People::find($input['id']);
+        $status = People::STATUS_SELECT[$person->status];
+
+        $interactions = $this->getInteractions($person->beacon->id, $input['startDate'], $input['endDate']);
 
         if (empty($interactions)) {
-            return view('people.show',compact('person', 'status'))
+            return view('people.interactionsFilter',compact('person'))
                 ->with('warning','No interactions.');
+        }
+
+        $previousBeacons = [$person->beacon->id];
+
+        foreach ($interactions as $key => $value) {
+            $previousBeacons[] = $value['primary_beacon_id'];
+            $interactions[$key]['secondary_interactions'] = $this->getInteractions(
+                $person->beacon->id,
+                $input['startDate'],
+                $input['endDate'],
+                $previousBeacons
+            );
         }
 
         return view('people.interactions',compact('person', 'interactions'));
     }
 
-    private function getInteractions(int $beaconId, array $previousBeacons = [])
+    private function getInteractions(int $beaconId, $startDate = null, $endDate = null, array $previousBeacons = [])
     {
+        if (is_null($startDate)) {
+            $startDate = date('Y-m-d');
+        }
+
+        $startDate = date('Y-m-d 00:00:00', strtotime($startDate));
+
+        if (is_null($endDate)) {
+            $endDate = date('Y-m-d');
+        }
+        $endDate = date('Y-m-d 23:59:59', strtotime($endDate));
+
         $interactions = [];
 
         $previousInteractions = DB::table('beacons_interactions AS bi')
@@ -265,6 +299,8 @@ class PeopleController extends Controller
             )
             ->where('bi.primary_beacon_id', '=', $beaconId)
             ->where('bi.primary_beacon_id', '=', $beaconId)
+            ->where('bi.interaction_time', '>=', $startDate)
+            ->where('bi.interaction_time', '<=', $endDate)
             ->when($previousBeacons, function ($query, $previousBeacons) {
                 return $query->whereNotIn('bi.secondary_beacon_id', $previousBeacons);
             })
@@ -279,10 +315,6 @@ class PeopleController extends Controller
 
         foreach ($previousInteractions as $previousInteraction) {
             $interactions[$previousInteraction->id] = $this->decorateInteraction($previousInteraction);
-            $previousBeacons[] = $beaconId;
-            $previousBeacons[] = $previousInteraction->secondary_beacon_id;
-            // get secondary interactions
-            $interactions[$previousInteraction->id]['secondary_interactions'] = $this->getInteractions($previousInteraction->secondary_beacon_id, array_unique($previousBeacons));
         }
 
         return $interactions;
