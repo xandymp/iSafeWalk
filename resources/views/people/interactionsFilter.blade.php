@@ -42,3 +42,9 @@
 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
     <span class="btn btn-primary interactions"> Submit</span>
 </div>
+
+@if(!empty($warning))
+    <script type="text/javascript" async>
+        alert('{{ $warning }}');
+    </script>
+@endif

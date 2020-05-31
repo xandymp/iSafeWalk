@@ -264,6 +264,26 @@
                 }
             });
         });
+
+        $(document).on('click', '.back-filter', function () {
+            let id = $(this).data('id');
+
+            $.ajax({
+                url: `{{ url('/people/') }}/${id}/interactions`,
+                beforeSend: function() {
+                    openLoad();
+                },
+                success: function (data) {
+                    closeLoad();
+                    $('#content').html(data);
+                },
+                error: function (error) {
+                    closeLoad();
+                    alert('An error has occurred');
+                    console.log(error);
+                }
+            });
+        });
     </script>
 </body>
 </html>

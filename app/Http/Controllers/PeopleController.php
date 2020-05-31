@@ -250,7 +250,7 @@ class PeopleController extends Controller
         $interactions = $this->getInteractions($person->beacon->id, $input['startDate'], $input['endDate']);
 
         if (empty($interactions)) {
-            return view('people.show',compact('person', 'status'))
+            return view('people.interactionsFilter',compact('person'))
                 ->with('warning','No interactions.');
         }
 
@@ -272,12 +272,15 @@ class PeopleController extends Controller
     private function getInteractions(int $beaconId, $startDate = null, $endDate = null, array $previousBeacons = [])
     {
         if (is_null($startDate)) {
-            $startDate = date('Y-m-d 00:00:00');
+            $startDate = date('Y-m-d');
         }
 
+        $startDate = date('Y-m-d 00:00:00', strtotime($startDate));
+
         if (is_null($endDate)) {
-            $endDate = date('Y-m-d 23:59:59');
+            $endDate = date('Y-m-d');
         }
+        $endDate = date('Y-m-d 23:59:59', strtotime($endDate));
 
         $interactions = [];
 
