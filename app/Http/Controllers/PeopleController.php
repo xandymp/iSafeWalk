@@ -245,7 +245,6 @@ class PeopleController extends Controller
         $input = request();
 
         $person = People::find($input['id']);
-        $status = People::STATUS_SELECT[$person->status];
 
         $interactions = $this->getInteractions($person->beacon->id, $input['startDate'], $input['endDate']);
 
@@ -288,16 +287,13 @@ class PeopleController extends Controller
             ->leftJoin('people AS p', 'bi.secondary_beacon_id', '=', 'p.beacon_id')
             ->join('beacons AS b', 'bi.secondary_beacon_id', '=', 'b.id')
             ->select(
-                'bi.id',
                 'bi.primary_beacon_id',
                 'bi.secondary_beacon_id',
-                'bi.duration',
-                'bi.interaction_time',
                 'p.id AS person_id',
                 'p.name AS person_name',
                 'b.name AS beacon_name'
             )
-            ->where('bi.primary_beacon_id', '=', $beaconId)
+            ->selectRaw('SUM(bi.duration) AS duration')
             ->where('bi.primary_beacon_id', '=', $beaconId)
             ->where('bi.interaction_time', '>=', $startDate)
             ->where('bi.interaction_time', '<=', $endDate)
@@ -305,8 +301,9 @@ class PeopleController extends Controller
                 return $query->whereNotIn('bi.secondary_beacon_id', $previousBeacons);
             })
             ->whereNull('bi.deleted_at')
+            ->groupByRaw('bi.primary_beacon_id, bi.secondary_beacon_id, person_id, person_name, beacon_name')
             ->orderBy('bi.secondary_beacon_id')
-            ->orderBy('bi.created_at', 'desc')
+            ->orderBy('bi.interaction_time', 'desc')
             ->get();
 
         if ($previousInteractions->count() == 0) {
@@ -314,7 +311,7 @@ class PeopleController extends Controller
         }
 
         foreach ($previousInteractions as $previousInteraction) {
-            $interactions[$previousInteraction->id] = $this->decorateInteraction($previousInteraction);
+            $interactions[] = $this->decorateInteraction($previousInteraction);
         }
 
         return $interactions;
@@ -326,7 +323,6 @@ class PeopleController extends Controller
             'primary_beacon_id' => $interaction->primary_beacon_id,
             'secondary_beacon_id' => $interaction->secondary_beacon_id,
             'duration' => $interaction->duration,
-            'interaction_time' => $interaction->interaction_time,
             'person_id' => $interaction->person_id,
             'person_name' => $interaction->person_name,
             'beacon_name' => $interaction->beacon_name,
