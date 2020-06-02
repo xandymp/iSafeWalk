@@ -257,13 +257,13 @@ class PeopleController extends Controller
         $previousBeacons = [$person->beacon->id];
 
         foreach ($interactions as $key => $value) {
-            $previousBeacons[] = $value['primary_beacon_id'];
             $interactions[$key]['secondary_interactions'] = $this->getInteractions(
-                $person->beacon->id,
+                $value['secondary_beacon_id'],
                 $input['startDate'],
                 $input['endDate'],
                 $previousBeacons
             );
+            $previousBeacons[] = $value['secondary_beacon_id'];
         }
 
         return view('people.interactions',compact('person', 'interactions'));
