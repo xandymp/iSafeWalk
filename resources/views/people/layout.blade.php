@@ -218,6 +218,7 @@
             let id = $('#person-id').val();
             let startDate = $('#start-date').val();
             let endDate = $('#end-date').val();
+            let list = 0;
 
             $.ajax({
                 url: `{{ url('/people/') }}/${id}/interactions`,
@@ -228,7 +229,41 @@
                 data: {
                     id,
                     startDate,
-                    endDate
+                    endDate,
+                    list
+                },
+                beforeSend: function() {
+                    openLoad();
+                },
+                success: function (data) {
+                    closeLoad();
+                    $('#content').html(data);
+                },
+                error: function (error) {
+                    closeLoad();
+                    alert('An error has occurred');
+                    console.log(error);
+                }
+            });
+        });
+
+        $(document).on('click', '.interactions-list', function () {
+            let id = $('#person-id').val();
+            let startDate = $('#start-date').val();
+            let endDate = $('#end-date').val();
+            let list = 1;
+
+            $.ajax({
+                url: `{{ url('/people/') }}/${id}/interactions`,
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    id,
+                    startDate,
+                    endDate,
+                    list
                 },
                 beforeSend: function() {
                     openLoad();

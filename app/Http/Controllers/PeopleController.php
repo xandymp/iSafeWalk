@@ -253,6 +253,10 @@ class PeopleController extends Controller
                 ->with('warning','No interactions.');
         }
 
+        if ($input['list']) {
+            return view('people.interactionsList',compact('person', 'interactions'));
+        }
+
         $previousBeacons = [$person->beacon->id];
 
         foreach ($interactions as $key => $value) {
@@ -260,6 +264,7 @@ class PeopleController extends Controller
                 $value['secondary_beacon_id'],
                 $input['startDate'],
                 $input['endDate'],
+                false,
                 $previousBeacons
             );
             $previousBeacons[] = $value['secondary_beacon_id'];
@@ -268,7 +273,7 @@ class PeopleController extends Controller
         return view('people.interactions',compact('person', 'interactions'));
     }
 
-    private function getInteractions(int $beaconId, $startDate = null, $endDate = null, array $previousBeacons = [])
+    private function getInteractions(int $beaconId, $startDate = null, $endDate = null, $list = true, array $previousBeacons = [])
     {
         if (is_null($startDate)) {
             $startDate = date('Y-m-d');
@@ -302,6 +307,9 @@ class PeopleController extends Controller
             })
             ->whereNull('bi.deleted_at')
             ->groupByRaw('bi.primary_beacon_id, bi.secondary_beacon_id, person_id, person_name, beacon_name')
+            ->when($list, function ($query) {
+                return $query->orderBy('duration', 'desc');
+            })
             ->orderBy('bi.secondary_beacon_id')
             ->orderBy('bi.interaction_time', 'desc')
             ->get();

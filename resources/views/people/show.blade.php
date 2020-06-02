@@ -8,7 +8,7 @@
                 <span class="btn btn-primary btn-sm location-map" data-id="{{ $person->id }}"> <i class="fa fa-street-view"></i></span>
             </div>
             <div class="pull-right" style="padding: 0px 20px 0px 0px">
-                <span class="btn btn-primary btn-sm interactions-filter" data-id="{{ $person->id }}"> <i class="fa fa-share-alt"></i></span>
+                <span class="btn btn-primary btn-sm interactions-filter" data-id="{{ $person->id }}"> <i class="fa fa-handshake-o"></i></span>
             </div>
         @endif
     </div>

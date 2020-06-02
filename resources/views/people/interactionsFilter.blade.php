@@ -39,8 +39,13 @@
     </div>
 </div>
 
-<div class="col-xs-12 col-sm-12 col-md-12 text-center">
-    <span class="btn btn-primary interactions"> Submit</span>
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+        <span class="btn btn-primary interactions"><i class="fa fa-share-alt"></i></span>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6">
+        <span class="btn btn-primary interactions-list"><i class="fa fa-th-list"></i></span>
+    </div>
 </div>
 
 @if(!empty($warning))
