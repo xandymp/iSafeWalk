@@ -70,6 +70,7 @@ i.fa {
     align-items: stretch;
     height: 100%;
     width: 100%;
+    background-color: #f1f1f1 !important;
 }
 
 #sidebar {
@@ -211,6 +212,18 @@ a.article:hover {
     overflow-y: auto;
 }
 
+#content-header {
+    border-style: solid;
+    border-width: thin;
+    border-radius: 5px;
+    width: 100%;
+    padding: 20px;
+    height: 30%;
+    transition: all 0.3s;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
@@ -269,6 +282,7 @@ a.article:hover {
     padding: 30px 15px;
     overflow: hidden;
     overflow-y: auto;
+    background-color: #ffffff !important;
 }
 .i-list + div {
     margin-left: 0px !important;

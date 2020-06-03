@@ -98,8 +98,9 @@
                     openLoad();
                 },
                 success: function (data) {
-                    closeLoad();
                     $('#content').html(data);
+                    getHeader(id);
+                    closeLoad();
                 },
                 error: function (error) {
                     closeLoad();
@@ -108,6 +109,20 @@
                 }
             });
         });
+
+        const getHeader = function (id) {
+            $.ajax({
+                url: `{{ url('/people/') }}/${id}/header`,
+                success: function (data) {
+                    $('#content-header').html(data);
+                },
+                error: function (error) {
+                    closeLoad();
+                    alert('An error has occurred');
+                    console.log(error);
+                }
+            });
+        }
 
         $(document).on('click', '.delete', function (e) {
             e.stopPropagation();
@@ -196,6 +211,7 @@
 
         $(document).on('click', '.interactions-filter', function () {
             let id = $(this).data('id');
+            $('#show-person').empty();
 
             $.ajax({
                 url: `{{ url('/people/') }}/${id}/interactions`,
@@ -203,8 +219,8 @@
                     openLoad();
                 },
                 success: function (data) {
+                    $('#content-header').html(data);
                     closeLoad();
-                    $('#content').html(data);
                 },
                 error: function (error) {
                     closeLoad();
@@ -234,12 +250,8 @@
                     duration,
                     list
                 },
-                beforeSend: function() {
-                    openLoad();
-                },
                 success: function (data) {
-                    closeLoad();
-                    $('#content').html(data);
+                    $('#interactions').html(data);
                 },
                 error: function (error) {
                     closeLoad();
@@ -274,7 +286,7 @@
                 },
                 success: function (data) {
                     closeLoad();
-                    $('#content').html(data);
+                    $('#interactions').html(data);
                 },
                 error: function (error) {
                     closeLoad();
@@ -293,8 +305,9 @@
                     openLoad();
                 },
                 success: function (data) {
-                    closeLoad();
                     $('#content').html(data);
+                    getHeader(id);
+                    closeLoad();
                 },
                 error: function (error) {
                     closeLoad();
