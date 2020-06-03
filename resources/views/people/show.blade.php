@@ -1,14 +1,14 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-right">
-            <span class="btn btn-primary btn-sm edit" data-id="{{ $person->id }}"><i class="fa fa-pencil"></i></span>
+            <span class="btn btn-primary btn-sm edit" data-id="{{ $person->id }}"><i class="fa fa-pencil"></i> Edit info</span>
         </div>
         @if (!is_null($person->beacon))
             <div class="pull-right" style="padding: 0px 20px 0px 0px">
-                <span class="btn btn-primary btn-sm location-map" data-id="{{ $person->id }}"> <i class="fa fa-street-view"></i></span>
+                <span class="btn btn-primary btn-sm location-map" data-id="{{ $person->id }}"><i class="fa fa-street-view"></i> Heat map</span>
             </div>
             <div class="pull-right" style="padding: 0px 20px 0px 0px">
-                <span class="btn btn-primary btn-sm interactions-filter" data-id="{{ $person->id }}"> <i class="fa fa-handshake-o"></i></span>
+                <span class="btn btn-primary btn-sm interactions-filter" data-id="{{ $person->id }}"><i class="fa fa-handshake-o"></i> Interactions</span>
             </div>
         @endif
     </div>
