@@ -277,7 +277,7 @@ class PeopleController extends Controller
         );
 
         if (empty($interactions)) {
-            return view('people.interactionsFilter',compact('person'))
+            return view('people.interactionsList',compact('person', 'interactions'))
                 ->with('warning','No interactions.');
         }
 

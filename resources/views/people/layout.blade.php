@@ -250,7 +250,11 @@
                     duration,
                     list
                 },
+                beforeSend: function() {
+                    openLoad();
+                },
                 success: function (data) {
+                    closeLoad();
                     $('#interactions').html(data);
                 },
                 error: function (error) {
