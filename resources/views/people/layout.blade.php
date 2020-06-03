@@ -218,6 +218,7 @@
             let id = $('#person-id').val();
             let startDate = $('#start-date').val();
             let endDate = $('#end-date').val();
+            let duration = $('#duration').val();
             let list = 0;
 
             $.ajax({
@@ -230,6 +231,7 @@
                     id,
                     startDate,
                     endDate,
+                    duration,
                     list
                 },
                 beforeSend: function() {
@@ -251,6 +253,7 @@
             let id = $('#person-id').val();
             let startDate = $('#start-date').val();
             let endDate = $('#end-date').val();
+            let duration = $('#duration').val();
             let list = 1;
 
             $.ajax({
@@ -263,6 +266,7 @@
                     id,
                     startDate,
                     endDate,
+                    duration,
                     list
                 },
                 beforeSend: function() {
