@@ -40,6 +40,21 @@
 </div>
 
 <div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-4 text-center">
+        <div class="form-group">
+            <strong>Minimum duration:</strong>
+            <input
+                id="duration"
+                type="time"
+                name="duration"
+                class="form-control"
+                step="1"
+                placeholder="Minimum duration">
+        </div>
+    </div>
+</div>
+
+<div class="row">
     <div class="col-xs-6 col-sm-6 col-md-6 text-right">
         <span class="btn btn-primary interactions"><i class="fa fa-share-alt"></i></span>
     </div>

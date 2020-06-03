@@ -246,7 +246,23 @@ class PeopleController extends Controller
 
         $person = People::find($input['id']);
 
-        $interactions = $this->getInteractions($person->beacon->id, $input['startDate'], $input['endDate']);
+        if (is_null($input['duration'])) {
+            $input['duration'] = '00:00:00';
+        }
+
+        sscanf($input['duration'], "%d:%d:%d", $hours, $minutes, $seconds);
+
+        $duration = isset($hours) ? $hours * 3600 : 0;
+        $duration += isset($minutes) ? $minutes * 60 : 0;
+        $duration += isset($seconds) ? $seconds : 0;
+
+        $interactions = $this->getInteractions(
+            $person->beacon->id,
+            $input['startDate'],
+            $input['endDate'],
+            $duration,
+            $person->beacon->id
+        );
 
         if (empty($interactions)) {
             return view('people.interactionsFilter',compact('person'))
@@ -257,23 +273,28 @@ class PeopleController extends Controller
             return view('people.interactionsList',compact('person', 'interactions'));
         }
 
-        $previousBeacons = [$person->beacon->id];
-
         foreach ($interactions as $key => $value) {
             $interactions[$key]['secondary_interactions'] = $this->getInteractions(
                 $value['secondary_beacon_id'],
                 $input['startDate'],
                 $input['endDate'],
-                false,
-                $previousBeacons
+                $duration,
+                $person->beacon->id,
+                false
             );
-            $previousBeacons[] = $value['secondary_beacon_id'];
         }
 
         return view('people.interactions',compact('person', 'interactions'));
     }
 
-    private function getInteractions(int $beaconId, $startDate = null, $endDate = null, $list = true, array $previousBeacons = [])
+    private function getInteractions(
+        int $beaconId,
+        $startDate = null,
+        $endDate = null,
+        $duration = 0,
+        int $previousBeacon = null,
+        $list = true
+    )
     {
         if (is_null($startDate)) {
             $startDate = date('Y-m-d');
@@ -302,8 +323,9 @@ class PeopleController extends Controller
             ->where('bi.primary_beacon_id', '=', $beaconId)
             ->where('bi.interaction_time', '>=', $startDate)
             ->where('bi.interaction_time', '<=', $endDate)
-            ->when($previousBeacons, function ($query, $previousBeacons) {
-                return $query->whereNotIn('bi.secondary_beacon_id', $previousBeacons);
+            ->where('duration', '>=', $duration)
+            ->when($previousBeacon, function ($query, $previousBeacon) {
+                return $query->where('bi.secondary_beacon_id', '!=', $previousBeacon);
             })
             ->whereNull('bi.deleted_at')
             ->groupByRaw('bi.primary_beacon_id, bi.secondary_beacon_id, person_id, person_name, beacon_name')
