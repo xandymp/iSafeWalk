@@ -264,6 +264,16 @@ a.article:hover {
     }
 }
 
+.i-list {
+    margin: 0px !important;
+    padding: 30px 15px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.i-list + div {
+    margin-left: 0px !important;
+}
+
 .title {
     margin: 30px 15px;
     overflow-x: hidden;
@@ -284,20 +294,13 @@ a.article:hover {
     padding: 0 20px;
 }
 
-.list {
-    margin-left: -30px;
-}
-
 .list:hover {
     background-color: #cccccc;
     cursor: pointer;
-
 }
 
 .list {
-    padding-top: 10px;
-    width: 117%;
-    height: 10%;
+    padding: 10px 0px;
 }
 
 .list svg {
@@ -312,4 +315,36 @@ a.article:hover {
 
 .list i.fa {
     padding: inherit;
+}
+.list .btn {
+    opacity: 0;
+}
+.list:hover .btn {
+    opacity: 1;
+}
+
+.btn:disabled {
+    background-color: #cccccc;
+    color: #aaaaaa;
+    border-color: #cccccc;
+}
+
+.interactions .card:last-child {
+    margin-bottom: 0px !important;
+}
+
+.interactions .card.level2 {
+    position: relative;
+    margin-left: 20px;
+}
+.interactions .card.level2.secondary-interaction {
+    position: relative;
+    margin-left: 35px;
+}
+.interactions .card.level2:before {
+    content: '→';
+    font-size: 30px;
+    position: absolute;
+    left: -30px;
+    top: 50px;
 }

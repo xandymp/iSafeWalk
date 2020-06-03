@@ -5,7 +5,7 @@
 
     <div class="col-lg-6 margin-tb">
         <div class="pull-right">
-            <span class="btn btn-primary btn-sm back" data-id="{{ $person->id }}"> <i class="fa fa-undo"></i></span>
+            <span class="btn btn-primary btn-sm back" data-id="{{ $person->id }}"> <i class="fa fa-undo"></i> Back</span>
         </div>
     </div>
 </div>
