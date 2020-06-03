@@ -1,19 +1,7 @@
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h1>Interactions Filter</h1>
-        </div>
-        <div class="pull-right">
-            <span class="btn btn-primary btn-sm back" data-id="{{ $person->id }}"><i class="fa fa-undo"></i> Back</span>
-        </div>
-    </div>
-</div>
-<hr />
-
 <input type="hidden" id="person-id" value="{{ $person->id }}">
 
 <div class="row">
-    <div class="col-xs-4 col-sm-4 col-md-4 text-center">
+    <div class="col-xs-3 col-sm-3 col-md-3 text-center">
         <div class="form-group">
             <strong>Start Date:</strong>
             <input
@@ -24,9 +12,7 @@
                 placeholder="Start Date">
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-4 col-sm-4 col-md-4 text-center">
+    <div class="col-xs-3 col-sm-3 col-md-3 text-center">
         <div class="form-group">
             <strong>End Date:</strong>
             <input
@@ -37,10 +23,7 @@
                 placeholder="End Date">
         </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-xs-4 col-sm-4 col-md-4 text-center">
+    <div class="col-xs-3 col-sm-3 col-md-3 text-center">
         <div class="form-group">
             <strong>Minimum duration:</strong>
             <input
@@ -51,6 +34,9 @@
                 step="1"
                 placeholder="Minimum duration">
         </div>
+    </div>
+    <div class="pull-right">
+        <span class="btn btn-primary btn-sm back" data-id="{{ $person->id }}"><i class="fa fa-undo"></i> Back</span>
     </div>
 </div>
 
@@ -68,6 +54,7 @@
         alert('{{ $warning }}');
     </script>
 @endif
+
 <script type="text/javascript">
     startDate = document.getElementById('start-date');
     endDate = document.getElementById('end-date');

@@ -75,6 +75,18 @@ class PeopleController extends Controller
     }
 
     /**
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showHeader(int $id)
+    {
+        $person = People::find($id);
+        $status = People::STATUS_SELECT[$person->status];
+
+        return view('people.showHeader',compact('person', 'status'));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param int $id
