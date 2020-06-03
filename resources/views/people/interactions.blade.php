@@ -39,7 +39,7 @@
         </div>
         <div class="col-xs-8 col-sm-8 col-md-8 mb-lg-3">
     @foreach($interactions as $interaction)
-        <div class="row">
+        <div class="row mb-lg-3">
             <div class="col-xs-5 col-sm-5 col-md-5 secondary-interaction card level2">
                 <div class="card-body">
                     <div class="row" >
