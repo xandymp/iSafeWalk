@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="{{ 'css/stylesheet.css' }}" rel="stylesheet">
+    <link href="{{ asset('public') }}/css/stylesheet.css" rel="stylesheet">
 </head>
 <body>
     <div class="wrapper">
