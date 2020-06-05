@@ -64,7 +64,7 @@
 
             // Configure icons
             var icon = networkSeries.nodes.template.createChild(am4core.Image);
-            icon.href = "icon/person.svg";
+            icon.href = "{{ asset('public') }}/icon/person.svg";
             icon.horizontalCenter = "middle";
             icon.verticalCenter = "middle";
             icon.width = 40;
