@@ -1,5 +1,5 @@
 @if (!is_null($interactions))
-    <div id="chartdiv"></div>
+    <div id="chartdiv" style="height: 800px"></div>
     <!-- Chart code -->
     <script>
     $(document).on('integrationsLoaded', function(event, data) {
