@@ -1,5 +1,6 @@
 <div id="interactions">
     @if (!is_null($interactions))
+        <h3 class="mt-4 mb-4">Employees exposed <span class="badge badge-secondary">{{count($interactions)}}</span></h3>
         @foreach($interactions as $interaction)
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 primary-interaction card">
@@ -16,8 +17,22 @@
                                 <strong>Beacon:</strong>
                                 {{ $interaction['beacon_name'] }}
                             </div>
-                            <div class="col-xs-3 col-sm-3 col-md-3">
-                                <strong>Interaction:</strong>
+                            <div class="col-xs-3 col-sm-3 col-md-3 text-center">
+                                @php
+                                    $width = ($interaction['duration'] * 100)/$interactions[0]['duration'];
+                                    if($width >= 75) {
+                                        $color = "#D72129";
+                                    } else if($width < 75 && $width >= 50) {
+                                        $color = "#FFBA18";
+                                    } else if($width < 50 && $width >= 25) {
+                                        $color = "#FCDE1E";
+                                    } else {
+                                        $color = "#86BD42";
+                                    }
+                                @endphp
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: {{$width}}%; background-color:{{$color}}" role="progressbar" aria-valuenow="{{$width}}" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
                                 {{ date('H:i:s', $interaction['duration']) }}
                             </div>
                         </div>

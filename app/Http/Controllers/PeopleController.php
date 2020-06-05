@@ -299,6 +299,53 @@ class PeopleController extends Controller
         return view('people.interactions',compact('person', 'interactions'));
     }
 
+    public function interactionsJson()
+    {
+        $input = request();
+
+        $person = People::find($input['id']);
+
+        if (is_null($input['duration'])) {
+            $input['duration'] = '00:00:00';
+        }
+
+        sscanf($input['duration'], "%d:%d:%d", $hours, $minutes, $seconds);
+
+        $duration = isset($hours) ? $hours * 3600 : 0;
+        $duration += isset($minutes) ? $minutes * 60 : 0;
+        $duration += isset($seconds) ? $seconds : 0;
+
+        $interactions = $this->getInteractions(
+            $person->beacon->id,
+            $input['startDate'],
+            $input['endDate'],
+            $duration,
+            $person->beacon->id
+        );
+
+        if (empty($interactions)) {
+            return view('people.interactionsList',compact('person', 'interactions'))
+                ->with('warning','No interactions.');
+        }
+
+        if ($input['list']) {
+            return view('people.interactionsList',compact('person', 'interactions'));
+        }
+
+        foreach ($interactions as $key => $value) {
+            $interactions[$key]['secondary_interactions'] = $this->getInteractions(
+                $value['secondary_beacon_id'],
+                $input['startDate'],
+                $input['endDate'],
+                $duration,
+                $person->beacon->id,
+                false
+            );
+        }
+
+        return \Response::json(array('interactions' => $interactions, 'person' => $person));
+    }
+
     private function getInteractions(
         int $beaconId,
         $startDate = null,
@@ -345,7 +392,6 @@ class PeopleController extends Controller
                 return $query->orderBy('duration', 'desc');
             })
             ->orderBy('bi.secondary_beacon_id')
-            ->orderBy('bi.interaction_time', 'desc')
             ->get();
 
         if ($previousInteractions->count() == 0) {

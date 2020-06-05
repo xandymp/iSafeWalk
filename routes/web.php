@@ -15,6 +15,9 @@ Route::get('/people/{id}/interactions', 'PeopleController@interactionsFilter')
     ->name('people.interactions-filter');
 Route::post('/people/{id}/interactions', 'PeopleController@interactions')
     ->name('people.interactions');
+// Get interactions from a user and return as a JSON
+Route::get('/people/{id}/interactionsJson', 'PeopleController@interactionsJson')
+    ->name('people.interactionsJson');
 
 Route::resource('beacon', 'BeaconController');
 Route::resource('zone', 'ZoneController');

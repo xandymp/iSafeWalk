@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="{{ asset('public') }}/css/stylesheet.css" rel="stylesheet">
+    <link href="{{ 'css/stylesheet.css' }}" rel="stylesheet">
 
 </head>
 <body>
@@ -83,8 +83,14 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="{{ asset('public') }}/js/common.js"></script>
 
+    <!-- Resources -->
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/plugins/forceDirected.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment-with-locales.min.js" integrity="sha256-4HOrwHz9ACPZBxAav7mYYlbeMiAL0h6+lZ36cLNpR+E=" crossorigin="anonymous"></script>
+    <script src="{{ 'js/common.js'}}"></script>
     <script type="text/javascript" async>
         $(document).on('click', '.list', function () {
             $('.list').removeClass('active');
@@ -211,7 +217,7 @@
 
         $(document).on('click', '.interactions-filter', function () {
             let id = $(this).data('id');
-            $('#show-person').empty();
+            $('#show-person').remove();
 
             $.ajax({
                 url: `{{ url('/people/') }}/${id}/interactions`,
@@ -237,6 +243,32 @@
             let duration = $('#duration').val();
             let list = 0;
 
+            const getInteractions = () => {
+                $.ajax({
+                url: `{{ url('/people/') }}/${id}/interactionsJson`,
+                type: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    id,
+                    startDate,
+                    endDate,
+                    duration,
+                    list
+                },
+                success: function (data) {
+                    closeLoad();
+                    $(document).trigger('integrationsLoaded', data);
+                },
+                error: function (error) {
+                    closeLoad();
+                    alert('An error has occurred');
+                    console.log(error);
+                }
+            });
+            }
+
             $.ajax({
                 url: `{{ url('/people/') }}/${id}/interactions`,
                 type: 'POST',
@@ -254,8 +286,8 @@
                     openLoad();
                 },
                 success: function (data) {
-                    closeLoad();
                     $('#interactions').html(data);
+                    getInteractions(id);
                 },
                 error: function (error) {
                     closeLoad();

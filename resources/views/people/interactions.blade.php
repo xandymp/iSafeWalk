@@ -1,87 +1,107 @@
 @if (!is_null($interactions))
-    <div class="row interactions">
-        <div class="col-lg-12 ml-lg-3">
-            <div class="row">
-                <div class="col-xs-3 col-sm-3 col-md-3 card">
-                    <div class="card-body">
-                        <div class="row" >
-                            <div class="form-group">
-                                <strong>Name:</strong>
-                                {{ $person->name }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group">
-                                <strong>Beacon:</strong>
-                                {{ $person->beacon->name ?? null }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-8 col-sm-8 col-md-8 mb-lg-3">
-                    @foreach($interactions as $interaction)
-                        <div class="row mb-lg-3">
-                            <div class="col-xs-5 col-sm-5 col-md-5 secondary-interaction card level2">
-                                <div class="card-body">
-                                    <div class="row" >
-                                        <div class="form-group">
-                                            <strong>Name:</strong>
-                                            {{ $interaction['person_name'] ?? null }}
-                                        </div>
-                                    </div>
+    <div id="chartdiv"></div>
+    <!-- Chart code -->
+    <script>
+    $(document).on('integrationsLoaded', function(event, data) {
+        const formatData = (data) => {
+            let maxValue = 100;
+            const formatDuration = (duration) => {
+                const formatUnit = (value) => {
+                    if(value < 10) {
+                        return `0${value}`;
+                    }
+                    return value;
+                }
+                const durationMoment = moment.duration(duration, 'seconds');
+                return `${formatUnit(durationMoment.hours())}:${formatUnit(durationMoment.minutes())}:${formatUnit(durationMoment.seconds())}`;
+            }
+            const formatChildren = (interactions) => {
+                return interactions.map(interaction => {
+                    // do that to keep the main point as the bigger one
+                    if(maxValue < interaction.duration) maxValue = interaction.duration + 1;
+                    return {
+                        name: interaction.person_name,
+                        beaconName: interaction.beacon_name,
+                        duration: formatDuration(interaction.duration),
+                        value: interaction.duration,
+                        tooltip: `${interaction.person_name}\n${interaction.beacon_name}\n${formatDuration(interaction.duration)}`,
+                        children: interaction.secondary_interactions.map(secInteraction => {
+                            return {
+                                name: secInteraction.person_name,
+                                beaconName: secInteraction.beacon_name,
+                                value: secInteraction.duration,
+                                tooltip: `${secInteraction.person_name}\n${secInteraction.beacon_name}\n${formatDuration(secInteraction.duration)}`,
+                                duration: formatDuration(secInteraction.duration)
+                            }
+                        })
+                    }
+                })
+            };
 
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <strong>Beacon:</strong>
-                                            {{ $interaction['beacon_name'] }}
-                                        </div>
-                                    </div>
+            const children = formatChildren(data.interactions);
+            const response = [{
+                name: data.person.name,
+                job_title: data.person.job_title,
+                email: data.person.email,
+                beacon_id: data.person.beacon_id,
+                value: maxValue,
+                fixed: true,
+                tooltip: `${data.person.name}\n${data.person.job_title}`,
+                children
+            }]
+            return response;
+        }
+        am4core.ready(function() {
+            // Themes begin
+            am4core.useTheme(am4themes_animated);
+            // Themes end
 
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <strong>Interaction:</strong>
-                                            {{ date('H:i:s', $interaction['duration']) }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @if(!empty($interaction['secondary_interactions']))
-                                <div class="col-xs-5 col-sm-5 col-md-5 secondary-interaction">
-                                    @foreach($interaction['secondary_interactions'] as $interaction)
-                                        <div class="card col-xs-12 col-sm-12 col-md-12 mb-lg-3 level2" style="border-style: outset;">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="form-group">
-                                                        <strong>Name:</strong>
-                                                        {{ $interaction['person_name'] ?? null }}
-                                                    </div>
-                                                </div>
 
-                                                <div class="row">
-                                                    <div class="form-group">
-                                                        <strong>Beacon:</strong>
-                                                        {{ $interaction['beacon_name'] }}
-                                                    </div>
-                                                </div>
+            var chart = am4core.create("chartdiv", am4plugins_forceDirected.ForceDirectedTree);
+            chart.legend = new am4charts.Legend();
 
-                                                <div class="row">
-                                                    <div class="form-group">
-                                                        <strong>Interaction:</strong>
-                                                        {{ date('H:i:s', $interaction['duration']) }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @endif
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
+            var networkSeries = chart.series.push(new am4plugins_forceDirected.ForceDirectedSeries())
+
+            // Configure icons
+            var icon = networkSeries.nodes.template.createChild(am4core.Image);
+            icon.href = "icon/person.svg";
+            icon.horizontalCenter = "middle";
+            icon.verticalCenter = "middle";
+            icon.width = 40;
+            icon.height = 40;
+
+
+            networkSeries.data = formatData(data);
+
+            networkSeries.dataFields.linkWith = "linkWith";
+            networkSeries.dataFields.name = "name";
+            networkSeries.dataFields.id = "name";
+            networkSeries.dataFields.value = "value";
+            networkSeries.dataFields.children = "children";
+
+            networkSeries.nodes.template.tooltipText = "{tooltip}";
+            networkSeries.nodes.template.fillOpacity = 1;
+
+            networkSeries.nodes.template.label.text = "{name}"
+            networkSeries.nodes.template.label.valign = "bottom";
+            networkSeries.nodes.template.label.fill = am4core.color("#000");
+            networkSeries.fontSize = 10;
+            networkSeries.maxLevels = 2;
+            networkSeries.manyBodyStrength = -40;
+
+            networkSeries.nodes.template.label.hideOversized = false;
+            networkSeries.nodes.template.label.truncate = true;
+            networkSeries.minRadius = am4core.percent(4);
+            networkSeries.maxRadius = am4core.percent(4);
+            networkSeries.dataFields.fixed = "fixed";
+            networkSeries.links.template.strokeWidth = 5;
+
+        }); // end am4core.ready()
+    });
+    </script>
 @endif
+
+
 
 @if(!empty($warning))
     <script type="text/javascript" async>
