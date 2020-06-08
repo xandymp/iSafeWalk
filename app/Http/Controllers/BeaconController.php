@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Beacon;
+use App\BeaconsInteractions;
 use Illuminate\Http\Request;
 
 class BeaconController extends Controller
@@ -113,5 +114,10 @@ class BeaconController extends Controller
         $beacon = Beacon::find($id);
 
         $beacon->delete();
+    }
+
+    public function apiInsertInteractions(Request $request)
+    {
+        return BeaconsInteractions::create($request->all());
     }
 }
