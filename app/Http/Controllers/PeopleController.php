@@ -387,6 +387,7 @@ class PeopleController extends Controller
                 return $query->where('bi.secondary_beacon_id', '!=', $previousBeacon);
             })
             ->whereNull('bi.deleted_at')
+            ->whereNull('p.deleted_at')
             ->groupByRaw('bi.primary_beacon_id, bi.secondary_beacon_id, person_id, person_name, beacon_name')
             ->when($list, function ($query) {
                 return $query->orderBy('duration', 'desc');
