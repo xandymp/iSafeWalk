@@ -93,7 +93,7 @@
                 ctx.closePath();
             @endforeach
         }
-        img.src = "/img/embalagem.png"; //transparent png
+        img.src = "{{ asset('public') }}/img/embalagem.png"; //transparent png
 
     });
 </script>
