@@ -81,6 +81,8 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="jquery_ui/jquery-ui.js"></script>
+    <link rel="stylesheet" href="jquery_ui/jquery-ui.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
@@ -241,32 +243,36 @@
             let startDate = $('#start-date').val();
             let endDate = $('#end-date').val();
             let duration = $('#duration').val();
+            let distanceMin = $("#slider-range").slider("values", 0);
+            let distanceMax = $("#slider-range").slider("values", 1);
             let list = 0;
 
             const getInteractions = () => {
                 $.ajax({
-                url: `{{ url('/people/') }}/${id}/interactionsJson`,
-                type: 'GET',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    id,
-                    startDate,
-                    endDate,
-                    duration,
-                    list
-                },
-                success: function (data) {
-                    closeLoad();
-                    $(document).trigger('integrationsLoaded', data);
-                },
-                error: function (error) {
-                    closeLoad();
-                    alert('An error has occurred');
-                    console.log(error);
-                }
-            });
+                    url: `{{ url('/people/') }}/${id}/interactionsJson`,
+                    type: 'GET',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        id,
+                        startDate,
+                        endDate,
+                        duration,
+                        distanceMin,
+                        distanceMax,
+                        list
+                    },
+                    success: function (data) {
+                        closeLoad();
+                        $(document).trigger('integrationsLoaded', data);
+                    },
+                    error: function (error) {
+                        closeLoad();
+                        alert('An error has occurred');
+                        console.log(error);
+                    }
+                });
             }
 
             $.ajax({
@@ -280,6 +286,8 @@
                     startDate,
                     endDate,
                     duration,
+                    distanceMin,
+                    distanceMax,
                     list
                 },
                 beforeSend: function() {
@@ -302,6 +310,8 @@
             let startDate = $('#start-date').val();
             let endDate = $('#end-date').val();
             let duration = $('#duration').val();
+            let distanceMin = $("#slider-range").slider("values", 0);
+            let distanceMax = $("#slider-range").slider("values", 1);
             let list = 1;
 
             $.ajax({
@@ -315,6 +325,8 @@
                     startDate,
                     endDate,
                     duration,
+                    distanceMin,
+                    distanceMax,
                     list
                 },
                 beforeSend: function() {
