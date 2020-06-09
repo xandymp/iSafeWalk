@@ -12,9 +12,9 @@ class ZoneTableSeeder extends Seeder
     public function run()
     {
         App\Zone::create([
-            'name' => 'Zone 01',
-            'x_length' => 100,
-            'y_width' => 90,
+            'name' => 'Embalagem',
+            'x_length' => 144,
+            'y_width' => 96,
             'z_height' => 3,
         ]);
     }

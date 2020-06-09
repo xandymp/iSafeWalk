@@ -24,24 +24,6 @@ class LocationHistoryTableSeeder extends Seeder
             'duration' => 60,
             'location_time' => '2020-05-11 00:38:50',
         ]);
-        App\LocationHistory::create([
-            'beacon_id' => 1,
-            'gateway_id' => 6,
-            'duration' => 120,
-            'location_time' => '2020-05-11 00:37:50',
-        ]);
-        App\LocationHistory::create([
-            'beacon_id' => 1,
-            'gateway_id' => 5,
-            'duration' => 80,
-            'location_time' => '2020-05-11 00:37:50',
-        ]);
-        App\LocationHistory::create([
-            'beacon_id' => 1,
-            'gateway_id' => 4,
-            'duration' => 60,
-            'location_time' => '2020-05-11 00:37:50',
-        ]);
 
         // beacon 02 location history
         App\LocationHistory::create([
@@ -50,20 +32,8 @@ class LocationHistoryTableSeeder extends Seeder
             'duration' => 120,
             'location_time' => '2020-05-11 00:37:50',
         ]);
-        App\LocationHistory::create([
-            'beacon_id' => 2,
-            'gateway_id' => 6,
-            'duration' => 90,
-            'location_time' => '2020-05-11 00:37:50',
-        ]);
 
         // beacon 03 location history
-        App\LocationHistory::create([
-            'beacon_id' => 3,
-            'gateway_id' => 7,
-            'duration' => 100,
-            'location_time' => '2020-05-11 00:37:50',
-        ]);
         App\LocationHistory::create([
             'beacon_id' => 3,
             'gateway_id' => 2,
@@ -72,12 +42,6 @@ class LocationHistoryTableSeeder extends Seeder
         ]);
 
         // beacon 04 location history
-        App\LocationHistory::create([
-            'beacon_id' => 4,
-            'gateway_id' => 11,
-            'duration' => 110,
-            'location_time' => '2020-05-11 00:37:50',
-        ]);
         App\LocationHistory::create([
             'beacon_id' => 4,
             'gateway_id' => 3,

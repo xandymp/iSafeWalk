@@ -14,10 +14,12 @@ class BeaconTableSeeder extends Seeder
         App\Beacon::create([
             'name' => '16A',
             'serial' => '01:00',
+            'deleted_at' => '2020-06-04 17:17:06',
         ]);
         App\Beacon::create([
             'name' => '17A',
             'serial' => '01:01',
+            'deleted_at' => '2020-06-04 17:17:11',
         ]);
         App\Beacon::create([
             'name' => '12A',
