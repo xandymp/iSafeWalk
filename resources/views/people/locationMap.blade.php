@@ -20,7 +20,7 @@
            href="#nav-zone01"
            role="tab"
            aria-controls="nav-home"
-           aria-selected="true">Zone 01
+           aria-selected="true">Embalagem
         </a>
     </div>
 </nav>
