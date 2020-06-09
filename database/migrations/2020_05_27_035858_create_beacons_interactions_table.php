@@ -21,6 +21,7 @@ class CreateBeaconsInteractionsTable extends Migration
             $table->integer('primary_beacon_id');
             $table->integer('secondary_beacon_id');
             $table->integer('duration');
+            $table->float('distance');
             $table->dateTime('interaction_time');
         });
     }

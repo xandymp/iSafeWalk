@@ -15,6 +15,7 @@ class BeaconsInteractions extends Model
         'primary_beacon_id',
         'secondary_beacon_id',
         'duration',
+        'distance',
         'interaction_time'
     ];
 }
