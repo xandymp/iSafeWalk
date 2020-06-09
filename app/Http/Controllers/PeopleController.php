@@ -293,6 +293,8 @@ class PeopleController extends Controller
                 $input['startDate'],
                 $input['endDate'],
                 $duration,
+                $input['distanceMin'],
+                $input['distanceMax'],
                 $person->beacon->id,
                 false
             );
@@ -322,6 +324,8 @@ class PeopleController extends Controller
             $input['startDate'],
             $input['endDate'],
             $duration,
+            $input['distanceMin'],
+            $input['distanceMax'],
             $person->beacon->id
         );
 
@@ -340,6 +344,8 @@ class PeopleController extends Controller
                 $input['startDate'],
                 $input['endDate'],
                 $duration,
+                $input['distanceMin'],
+                $input['distanceMax'],
                 $person->beacon->id,
                 false
             );
