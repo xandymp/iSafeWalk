@@ -66,8 +66,8 @@
                 radius2 = {{ $gateway->total_duration / 2 }};
 
                 gradient = ctx.createRadialGradient(x, y, radius1, x, y, radius2);
-                gradient.addColorStop(0, '#FF0F00');
-                gradient.addColorStop(1, '#FFFF00');
+                gradient.addColorStop(0, 'rgba(255, 15, 0, 0.7)');
+                gradient.addColorStop(1, 'rgba(255, 255, 0, 0.7)');
                 ctx.fillStyle = gradient;
                 ctx.strokeStyle = '#FFFF00';
                 x = x + 2.5;
@@ -75,7 +75,6 @@
                 ctx.beginPath();
                 ctx.arc(x, y, {{ $gateway->total_duration / 2 }}, 0, Math.PI*2);
                 ctx.fill();
-                ctx.stroke();
                 ctx.closePath();
             @endforeach
 
@@ -94,7 +93,7 @@
                 ctx.closePath();
             @endforeach
         }
-        img.src = "{{ asset('public') }}/img/embalagem.png"; //transparent png
+        img.src = "/img/embalagem.png"; //transparent png
 
     });
 </script>
