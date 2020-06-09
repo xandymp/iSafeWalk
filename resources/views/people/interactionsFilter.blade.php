@@ -35,17 +35,27 @@
                 placeholder="Minimum duration">
         </div>
     </div>
-    <div class="pull-right">
-        <span class="btn btn-primary btn-sm back" data-id="{{ $person->id }}"><i class="fa fa-undo"></i> Back</span>
+    <div class="col-xs-3 col-sm-3 col-md-3 text-center">
+        <strong>Distance:</strong>
+        <input
+            class="col-xs-6 col-sm-6 col-md-6"
+            type="text"
+            id="amount"
+            readonly
+            style="border:0;">
+        <div id="slider-range"></div>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+    <div class="col-xs-5 col-sm-5 col-md-5 text-right">
         <button class="btn btn-primary interactions-list"><i class="fa fa-th-list"></i> Direct contact</button>
     </div>
-    <div class="col-xs-6 col-sm-6 col-md-6">
+    <div class="col-xs-3 col-sm-3 col-md-3">
         <button class="btn btn-primary interactions"><i class="fa fa-share-alt"></i> Interaction tree</button>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2">
+        <span class="btn btn-primary back" data-id="{{ $person->id }}"><i class="fa fa-undo"></i> Back</span>
     </div>
 </div>
 
@@ -88,4 +98,18 @@
         }
     }
     checkDatesFilled();
+
+    $(function() {
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 20,
+            values: [0, 2],
+            slide: function(event, ui) {
+                $("#amount").val(ui.values[0] + " - " + ui.values[1]);
+            }
+        });
+        $("#amount").val($("#slider-range").slider("values", 0) +
+            " - " + $("#slider-range").slider("values", 1));
+    });
 </script>

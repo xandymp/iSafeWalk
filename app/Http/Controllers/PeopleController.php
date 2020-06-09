@@ -273,6 +273,8 @@ class PeopleController extends Controller
             $input['startDate'],
             $input['endDate'],
             $duration,
+            $input['distanceMin'],
+            $input['distanceMax'],
             $person->beacon->id
         );
 
@@ -351,6 +353,8 @@ class PeopleController extends Controller
         $startDate = null,
         $endDate = null,
         $duration = 0,
+        $distanceMin = 0,
+        $distanceMax = 2,
         int $previousBeacon = null,
         $list = true
     )
@@ -374,6 +378,7 @@ class PeopleController extends Controller
             ->select(
                 'bi.primary_beacon_id',
                 'bi.secondary_beacon_id',
+                'bi.distance',
                 'p.id AS person_id',
                 'p.name AS person_name',
                 'b.name AS beacon_name'
@@ -382,13 +387,15 @@ class PeopleController extends Controller
             ->where('bi.primary_beacon_id', '=', $beaconId)
             ->where('bi.interaction_time', '>=', $startDate)
             ->where('bi.interaction_time', '<=', $endDate)
+            ->where('bi.distance', '>=', $distanceMin)
+            ->where('bi.distance', '<=', $distanceMax)
             ->where('duration', '>=', $duration)
             ->when($previousBeacon, function ($query, $previousBeacon) {
                 return $query->where('bi.secondary_beacon_id', '!=', $previousBeacon);
             })
             ->whereNull('bi.deleted_at')
             ->whereNull('p.deleted_at')
-            ->groupByRaw('bi.primary_beacon_id, bi.secondary_beacon_id, person_id, person_name, beacon_name')
+            ->groupByRaw('bi.primary_beacon_id, bi.secondary_beacon_id, person_id, person_name, beacon_name, distance')
             ->when($list, function ($query) {
                 return $query->orderBy('duration', 'desc');
             })
@@ -412,6 +419,7 @@ class PeopleController extends Controller
             'primary_beacon_id' => $interaction->primary_beacon_id,
             'secondary_beacon_id' => $interaction->secondary_beacon_id,
             'duration' => $interaction->duration,
+            'distance' => $interaction->distance,
             'person_id' => $interaction->person_id,
             'person_name' => $interaction->person_name,
             'beacon_name' => $interaction->beacon_name,

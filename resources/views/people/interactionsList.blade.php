@@ -9,15 +9,19 @@
                             <div class="col-xs-1 col-sm-1 col-md-1">
                                 <i class="fa fa-user-circle-o"></i>
                             </div>
-                            <div class="col-xs-4 col-sm-4 col-md-4">
+                            <div class="col-xs-3 col-sm-3 col-md-3">
                                 <strong>Name:</strong>
                                 {{ $interaction['person_name'] ?? null }}
                             </div>
-                            <div class="col-xs-4 col-sm-4 col-md-4">
+                            <div class="col-xs-3 col-sm-3 col-md-3">
                                 <strong>Beacon:</strong>
                                 {{ $interaction['beacon_name'] }}
                             </div>
-                            <div class="col-xs-3 col-sm-3 col-md-3 text-center">
+                            <div class="col-xs-3 col-sm-3 col-md-3">
+                                <strong>Distance:</strong>
+                                {{ $interaction['distance'] }}
+                            </div>
+                            <div class="col-xs-2 col-sm-2 col-md-2 text-center">
                                 @php
                                     $width = ($interaction['duration'] * 100)/$interactions[0]['duration'];
                                     if($width >= 75) {

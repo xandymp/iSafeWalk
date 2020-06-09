@@ -178,7 +178,10 @@ form {
 
 .back {
     position: relative !important;
-    top: 10px !important;
+}
+
+#slider-range {
+    margin-top: 10px;
 }
 
 .bg-light {
