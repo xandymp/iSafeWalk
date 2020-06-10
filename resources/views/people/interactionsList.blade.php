@@ -24,11 +24,9 @@
                             <div class="col-xs-2 col-sm-2 col-md-2 text-center">
                                 @php
                                     $width = ($interaction['duration'] * 100)/$interactions[0]['duration'];
-                                    if($width >= 75) {
+                                    if($interaction['duration'] >= 900) {
                                         $color = "#D72129";
-                                    } else if($width < 75 && $width >= 50) {
-                                        $color = "#FFBA18";
-                                    } else if($width < 50 && $width >= 25) {
+                                    } else if($interaction['duration'] < 900 && $interaction['duration'] >= 600) {
                                         $color = "#FCDE1E";
                                     } else {
                                         $color = "#86BD42";
