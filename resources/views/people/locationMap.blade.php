@@ -95,10 +95,10 @@
             {{--@endforeach--}}
         }
 
-        if (doesFileExist("/img/embalagem-{{ $person->id }}.png")) {
-            img.src = "/img/embalagem-{{ $person->id }}.png";
+        if (doesFileExist("{{ asset('public') }}/img/embalagem-{{ $person->id }}.png")) {
+            img.src = "{{ asset('public') }}/img/embalagem-{{ $person->id }}.png";
         } else {
-            img.src = "/img/embalagem.png";
+            img.src = "{{ asset('public') }}/img/embalagem.png";
         }
     });
 
