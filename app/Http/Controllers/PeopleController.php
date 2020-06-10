@@ -156,11 +156,6 @@ class PeopleController extends Controller
         // Colocar a quantidade de vezes em uma determinada coordenada
         $gateways = $this->showGatewayLocations($person->beacon->id);
 
-        if (empty($gateways)) {
-            return view('people.show',compact('person', 'status'))
-                ->with('warning','No location detected.');
-        }
-
         return view('people.locationMap',compact('person', 'zones', 'gateways'));
     }
 
@@ -319,7 +314,7 @@ class PeopleController extends Controller
         $duration += isset($minutes) ? $minutes * 60 : 0;
         $duration += isset($seconds) ? $seconds : 0;
 
-        $interactions = $this->getInteractions(
+        $interactions = $this->getInteractionsForMap(
             $person->beacon->id,
             $input['startDate'],
             $input['endDate'],
@@ -339,7 +334,7 @@ class PeopleController extends Controller
         }
 
         foreach ($interactions as $key => $value) {
-            $interactions[$key]['secondary_interactions'] = $this->getInteractions(
+            $interactions[$key]['secondary_interactions'] = $this->getInteractionsForMap(
                 $value['secondary_beacon_id'],
                 $input['startDate'],
                 $input['endDate'],
@@ -419,13 +414,77 @@ class PeopleController extends Controller
         return $interactions;
     }
 
+    private function getInteractionsForMap(
+        int $beaconId,
+        $startDate = null,
+        $endDate = null,
+        $duration = 0,
+        $distanceMin = 0,
+        $distanceMax = 2,
+        int $previousBeacon = null,
+        $list = true
+    )
+    {
+        if (is_null($startDate)) {
+            $startDate = date('Y-m-d');
+        }
+
+        $startDate = date('Y-m-d 00:00:00', strtotime($startDate));
+
+        if (is_null($endDate)) {
+            $endDate = date('Y-m-d');
+        }
+        $endDate = date('Y-m-d 23:59:59', strtotime($endDate));
+
+        $interactions = [];
+
+        $previousInteractions = DB::table('beacons_interactions AS bi')
+            ->leftJoin('people AS p', 'bi.secondary_beacon_id', '=', 'p.beacon_id')
+            ->join('beacons AS b', 'bi.secondary_beacon_id', '=', 'b.id')
+            ->select(
+                'bi.primary_beacon_id',
+                'bi.secondary_beacon_id',
+                'p.id AS person_id',
+                'p.name AS person_name',
+                'b.name AS beacon_name'
+            )
+            ->selectRaw('SUM(bi.duration) AS duration')
+            ->where('bi.primary_beacon_id', '=', $beaconId)
+            ->where('bi.interaction_time', '>=', $startDate)
+            ->where('bi.interaction_time', '<=', $endDate)
+            ->where('bi.distance', '>=', $distanceMin)
+            ->where('bi.distance', '<=', $distanceMax)
+            ->where('duration', '>=', $duration)
+            ->when($previousBeacon, function ($query, $previousBeacon) {
+                return $query->where('bi.secondary_beacon_id', '!=', $previousBeacon);
+            })
+            ->whereNull('bi.deleted_at')
+            ->whereNull('p.deleted_at')
+            ->groupByRaw('bi.primary_beacon_id, bi.secondary_beacon_id, person_id, person_name, beacon_name')
+            ->when($list, function ($query) {
+                return $query->orderBy('duration', 'desc');
+            })
+            ->orderBy('bi.secondary_beacon_id')
+            ->get();
+
+        if ($previousInteractions->count() == 0) {
+            return $interactions;
+        }
+
+        foreach ($previousInteractions as $previousInteraction) {
+            $interactions[] = $this->decorateInteraction($previousInteraction);
+        }
+
+        return $interactions;
+    }
+
     private function decorateInteraction($interaction)
     {
         return [
             'primary_beacon_id' => $interaction->primary_beacon_id,
             'secondary_beacon_id' => $interaction->secondary_beacon_id,
             'duration' => $interaction->duration,
-            'distance' => $interaction->distance,
+            'distance' => $interaction->distance ?? null,
             'person_id' => $interaction->person_id,
             'person_name' => $interaction->person_name,
             'beacon_name' => $interaction->beacon_name,
