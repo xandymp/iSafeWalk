@@ -12,25 +12,8 @@
 
 <hr/>
 
-<nav>
-    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <a class="nav-item nav-link active"
-           id="nav-zone01-tab"
-           data-toggle="tab"
-           href="#nav-zone01"
-           role="tab"
-           aria-controls="nav-home"
-           aria-selected="true">Embalagem
-        </a>
-    </div>
-</nav>
 <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active"
-         id="nav-zone01"
-         role="tabpanel"
-         aria-labelledby="nav-zone01-tab">
-        <canvas id="canvas" width="720" height="480"></canvas>
-    </div>
+    <canvas id="canvas" width="720" height="480"></canvas>
 </div>
 
 <script type="text/javascript" async>
