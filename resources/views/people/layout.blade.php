@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="{{ asset('public') }}/css/stylesheet.css" rel="stylesheet">
+    <link href="{{ asset('css/stylesheet.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -81,8 +81,9 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="{{ asset('public') }}/jquery_ui/jquery-ui.js"></script>
-    <link rel="stylesheet" href="{{ asset('public') }}/jquery_ui/jquery-ui.css">
+    <script src="/jquery_ui/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/jquery_ui/jquery-ui.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
@@ -92,7 +93,7 @@
     <script src="https://www.amcharts.com/lib/4/plugins/forceDirected.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment-with-locales.min.js" integrity="sha256-4HOrwHz9ACPZBxAav7mYYlbeMiAL0h6+lZ36cLNpR+E=" crossorigin="anonymous"></script>
-    <script src="{{ asset('public') }}/js/common.js"></script>
+    <script src="/js/common.js"></script>
     <script type="text/javascript" async>
         $(document).on('click', '.list', function () {
             $('.list').removeClass('active');
